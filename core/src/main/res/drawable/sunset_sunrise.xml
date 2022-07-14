@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="vector"
+    android:width="200dp"
+    android:height="100dp"
+    android:viewportWidth="200"
+    android:viewportHeight="100">
+    <group
+        android:name="groupMenuCross"
+        android:pivotX="12"
+        android:pivotY="12">
+        <path
+            android:name="menu"
+
+            android:fillColor="@android:color/white"
+            android:pathData="M6.76,4.84l-1.8,-1.79 -1.41,1.41 1.79,1.79zM1,10.5h3v2L1,12.5zM11,0.55h2L13,3.5h-2zM19.04,3.045l1.408,1.407 -1.79,1.79 -1.407,-1.408zM17.24,18.16l1.79,1.8 1.41,-1.41 -1.8,-1.79zM20,10.5h3v2h-3zM12,5.5c-3.31,0 -6,2.69 -6,6s2.69,6 6,6 6,-2.69 6,-6 -2.69,-6 -6,-6zM12,15.5c-2.21,0 -4,-1.79 -4,-4s1.79,-4 4,-4 4,1.79 4,4 -1.79,4 -4,4zM11,19.5h2v2.95h-2zM3.55,18.54l1.41,1.41 1.79,-1.8 -1.41,-1.41z"
+
+            android:strokeWidth="0"
+            android:strokeColor="@color/light_gray"
+            android:strokeLineCap="round" />
+        <path
+            android:name="percent"
+            android:pathData="M10,100 A3,3 0 1,1 190,100"
+            android:strokeWidth="1"
+            android:strokeColor="@color/white"
+            android:strokeLineCap="round" />
+    </group>
+</vector>

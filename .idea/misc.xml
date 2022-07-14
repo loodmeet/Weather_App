@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.304" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ic_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.1885" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ic_settings_24.xml" value="0.3045" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/layout_bg.xml" value="0.304" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/avd_close_menu.xml" value="0.223" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/avd_close_menu_reverse.xml" value="0.1445" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/close_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/close_menu_reverse.xml" value="0.2195" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/core_ic_close.xml" value="0.22" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/core_ic_close_120.xml" value="0.223" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/core_ic_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/drawable.xml" value="0.2965" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_celsius.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_cloud.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_fahrenheit_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_half_sun_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_moon_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_outline_air_24.xml" value="0.3615" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_outline_air_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_outline_sunny_31.xml" value="0.3615" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_outline_sunny_32.xml" value="0.185" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_sky_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_snow_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_sun_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_thermometer_1_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_water_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_waters_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_10_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_11_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_12_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_13_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_14_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_15_32.xml" value="0.25" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_16_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_17_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_18_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_19_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_20_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_21_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_22_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_23_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_24_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_25_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_26_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_27_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_28_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_29_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_2_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_30_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_31_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_32_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_33_32.xml" value="0.25" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_34_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_35_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_36_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_37_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_38_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_39_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_3_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_40_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_41_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_42_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_43_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_44_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_45_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_46_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_47_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_49_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_4_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_50_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_51_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_52_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_53_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_54_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_55_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_56_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_57_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_5_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_6_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_7_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_8_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_weather_9_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/ic_wind_32.xml" value="0.275" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/separator.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/core/src/main/res/drawable/sunset_sunrise.xml" value="0.33" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-daily-weather-details/src/main/res/drawable/humidity_icon.xml" value="0.201" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-daily-weather-details/src/main/res/layout/daily_weather_recycler_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-daily-weather-details/src/main/res/layout/fragment_daily_weather_details.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/humidity_icon.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/humidity_icon2.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_arrow_forward.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_close.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_cloud.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_location.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_sunny.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_sunny_32.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_sunny_36.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/ic_wind_direction.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/drawable/separator.xml" value="0.176" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/layout/fragment_main_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/layout/hourly_weather_recycler.xml" value="0.271875" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/layout/hourly_weather_recycler_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/layout/item_main_screen_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-main-screen/src/main/res/layout/main_recycler_item_header.xml" value="0.5" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/humidity_icon2.xml" value="0.3285" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_arrow_forward.xml" value="0.2395" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_close.xml" value="0.199" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_cloud.xml" value="0.2075" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_location.xml" value="0.199" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_sunny.xml" value="0.2245" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_sunny_32.xml" value="0.3615" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_sunny_36.xml" value="0.306" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/ic_wind_direction.xml" value="0.199" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/drawable/separator.xml" value="0.238" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/daily_weather_recycler_item.xml" value="0.5" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/data_update_info.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/divider.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/fragment_daily_weather_details.xml" value="0.33" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/fragment_main_screen.xml" value="0.33" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/hourly_weather_recycler.xml" value="0.22" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/hourly_weather_recycler_item.xml" value="0.5" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/item_main_screen_layout.xml" value="0.6126943005181347" />
+        <entry key="..\:/Users/Rays/AndroidStudioProjects/WeatherApp/feature-weather-details/src/main/res/layout/main_recycler_item_header.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectResources">
+    <xml-schema-version>XMLSchema_1_1</xml-schema-version>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

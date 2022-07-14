@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/core_ic_menu">
+
+    <target android:name="menu"
+        android:animation="@animator/close_menu" />
+
+    <target android:name="groupMenuCross"
+        android:animation="@animator/rotate_close_menu"/>
+
+</animated-vector>

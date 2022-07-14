@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="vector"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <group
+        android:name="groupMenuCross"
+        android:pivotX="12"
+        android:pivotY="12">
+        <path
+            android:name="menu"
+            android:fillColor="@color/transparent"
+            android:pathData="M6,12 L12,2  M12,2 L18,12    A7,7 0 1,1 6,12z"
+
+
+            android:strokeWidth="2"
+            android:strokeColor="@color/sky_blue"
+            android:strokeLineCap="round" />
+        <path
+            android:name="percent"
+            android:pathData="M10,12z M14,12 L10,18 M14,18z"
+            android:strokeWidth="2"
+            android:strokeColor="@color/sky_blue"
+            android:strokeLineCap="round" />
+    </group>
+</vector>

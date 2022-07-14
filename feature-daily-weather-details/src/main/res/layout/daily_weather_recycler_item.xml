@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/separator"
+    android:dividerPadding="40dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:showDividers="end">
+
+
+    <LinearLayout
+        style="@style/daily_weather_description_linear_layout"
+        android:layout_marginTop="10dp"
+        android:showDividers="none">
+
+        <TextView
+            android:id="@+id/time_of_day_tv"
+            style="@style/daily_weather_description_text_view"
+            android:text="Morning"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/weather_iv"
+            style="@style/daily_weather_description_text_view"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_outline_sunny_32" />
+
+
+        <TextView
+            android:id="@+id/temperature_tv"
+            style="@style/daily_weather_description_text_view"
+            android:text="11..12" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:gravity="center"
+        android:layout_marginTop="5dp">
+        <View
+            style="@style/Divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/daily_weather_description_linear_layout">
+
+
+        <ImageView
+            style="@style/s1"
+            android:src="@drawable/humidity_icon" />
+
+
+        <TextView
+            android:id="@+id/precipitation_tv"
+            style="@style/s2"
+            android:text="78%" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <View
+            style="@style/Divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/daily_weather_description_linear_layout">
+
+
+        <ImageView
+            style="@style/s1"
+            android:src="@drawable/ic_outline_air_32" />
+
+
+        <TextView
+            android:id="@+id/wind_speed_tv"
+            style="@style/s2"
+            android:text="3.1, Ю-З" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <View
+            style="@style/Divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/daily_weather_description_linear_layout"
+        android:layout_height="32dp">
+
+
+        <TextView
+            style="@style/s1"
+            android:text="Feels like" />
+
+
+        <TextView
+            android:id="@+id/apparent_temperature"
+            style="@style/s2"
+            android:text="+13" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_marginTop="5dp">
+
+        <View
+            style="@style/Divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

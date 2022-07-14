@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="vector"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <group
+        android:name="groupMenuCross"
+        android:pivotX="12"
+        android:pivotY="12">
+        <path
+            android:name="menu"
+            android:fillColor="#D3D3D3"
+            android:pathData="M 4 8 L 20 8 M 4 12 L 20 12 M 4 16 L 20 16"
+            android:strokeWidth="2"
+            android:strokeColor="#D3D3D3"
+            android:strokeLineCap="square" />
+    </group>
+</vector>

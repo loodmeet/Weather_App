@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="separator">#90909090</color>
+    <color name="transparent">#00000000</color>
+    <color name="yellow">#ffe524</color>
+    <color name="sky_blue">#87CEEB</color>
+</resources>

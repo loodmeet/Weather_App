@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:drawable="@drawable/core_ic_close">
+
+    <target
+        android:name="cross"
+        android:animation="@animator/close_menu_reverse" />
+
+
+    <target
+        android:name="groupMenuCross"
+        android:animation="@animator/rotate_close_menu_reverse" />
+
+
+</animated-vector>

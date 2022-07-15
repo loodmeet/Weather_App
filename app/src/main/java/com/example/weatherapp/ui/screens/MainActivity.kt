@@ -1,26 +1,47 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.ui.screens
 
 import android.animation.LayoutTransition
 import android.graphics.drawable.AnimatedVectorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.navigation.findNavController
+import com.example.core.utils.Config
 import com.example.weatherapp.R
 import com.example.weatherapp.app.appComponent
 import com.example.weatherapp.databinding.ActivityMainBinding
+import com.example.weatherapp.ui.alert_dialogs.ExitAlertDialogProvider
 import com.example.weatherapp.view_models.MainActivityViewModel
-
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding: ActivityMainBinding get() = checkNotNull(_binding)
     private val viewModel by viewModels<MainActivityViewModel>()
 
+    @Inject lateinit var exitAlertDialogProvider: ExitAlertDialogProvider
+
+    override fun onBackPressed() {
+        when (findNavController(binding.navHostFragment.id).currentDestination?.id) {
+            R.id.fragmentMainScreen -> {
+                exitAlertDialogProvider.provide(this) {
+                    super.onBackPressed()
+                }.show()
+            }
+            R.id.fragmentDailyWeatherDetails -> {
+                super.onBackPressed()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         appComponent.inject(this)
-        binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+        super.onCreate(savedInstanceState)
+
+        _binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         with(binding) {
 
@@ -33,10 +54,9 @@ class MainActivity : AppCompatActivity() {
                 setDuration(500)
             }
 
-
             viewModel.apply {
 
-                observeIsMenuButtonClicked(this@MainActivity) {  isClicked ->
+                observeIsMenuButtonClicked(this@MainActivity) { isClicked ->
 
                     if (isClicked) {
                         appBarLayoutTransition
@@ -60,7 +80,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-
                 observeIsSettingsButtonClicked(this@MainActivity) { isClicked ->
                     mainSettingsButton.apply {
                         visibility = if (isClicked) {
@@ -73,7 +92,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 observeIsSettingsVisible(this@MainActivity) { isVisible ->
-
                     layoutSettings.visibility = if (isVisible) {
                         View.VISIBLE
                     } else {
@@ -85,8 +103,11 @@ class MainActivity : AppCompatActivity() {
             mainSettingsButton.setOnClickListener { viewModel.changeIsSettingsButtonClickedState() }
             mainMenuButton.setOnClickListener { viewModel.changeIsMenuButtonClickedState() }
         }
+    }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

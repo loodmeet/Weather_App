@@ -1,5 +1,6 @@
 package com.example.feature_main_screen.ui.screens
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar.*
+import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +26,13 @@ import javax.inject.Inject
 
 class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
 
+
     @Inject internal lateinit var mainViewModelFactory: Lazy<MainViewModel.Factory>
     @[Inject Vertical] internal lateinit var verticalLayoutManagerProvider: LayoutManagerProvider
     private val mainViewModel: MainViewModel by viewModels { mainViewModelFactory.get() }
     private val componentViewModel: ComponentViewModel by viewModels()
     private lateinit var mainDelegationAdapter: MainDelegationAdapter
+
 
     override fun initBinding(
         inflater: LayoutInflater, container: ViewGroup?
@@ -37,6 +42,27 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
     override fun onAttach(context: Context) {
         componentViewModel.component.inject(this)
         super.onAttach(context)
+
+//        requireActivity().onBackPressedDispatcher.addCallback(this) {
+//            AlertDialog.Builder(context).apply {
+//                setTitle("Подтверждение")
+//                setMessage("Выйти?")
+//
+//                setPositiveButton("Да") {_, _->
+//                    parentFragmentManager.beginTransaction()
+//
+//                        .remove(this@FragmentMainScreen)
+////                    requireActivity().supportFragmentManager.beginTransaction()
+////                        .remove(this@FragmentMainScreen).commit()
+//                }
+//
+//                setNegativeButton("Нет") {_, _->
+//
+//                }
+//                setCancelable(true)
+//            }.create().show()
+//        }
+
     }
 
     override fun initLayoutManager(context: Context): RecyclerView.LayoutManager {
@@ -71,6 +97,7 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
             fetchData()
         }
     }
+
 
     @Inject internal fun init(
         mainDelegationAdapterFactory: MainDelegationAdapter.Factory

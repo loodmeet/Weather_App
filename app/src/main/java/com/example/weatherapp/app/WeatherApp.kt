@@ -7,9 +7,6 @@ import com.example.feature_daily_weather_details.di.dependencies.FeatureStore as
 import com.example.weatherapp.common.Common.BASE_URL
 import com.example.weatherapp.di.component.AppComponent
 import com.example.weatherapp.di.component.DaggerAppComponent
-import kotlin.math.pow
-import kotlin.math.roundToInt
-
 
 class WeatherApp : Application() {
 
@@ -23,7 +20,6 @@ class WeatherApp : Application() {
         MainScreenFeatureStore.dependencies = appComponent
         DailyWeatherDetailsFeatureStore.dependencies = appComponent
     }
-
 }
 
 val Context.appComponent: AppComponent
@@ -31,10 +27,3 @@ val Context.appComponent: AppComponent
         is WeatherApp -> appComponent
         else -> this.applicationContext.appComponent
     }
-
-//fun Double.round(decimals: Int): Double {
-//    var multiplier = 1.0
-//    repeat(decimals) { multiplier *= 10 }
-//    return round(this * multiplier) / multiplier
-//}
-

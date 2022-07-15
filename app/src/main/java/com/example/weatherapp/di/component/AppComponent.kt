@@ -6,7 +6,7 @@ import com.example.feature_main_screen.navigation.FeatureMainScreenNavCommandPro
 import com.example.weatherapp.di.modules.AppModule
 import com.example.weatherapp.di.qualifiers.BaseUrl
 import com.example.weatherapp.di.scopes.AppScope
-import com.example.weatherapp.ui.MainActivity
+import com.example.weatherapp.ui.screens.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 import retrofit2.Retrofit
@@ -19,9 +19,9 @@ interface AppComponent : FeatureMainScreenComponentDependencies,
 
 //    override val featureDailyWeatherDetailsNavCommandProvider: FeatureDailyWeatherDetailsNavCommandProvider
 
-//    override val retrofit1: Retrofit
-
     override val retrofit: Retrofit
+
+    fun inject(activity: MainActivity)
 
     @Component.Builder interface Builder {
 
@@ -30,7 +30,6 @@ interface AppComponent : FeatureMainScreenComponentDependencies,
         fun build(): AppComponent
     }
 
-    fun inject(activity: MainActivity)
 }
 
 

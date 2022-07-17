@@ -5,7 +5,7 @@ import com.example.core.di.annotation.Vertical
 import com.example.feature_main_screen.di.annotations.FeatureMainScreen
 import com.example.feature_main_screen.ui.adapters_and_delegates.delegation_adapters.HourlyWeatherDelegationAdapter
 import com.example.feature_main_screen.ui.adapters_and_delegates.layout_managers.LayoutManagerProvider
-import com.example.feature_main_screen.ui.on_click_listeners.DailyMoreButtonOnClickListenerProvider
+import com.example.feature_main_screen.ui.on_click_listeners.MoreButtonOnClickListenerProvider
 import dagger.Binds
 import dagger.Module
 
@@ -25,8 +25,8 @@ internal interface UiBindModule {
     ): HourlyWeatherDelegationAdapter
 
     @[FeatureMainScreen Binds] fun bindDailyMoreButtonOnClickListenerProvider(
-        dailyMoreButtonOnClickListenerProvider: DailyMoreButtonOnClickListenerProvider.Base
-    ): DailyMoreButtonOnClickListenerProvider
+        moreButtonOnClickListenerProvider: MoreButtonOnClickListenerProvider.Base
+    ): MoreButtonOnClickListenerProvider
 
 
 

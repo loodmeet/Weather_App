@@ -7,13 +7,6 @@ import javax.inject.Inject
 class FeatureMainScreenNavCommandProviderImpl @Inject constructor() :
     FeatureMainScreenNavCommandProvider {
 
-    //    override fun toFragmentDailyWeatherDetails(
-//        args: Bundle?, navOptions: NavOptions?
-//    ): NavCommand = NavCommand(
-//        action = R.id.action_fragmentMainScreen_to_fragmentDailyWeatherDetails,
-//        args = args,
-//        navOptions = navOptions
-//    )
     override fun toFragmentDailyWeatherDetails(): Int =
         R.id.action_fragmentMainScreen_to_fragmentDailyWeatherDetails
 

@@ -4,10 +4,9 @@ import androidx.navigation.NavController
 import com.example.core.di.annotation.Horizontal
 import com.example.core.ui.DisplayableItem
 import com.example.core.ui.DisplayableItemDelegationAdapter
-import com.example.feature_main_screen.di.annotations.FeatureMainScreen
 import com.example.feature_main_screen.ui.adapters_and_delegates.adapter_delegates.*
 import com.example.feature_main_screen.ui.adapters_and_delegates.layout_managers.LayoutManagerProvider
-import com.example.feature_main_screen.ui.on_click_listeners.DailyMoreButtonOnClickListenerProvider
+import com.example.feature_main_screen.ui.on_click_listeners.MoreButtonOnClickListenerProvider
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -16,7 +15,7 @@ import dagger.assisted.AssistedInject
 internal interface MainDelegationAdapter : DisplayableItemDelegationAdapter {
 
     class Base @AssistedInject constructor(
-        private val moreButtonOnClickListenerProvider: DailyMoreButtonOnClickListenerProvider,
+        private val moreButtonOnClickListenerProvider: MoreButtonOnClickListenerProvider,
         @Horizontal private val layoutManagerProvider: LayoutManagerProvider,
         private val hourlyDelegationAdapter: HourlyWeatherDelegationAdapter,
         @Assisted("navController") private val navController: NavController

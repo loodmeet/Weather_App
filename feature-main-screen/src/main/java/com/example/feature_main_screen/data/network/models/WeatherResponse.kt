@@ -1,8 +1,9 @@
 package com.example.feature_main_screen.data.network.models
 
+import com.example.core.utils.Mapper
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
-// todo:  make data class
 internal data class WeatherResponse(
     @SerializedName("hourly")
     val hourly: HourlyWeatherResponse,
@@ -15,5 +16,10 @@ internal data class WeatherResponse(
     @SerializedName("daily")
     val daily: DailyWeatherResponse
 )
+
+
+
+
+
 
 

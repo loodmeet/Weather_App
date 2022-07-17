@@ -8,8 +8,8 @@ internal data class HourlyWeatherResponse(
     val weatherCode: List<Int>,
     @SerializedName("temperature_2m")
     val temperature2m: List<Double>,
-    @SerializedName("precipitation")
-    val precipitation: List<Double>,
+//    @SerializedName("precipitation")
+//    val precipitation: List<Double>,
     @SerializedName("time")
     val time: List<Date>,
 //    @SerializedName("cloudcover")

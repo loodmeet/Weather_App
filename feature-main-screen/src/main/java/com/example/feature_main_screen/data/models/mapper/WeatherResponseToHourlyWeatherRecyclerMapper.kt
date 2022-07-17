@@ -16,7 +16,6 @@ internal interface WeatherResponseToHourlyWeatherRecyclerMapper :
     ) : WeatherResponseToHourlyWeatherRecyclerMapper {
         private var startingHour: Int = 1
 
-
         override suspend fun map(from: WeatherResponse, startingHour: Int): HourlyWeatherRecyclerDisplayableItem {
             this.startingHour = startingHour
             return super.map(from, startingHour)

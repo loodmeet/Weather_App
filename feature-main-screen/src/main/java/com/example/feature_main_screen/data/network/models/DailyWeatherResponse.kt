@@ -5,7 +5,7 @@ import java.util.Date
 
 internal data class DailyWeatherResponse(
     @SerializedName("time")
-    val time: List<Date>,
+    val date: List<Date>,
     @SerializedName("temperature_2m_max")
     val temperature2mMax: List<Double>,
     @SerializedName("weathercode")

@@ -38,7 +38,7 @@ class WeatherResponseToWeatherForTimeOfDayMapperBaseTest {
             weatherCodeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper
         )
     private val weatherResponse = mockk<WeatherResponse>()
-    private val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'mm:ss", Locale.CANADA)
+    private val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
     private val dayRange = 12..16
     private val timeOfDay = DAY
     private val numberOfDays = 7

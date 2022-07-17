@@ -38,7 +38,7 @@ internal interface WeatherResponseToDailyWeatherMapper :
                     firstValue = Temperature(value = daily.temperature2mMin[dayNumber]),
                     secondValue = Temperature(value = daily.temperature2mMax[dayNumber])
                 ),
-                date = dailyWeatherDateFormat.format(daily.time[dayNumber]),
+                date = dailyWeatherDateFormat.format(daily.date[dayNumber]),
                 imageResId = translatedWeatherToResourceMapper
                     .map(
                         weatherCodeToTranslatedWeatherMapper

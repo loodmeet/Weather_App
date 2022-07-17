@@ -8,6 +8,6 @@ interface FeatureDailyWeatherDetailsComponentDependencies {
 
 //    val featureDailyWeatherDetailsNavCommandProvider: FeatureDailyWeatherDetailsNavCommandProvider
 
-    val retrofit1: Retrofit
+    val retrofit: Retrofit
 
 }

@@ -18,7 +18,6 @@ import com.example.feature_daily_weather_details.view_models.MainViewModel
 import dagger.Lazy
 import javax.inject.Inject
 
-// todo: BASE URL const
 class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBinding>() {
 
     private val componentViewModel: ComponentViewModel by viewModels()

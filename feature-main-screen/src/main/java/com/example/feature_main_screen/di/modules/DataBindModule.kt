@@ -2,10 +2,11 @@ package com.example.feature_main_screen.di.modules
 
 import com.example.core.data.network.repository.BaseNetworkRepository
 import com.example.core.data.storage.repository.BaseStorageRepository
-import com.example.feature_main_screen.data.models.mapper.WeatherResponseToDailyWeatherMapper
-import com.example.feature_main_screen.data.models.mapper.WeatherResponseToHeaderMapper
-import com.example.feature_main_screen.data.models.mapper.WeatherResponseToHourlyWeatherMapper
-import com.example.feature_main_screen.data.models.mapper.WeatherResponseToHourlyWeatherRecyclerMapper
+import com.example.core.utils.Mapper
+import com.example.feature_main_screen.data.models.DailyWeather
+import com.example.feature_main_screen.data.models.HourlyWeather
+import com.example.feature_main_screen.data.models.mappers.WeatherResponseToDailyWeatherListMapper
+import com.example.feature_main_screen.data.models.mappers.WeatherResponseToHourlyWeatherListMapper
 import com.example.feature_main_screen.data.network.models.WeatherResponse
 import com.example.feature_main_screen.data.network.repository.NetworkRepository
 import com.example.feature_main_screen.data.storage.repository.StorageRepository
@@ -25,21 +26,14 @@ internal interface DataBindModule {
         repository: StorageRepository
     ): BaseStorageRepository<WeatherResponse>
 
-    @[FeatureMainScreen Binds] fun bindWeatherResponseToHourlyWeatherMapper(
-        mapper: WeatherResponseToHourlyWeatherMapper.Base
-    ): WeatherResponseToHourlyWeatherMapper
 
-    @[FeatureMainScreen Binds] fun bindDailyWeatherMapper(
-        mapper: WeatherResponseToDailyWeatherMapper.Base
-    ): WeatherResponseToDailyWeatherMapper
+    @[FeatureMainScreen Binds] fun bindWeatherResponseToDailyWeatherListMapper(
+        mapper: WeatherResponseToDailyWeatherListMapper
+    ): Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<DailyWeather>>
 
-    @[FeatureMainScreen Binds] fun bindHourlyWeatherRecyclerMapper(
-        mapper: WeatherResponseToHourlyWeatherRecyclerMapper.Base
-    ): WeatherResponseToHourlyWeatherRecyclerMapper
 
-    @[FeatureMainScreen Binds] fun bindHeaderMapper(
-        mapper: WeatherResponseToHeaderMapper.Base
-    ): WeatherResponseToHeaderMapper
-
+    @[FeatureMainScreen Binds] fun bindWeatherResponseToHourlyWeatherListMapper(
+        mapper: WeatherResponseToHourlyWeatherListMapper
+    ): Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>
 
 }

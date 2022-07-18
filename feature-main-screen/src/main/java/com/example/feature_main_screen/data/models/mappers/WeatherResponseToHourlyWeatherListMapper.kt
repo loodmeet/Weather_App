@@ -1,4 +1,4 @@
-package com.example.feature_main_screen.data.models.mapper
+package com.example.feature_main_screen.data.models.mappers
 
 import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.HourlyWeather
@@ -6,7 +6,7 @@ import com.example.feature_main_screen.data.network.models.WeatherResponse
 import javax.inject.Inject
 
 internal class WeatherResponseToHourlyWeatherListMapper @Inject constructor() :
-    Mapper<WeatherResponse, List<HourlyWeather>> {
+    Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>> {
 
     override suspend fun map(from: WeatherResponse): List<HourlyWeather> = with(from.hourly) {
         return@with List(size = time.size) { index ->

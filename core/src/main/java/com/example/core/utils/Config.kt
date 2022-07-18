@@ -7,6 +7,7 @@ object Config {
     const val MAIN_TAG = "MainAct"
     const val NETWORK_TAG = "network_tag"
     const val DAY_NUMBER_KEY = "dayNumber"
+    const val DAY_DATE_KEY = "dayNumber"
 }
 
 fun Double.round(decimals: Int): Double {

@@ -27,20 +27,13 @@ import com.example.core.domain.models.TranslatedWeather.*
 import com.example.core.utils.Mapper
 import javax.inject.Inject
 
-interface TranslatedWeatherToResourceMapper : Mapper<TranslatedWeather, Int> {
+class TranslatedWeatherToResourceMapper @Inject constructor() :
+    Mapper<@JvmSuppressWildcards Pair<TranslatedWeather, TimeOfDay>, Int> {
 
-    suspend fun map(from: TranslatedWeather, timeOfDay: TimeOfDay) = map(from = from)
+    override suspend fun map(from: Pair<TranslatedWeather, TimeOfDay>): Int {
+        val timeOfDay = from.second
 
-    class Base @Inject constructor() : TranslatedWeatherToResourceMapper {
-
-        private var timeOfDay: TimeOfDay = DAY
-
-        override suspend fun map(from: TranslatedWeather, timeOfDay: TimeOfDay): Int {
-            this.timeOfDay = timeOfDay
-            return super.map(from, timeOfDay)
-        }
-
-        override suspend fun map(from: TranslatedWeather) = when (from) {
+        return when (from.first) {
             CLEAR_SKY -> if (timeOfDay == NIGHT) ic_moon_32 else ic_sun_32
             MAINLY_CLEAR -> if (timeOfDay == NIGHT) ic_weather_3_32 else ic_weather_2_32
             PARTLY_CLOUDY -> if (timeOfDay == NIGHT) ic_weather_3_32 else ic_weather_2_32

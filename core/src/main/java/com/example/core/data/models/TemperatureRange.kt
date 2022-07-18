@@ -1,24 +1,8 @@
 package com.example.core.data.models
 
-//interface TemperatureRange {
-//
-//    fun getValuesAsString(divider: String): String
-//
-//    class Base(
-//        private val firstValue: Temperature,
-//        private val secondValue: Temperature
-//    ) : TemperatureRange {
-//        override fun changeDegreeSign(degreeSign: String): TemperatureRange {
-//            firstValue.changeDegreeSign(degreeSign = degreeSign)
-//            secondValue.changeDegreeSign(degreeSign = degreeSign)
-//            return this
-//        }
-//
-//        override fun getValuesAsString(divider: String) =
-//            firstValue.getValueAsString() + divider + secondValue.getValueAsString()
-//    }
-//
-//}
+import android.util.Log
+import java.lang.IllegalArgumentException
+
 // todo: rewrite
 class TemperatureRange(
     private val firstValue: Temperature,
@@ -32,6 +16,8 @@ class TemperatureRange(
 
     fun getValuesAsString(divider: String) =
         firstValue.getValueAsString() + divider + secondValue.getValueAsString()
+
+    fun getValues() = firstValue to secondValue
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

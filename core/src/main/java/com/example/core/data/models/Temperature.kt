@@ -1,30 +1,6 @@
 package com.example.core.data.models
 
-import javax.inject.Inject
 import kotlin.math.roundToInt
-
-//interface Temperature {
-//
-//    // todo: inject degree sign from res (R)
-//    fun getValueAsString(value: Double, degreeSign: String = "°"): String
-//
-//    fun getValueAsString(firstValue: Double, secondValue: Double, divider: String): String
-//
-//    class Base @Inject constructor(private val degreeSign: String) : Temperature {
-//
-//        override fun getValueAsString(value: Double, degreeSign: String) =
-//            if (value > 0) "+${value.roundToInt()}$degreeSign"
-//            else value.roundToInt().toString() + degreeSign
-//
-//        override fun getValueAsString(
-//            firstValue: Double,
-//            secondValue: Double,
-//            divider: String,
-//        ) =
-//            getValueAsString(firstValue) + divider + getValueAsString(secondValue)
-//    }
-//
-//}
 
 // todo: rewrite
 class Temperature(
@@ -40,6 +16,8 @@ class Temperature(
     fun getValueAsString() =
         if (value > 0) "+${value.roundToInt()}$degreeSign"
         else value.roundToInt().toString() + degreeSign
+
+    fun getValueAsDouble() = value
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

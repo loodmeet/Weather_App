@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+
     compileSdk 32
 
     defaultConfig {
@@ -38,6 +39,11 @@ android {
     }
     namespace 'com.example.feature_main_screen'
 }
+
+kapt {
+    correctErrorTypes true
+}
+
 
 dependencies {
 

@@ -1,8 +1,7 @@
-package com.example.feature_main_screen.data.models.mapper
+package com.example.feature_main_screen.data.models.mappers
 
-import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.data.models.HourlyWeather
-import com.example.feature_main_screen.data.network.models.DailyWeatherResponse
+import com.example.feature_main_screen.data.network.models.HourlyWeatherResponse
 import com.example.feature_main_screen.data.network.models.WeatherResponse
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -14,25 +13,24 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class WeatherResponseToDailyWeatherListMapperTest {
+internal class WeatherResponseToHourlyWeatherListMapperTest {
 
     private val response: WeatherResponse = mockk()
     private val responseDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
-    private val date = responseDateFormat.parse("2022-07-01T10:00")!!
-    private val mapper = WeatherResponseToDailyWeatherListMapper()
+    private val time = responseDateFormat.parse("2022-07-01T10:00")!!
+    private val mapper = WeatherResponseToHourlyWeatherListMapper()
 
     @Test fun `try to map a default response`() = runTest() {
-        coEvery { response.daily } returns DailyWeatherResponse(
+        coEvery { response.hourly } returns HourlyWeatherResponse(
             weatherCode = listOf(1, 2, 3),
-            temperature2mMin = listOf(0.1, 0.2, 0.3),
-            temperature2mMax = listOf(0.1, 0.2, 0.3),
-            date = List(size = 3) { date }
+            temperature2m = listOf(0.1, 0.2, 0.3),
+            time = List(size = 3) { time }
         )
 
         val expected = listOf(
-            DailyWeather(date = date, weatherCode = 1, temperatureMin = 0.1, temperatureMax = 0.1),
-            DailyWeather(date = date, weatherCode = 2, temperatureMin = 0.2, temperatureMax = 0.2),
-            DailyWeather(date = date, weatherCode = 3, temperatureMin = 0.3, temperatureMax = 0.3)
+            HourlyWeather(time = time, weatherCode = 1, temperature = 0.1),
+            HourlyWeather(time = time, weatherCode = 2, temperature = 0.2),
+            HourlyWeather(time = time, weatherCode = 3, temperature = 0.3),
         )
 
         val actual = mapper.map(from = response)
@@ -41,11 +39,10 @@ internal class WeatherResponseToDailyWeatherListMapperTest {
     }
 
     @Test fun `try to map an empty response`() = runTest() {
-        coEvery { response.daily } returns DailyWeatherResponse(
+        coEvery { response.hourly } returns HourlyWeatherResponse(
             weatherCode = listOf(),
-            temperature2mMin = listOf(),
-            temperature2mMax = listOf(),
-            date = listOf()
+            temperature2m = listOf(),
+            time = listOf()
         )
 
         val expected = listOf<HourlyWeather>()
@@ -54,4 +51,5 @@ internal class WeatherResponseToDailyWeatherListMapperTest {
 
         assertEquals(expected, actual)
     }
+
 }

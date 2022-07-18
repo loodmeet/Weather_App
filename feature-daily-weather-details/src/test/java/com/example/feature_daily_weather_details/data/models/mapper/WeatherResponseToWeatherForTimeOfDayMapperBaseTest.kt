@@ -25,7 +25,6 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 @OptIn(ExperimentalCoroutinesApi::class)
 class WeatherResponseToWeatherForTimeOfDayMapperBaseTest {
     private val dateTimeProvider = mockk<DateTimeProvider>()
@@ -55,8 +54,6 @@ class WeatherResponseToWeatherForTimeOfDayMapperBaseTest {
     }
 
     init {
-        ComponentProvider.component.inject(testClass = this)
-
         every { dateTimeProvider.hourRangeByTimeOfDay(timeOfDay = DAY) } returns dayRange
         every { weatherResponse.hourly } returns HourlyWeatherResponse(
             weatherCode = weatherCodeList,
@@ -92,7 +89,7 @@ class WeatherResponseToWeatherForTimeOfDayMapperBaseTest {
             weatherCodeToTranslatedWeatherMapper.map(from = weatherCode)
         } returns SLIGHT_INTENSITY_SNOW
         coEvery {
-            translatedWeatherToResourceMapper.map(from = SLIGHT_INTENSITY_SNOW,timeOfDay = timeOfDay)
+            translatedWeatherToResourceMapper.map(from = SLIGHT_INTENSITY_SNOW to timeOfDay)
         } returns ic_snow_32
 
         val actual = testWeatherResponseToWeatherForTimeOfDayMapper
@@ -127,7 +124,7 @@ class WeatherResponseToWeatherForTimeOfDayMapperBaseTest {
             weatherCodeToTranslatedWeatherMapper.map(from = weatherCode)
         } returns SLIGHT_INTENSITY_SNOW
         coEvery {
-            translatedWeatherToResourceMapper.map(from = SLIGHT_INTENSITY_SNOW,timeOfDay = timeOfDay)
+            translatedWeatherToResourceMapper.map(from = SLIGHT_INTENSITY_SNOW to timeOfDay)
         } returns ic_snow_32
 
         val actual = testWeatherResponseToWeatherForTimeOfDayMapper
@@ -162,7 +159,7 @@ class WeatherResponseToWeatherForTimeOfDayMapperBaseTest {
             weatherCodeToTranslatedWeatherMapper.map(from = weatherCode)
         } returns SLIGHT_INTENSITY_SNOW
         coEvery {
-            translatedWeatherToResourceMapper.map(from = SLIGHT_INTENSITY_SNOW,timeOfDay = timeOfDay)
+            translatedWeatherToResourceMapper.map(from = SLIGHT_INTENSITY_SNOW to timeOfDay)
         } returns ic_snow_32
 
         val actual = testWeatherResponseToWeatherForTimeOfDayMapper

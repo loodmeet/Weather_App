@@ -42,27 +42,6 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
     override fun onAttach(context: Context) {
         componentViewModel.component.inject(this)
         super.onAttach(context)
-
-//        requireActivity().onBackPressedDispatcher.addCallback(this) {
-//            AlertDialog.Builder(context).apply {
-//                setTitle("Подтверждение")
-//                setMessage("Выйти?")
-//
-//                setPositiveButton("Да") {_, _->
-//                    parentFragmentManager.beginTransaction()
-//
-//                        .remove(this@FragmentMainScreen)
-////                    requireActivity().supportFragmentManager.beginTransaction()
-////                        .remove(this@FragmentMainScreen).commit()
-//                }
-//
-//                setNegativeButton("Нет") {_, _->
-//
-//                }
-//                setCancelable(true)
-//            }.create().show()
-//        }
-
     }
 
     override fun initLayoutManager(context: Context): RecyclerView.LayoutManager {

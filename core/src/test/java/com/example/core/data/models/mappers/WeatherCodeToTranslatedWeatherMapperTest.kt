@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 @OptIn(ExperimentalCoroutinesApi::class) class WeatherCodeToTranslatedWeatherMapperTest {
 
-    private val mapper = WeatherCodeToTranslatedWeatherMapper.Base()
+    private val mapper = WeatherCodeToTranslatedWeatherMapper()
 
     @Test fun `should return CLEAR_SKY`() = runTest {
         val expected = CLEAR_SKY

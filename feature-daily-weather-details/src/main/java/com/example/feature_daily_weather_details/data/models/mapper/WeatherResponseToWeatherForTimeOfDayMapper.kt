@@ -4,8 +4,8 @@ import com.example.core.data.models.DateTimeProvider.TimeOfDay
 import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
-import com.example.core.data.models.mappers.TranslatedWeatherToResourceMapper
 import com.example.core.data.models.mappers.WeatherCodeToTranslatedWeatherMapper
+import com.example.core.domain.models.TranslatedWeather
 import com.example.core.utils.Mapper
 import com.example.core.utils.round
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
@@ -19,8 +19,8 @@ internal interface WeatherResponseToWeatherForTimeOfDayMapper :
 
     class Base @Inject constructor(
         private val dateTimeProvider: DateTimeProvider,
-        private val translatedWeatherToResourceMapper: TranslatedWeatherToResourceMapper,
-        private val weatherCodeToTranslatedWeatherMapper: WeatherCodeToTranslatedWeatherMapper
+        private val translatedWeatherToResourceMapper: Mapper<@JvmSuppressWildcards Pair<TranslatedWeather, TimeOfDay>, Int>,
+        private val weatherCodeToTranslatedWeatherMapper: Mapper<@JvmSuppressWildcards Int, @JvmSuppressWildcards TranslatedWeather>
     ) : WeatherResponseToWeatherForTimeOfDayMapper {
 
         private var currentTimeOfDay = TimeOfDay.DAY
@@ -66,8 +66,7 @@ internal interface WeatherResponseToWeatherForTimeOfDayMapper :
                     .subList(fromIndex = startIndex, toIndex = endIndex)
                     .average().toInt()
                 val imageResId = translatedWeatherToResourceMapper.map(
-                    from = weatherCodeToTranslatedWeatherMapper.map(weatherCode),
-                    timeOfDay = currentTimeOfDay
+                    from = weatherCodeToTranslatedWeatherMapper.map(weatherCode) to currentTimeOfDay,
                 )
                 val precipitation = precipitation
                     .subList(fromIndex = startIndex, toIndex = endIndex)

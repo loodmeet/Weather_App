@@ -8,12 +8,14 @@ import com.example.core.data.storage.repository.BaseStorageRepository
 import com.example.core.di.annotation.CoroutineContextIO
 import com.example.core.ui.DisplayableItem
 import com.example.core.utils.Config
-import com.example.feature_main_screen.data.models.mapper.WeatherResponseToDailyWeatherMapper
-import com.example.feature_main_screen.data.models.mapper.WeatherResponseToHeaderMapper
-import com.example.feature_main_screen.data.models.mapper.WeatherResponseToHourlyWeatherRecyclerMapper
+import com.example.core.utils.Mapper
+import com.example.feature_main_screen.data.models.DailyWeather
+import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.data.network.models.WeatherResponse
-import com.example.feature_main_screen.data.storage.repository.StorageRepository
 import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem
+import com.example.feature_main_screen.domain.models.HeaderDisplayableItem
+import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableItem
+import com.example.feature_main_screen.domain.models.HourlyWeatherRecyclerDisplayableItem
 import com.example.feature_main_screen.domain.repository.MainRepository
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -21,9 +23,12 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 internal class MainRepositoryImpl @Inject constructor(
-    private val hourlyWeatherRecyclerMapper: WeatherResponseToHourlyWeatherRecyclerMapper,
-    private val dailyWeatherMapper: WeatherResponseToDailyWeatherMapper,
-    private val headerMapper: WeatherResponseToHeaderMapper,
+    private val hourlyWeatherRecyclerMapper: Mapper<@JvmSuppressWildcards List<HourlyWeather>, HourlyWeatherRecyclerDisplayableItem>,
+    private val dailyWeatherToDisplayableItemMapper: Mapper<@JvmSuppressWildcards DailyWeather, DailyWeatherDisplayableItem>,
+    private val hourlyWeatherToDisplayableItemMapper: Mapper<@JvmSuppressWildcards HourlyWeather, HourlyWeatherDisplayableItem>,
+    private val responseToDailyWeatherListMapper: Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<DailyWeather>>,
+    private val responseToHourlyWeatherListMapper: Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>,
+    private val headerMapper: Mapper<@JvmSuppressWildcards Pair<DailyWeather, HourlyWeather>, HeaderDisplayableItem>,
     private val dateTimeProvider: DateTimeProvider,
     private val networkRepository: BaseNetworkRepository<WeatherResponse>,
     private val storageRepository: BaseStorageRepository<WeatherResponse>,
@@ -31,7 +36,6 @@ internal class MainRepositoryImpl @Inject constructor(
 ) : MainRepository {
 
     init { Log.d(Config.MAIN_TAG, "repo in feature_main_screen created") }
-
 
     override suspend fun currentDate(): Date = withContext(context = coroutineContext) {
         return@withContext dateTimeProvider.currentDate()
@@ -50,18 +54,21 @@ internal class MainRepositoryImpl @Inject constructor(
 
             val currentHour = dateTimeProvider.currentHour()
 
-            val hourlyWeatherRecycler = hourlyWeatherRecyclerMapper
-                .map(from = response, startingHour = currentHour)
-
-            val dailyWeatherList = mutableListOf<DailyWeatherDisplayableItem>().apply {
-                for (dayNumber in 1..6)
-                    this.add(dailyWeatherMapper.map(from = response, day = dayNumber))
+            val hourlyWeatherList = responseToHourlyWeatherListMapper.map(from = response)
+            val dailyWeatherList = responseToDailyWeatherListMapper.map(from = response)
+            val dailyWeatherDisplayableItemList = List(size = 6) { index ->
+                dailyWeatherToDisplayableItemMapper.map(from = dailyWeatherList[index + 1])
             }
 
-            val headerMapper = headerMapper.map(response, day = 0, hour = 0)
+            // todo: start hour
+            val hourlyWeatherRecycler = hourlyWeatherRecyclerMapper
+                .map(from = hourlyWeatherList.subList(fromIndex = 0, toIndex = 23))
+
+            // todo: not a repository logic (should be in the domain layer)
+            val headerMapper = headerMapper.map(dailyWeatherList[0] to hourlyWeatherList[0])
 
             return@withContext mutableListOf(hourlyWeatherRecycler, headerMapper).apply {
-                addAll(dailyWeatherList)
+                addAll(dailyWeatherDisplayableItemList)
             }
         }
 

@@ -9,6 +9,7 @@ import com.example.feature_main_screen.databinding.ItemMainScreenLayoutBinding
 import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem
 import com.example.feature_main_screen.ui.on_click_listeners.MoreButtonOnClickListenerProvider
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import java.lang.RuntimeException
 
 
 internal fun dailyWeatherAdapterDelegate(
@@ -27,14 +28,14 @@ internal fun dailyWeatherAdapterDelegate(
             binding.apply {
                 val degreeSign = context.getText(R.string.celsius)
                 val divider = "/"
-                val bundle = Bundle().also { it.putInt(Config.DAY_NUMBER_KEY, item.dayNumber) }
+                val bundle = Bundle().also { it.putString(Config.DAY_DATE_KEY, item.date) }
                 date.text = item.date
                 dailyTemp.text = item.temperature
                     .changeDegreeSign(degreeSign = degreeSign.toString())
                     .getValuesAsString(divider = divider)
                 weatherIv.setImageResource(item.imageResId)
 
-                moreArrow.tag = item.dayNumber
+//                moreArrow.tag = item.dayNumber
                 moreArrow.setOnClickListener(moreButtonOnClickerProvider
                     .get(args = bundle, navController = navController))
             }

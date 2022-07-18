@@ -5,7 +5,7 @@ import com.example.core.ui.DisplayableItem
 import java.util.*
 
 internal data class DailyWeatherDisplayableItem(
-    val dayNumber: Int,
+//    val dayNumber: Int,
     val weatherCode: Int,
     val temperature: TemperatureRange,
     val date: String,

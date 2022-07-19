@@ -1,4 +1,4 @@
-package com.example.feature_daily_weather_details.data.models.mapper
+package com.example.feature_daily_weather_details.data.models.mappers
 
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
 import com.example.feature_daily_weather_details.domain.models.SelectedDateDisplayableItem
@@ -19,11 +19,11 @@ internal class WeatherResponseToSelectedDateMapperBaseTest {
     private val numberOfDays = 7
     private val dateList = List(size = numberOfDays) { dateFormat.parse("2022-07-05T00:00")!! }
 
-    init { every { weatherResponse.daily.time } returns dateList }
+    init { every { weatherResponse.daily.date } returns dateList }
 
     @Test fun `test to map the 1st day`() = runTest {
         val dayNumber = 1
-        val date = weatherResponse.daily.time[dayNumber]
+        val date = weatherResponse.daily.date[dayNumber]
         val expected = SelectedDateDisplayableItem(date = dateFormat.format(date))
         val actual = mapper.map(from = weatherResponse, day = dayNumber)
 
@@ -32,7 +32,7 @@ internal class WeatherResponseToSelectedDateMapperBaseTest {
 
     @Test fun `test to map the zero day`() = runTest {
         val dayNumber = 0
-        val date = weatherResponse.daily.time[dayNumber]
+        val date = weatherResponse.daily.date[dayNumber]
         val expected = SelectedDateDisplayableItem(date = dateFormat.format(date))
         val actual = mapper.map(from = weatherResponse, day = dayNumber)
 
@@ -40,8 +40,8 @@ internal class WeatherResponseToSelectedDateMapperBaseTest {
     }
 
     @Test fun `test to map the last day`() = runTest {
-        val dayNumber = weatherResponse.daily.time.size - 1
-        val date = weatherResponse.daily.time[dayNumber]
+        val dayNumber = weatherResponse.daily.date.size - 1
+        val date = weatherResponse.daily.date[dayNumber]
         val expected = SelectedDateDisplayableItem(date = dateFormat.format(date))
         val actual = mapper.map(from = weatherResponse, day = dayNumber)
 

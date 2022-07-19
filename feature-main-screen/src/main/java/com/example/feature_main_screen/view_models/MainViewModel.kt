@@ -2,18 +2,15 @@ package com.example.feature_main_screen.view_models
 
 import androidx.lifecycle.*
 import com.example.core.di.annotation.CoroutineContextIO
-import com.example.core.di.annotation.DisplayableItems
 import com.example.core.di.dependensies.DisplayableItemsProvider
 import com.example.core.ui.DisplayableItem
 import com.example.core.utils.ItemsSortExecutor
 import com.example.feature_main_screen.domain.models.DividerDisplayableItem
-import com.example.feature_main_screen.domain.repository.TestRepo
 import com.example.feature_main_screen.domain.use_cases.FetchDataUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
-import kotlin.reflect.KClass
 
 internal class MainViewModel(
     private val fetchDataUseCase: FetchDataUseCase,

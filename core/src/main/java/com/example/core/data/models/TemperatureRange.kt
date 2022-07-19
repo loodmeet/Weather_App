@@ -1,8 +1,5 @@
 package com.example.core.data.models
 
-import android.util.Log
-import java.lang.IllegalArgumentException
-
 // todo: rewrite
 class TemperatureRange(
     private val firstValue: Temperature,

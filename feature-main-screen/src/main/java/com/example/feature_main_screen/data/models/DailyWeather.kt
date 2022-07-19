@@ -1,9 +1,9 @@
 package com.example.feature_main_screen.data.models
 
-import java.util.*
+import java.time.LocalDate
 
 internal data class DailyWeather(
-    val date: Date,
+    val date: LocalDate,
     val temperatureMax: Double,
     val temperatureMin: Double,
     val weatherCode: Int

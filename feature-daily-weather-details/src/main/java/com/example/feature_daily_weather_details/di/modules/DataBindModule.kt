@@ -2,9 +2,12 @@ package com.example.feature_daily_weather_details.di.modules
 
 import com.example.core.data.network.repository.BaseNetworkRepository
 import com.example.core.data.storage.repository.BaseStorageRepository
+import com.example.core.utils.Mapper
+import com.example.feature_daily_weather_details.data.models.DailyWeather
+import com.example.feature_daily_weather_details.data.models.HourlyWeather
+import com.example.feature_daily_weather_details.data.models.mappers.WeatherResponseToDailyWeatherListMapper
+import com.example.feature_daily_weather_details.data.models.mappers.WeatherResponseToHourlyWeatherListMapper
 import com.example.feature_daily_weather_details.di.annotations.FeatureDailyWeatherDetails
-import com.example.feature_daily_weather_details.data.models.mapper.WeatherResponseToSelectedDateMapper
-import com.example.feature_daily_weather_details.data.models.mapper.WeatherResponseToWeatherForTimeOfDayMapper
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
 import com.example.feature_daily_weather_details.data.network.repository.NetworkRepository
 import com.example.feature_daily_weather_details.data.storage.repository.StorageRepository
@@ -22,15 +25,12 @@ internal interface DataBindModule {
         repository: StorageRepository
     ): BaseStorageRepository<WeatherResponse>
 
-    @[FeatureDailyWeatherDetails Binds] fun bindWeatherForTimeOfDayMapper(
-        repository: WeatherResponseToWeatherForTimeOfDayMapper.Base
-    ): WeatherResponseToWeatherForTimeOfDayMapper
+    @[FeatureDailyWeatherDetails Binds] fun bindWeatherResponseToDailyWeatherListMapper(
+        mapper: WeatherResponseToDailyWeatherListMapper
+    ): Mapper<@kotlin.jvm.JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<DailyWeather>>
 
-    @[FeatureDailyWeatherDetails Binds] fun bindWeatherResponseToSelectedDateMapper(
-        repository: WeatherResponseToSelectedDateMapper.Base
-    ): WeatherResponseToSelectedDateMapper
-
-
-
+    @[FeatureDailyWeatherDetails Binds] fun bindWeatherResponseToHourlyWeatherListMapper(
+        mapper: WeatherResponseToHourlyWeatherListMapper
+    ): Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>
 
 }

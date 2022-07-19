@@ -11,22 +11,25 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class WeatherResponseToDailyWeatherListMapperTest {
 
     private val response: WeatherResponse = mockk()
-    private val responseDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
-    private val date = responseDateFormat.parse("2022-07-01T10:00")!!
-    private val mapper = WeatherResponseToDailyWeatherListMapper()
+    private val dateString = "2022-07-01T10:00"
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
+    private val date: LocalDate = LocalDate.parse(dateString, formatter)
+    private val mapper = WeatherResponseToDailyWeatherListMapper(formatter = formatter)
 
     @Test fun `try to map a default response`() = runTest() {
         coEvery { response.daily } returns DailyWeatherResponse(
             weatherCode = listOf(1, 2, 3),
             temperature2mMin = listOf(0.1, 0.2, 0.3),
             temperature2mMax = listOf(0.1, 0.2, 0.3),
-            date = List(size = 3) { date }
+            date = List(size = 3) { dateString }
         )
 
         val expected = listOf(

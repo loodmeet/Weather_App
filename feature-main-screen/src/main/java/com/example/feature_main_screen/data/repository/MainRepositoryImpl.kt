@@ -18,6 +18,7 @@ import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableIte
 import com.example.feature_main_screen.domain.models.HourlyWeatherRecyclerDisplayableItem
 import com.example.feature_main_screen.domain.repository.MainRepository
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
 import java.util.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -37,8 +38,8 @@ internal class MainRepositoryImpl @Inject constructor(
 
     init { Log.d(Config.MAIN_TAG, "repo in feature_main_screen created") }
 
-    override suspend fun currentDate(): Date = withContext(context = coroutineContext) {
-        return@withContext dateTimeProvider.currentDate()
+    override suspend fun currentDate(): LocalDateTime = withContext(context = coroutineContext) {
+        return@withContext LocalDateTime.now()
     }
 
     override suspend fun fetchData(): List<DisplayableItem> =
@@ -62,7 +63,7 @@ internal class MainRepositoryImpl @Inject constructor(
 
             // todo: start hour
             val hourlyWeatherRecycler = hourlyWeatherRecyclerMapper
-                .map(from = hourlyWeatherList.subList(fromIndex = 0, toIndex = 23))
+                .map(from = hourlyWeatherList.subList(fromIndex = 0, toIndex = 24))
 
             // todo: not a repository logic (should be in the domain layer)
             val headerMapper = headerMapper.map(dailyWeatherList[0] to hourlyWeatherList[0])

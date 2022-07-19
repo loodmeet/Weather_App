@@ -4,8 +4,9 @@ import com.example.core.ui.DisplayableItem
 import com.example.feature_main_screen.domain.models.UpdateDateDisplayableItem
 import com.example.feature_main_screen.domain.repository.MainRepository
 import javax.inject.Inject
-import com.example.core.di.annotation.HourlyWeatherDateFormat
+import com.example.core.di.annotation.Hourly
 import java.text.DateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 internal interface FetchDataUseCase {
@@ -14,7 +15,7 @@ internal interface FetchDataUseCase {
 
     class Base @Inject constructor(
         private val repository: MainRepository,
-        @param: HourlyWeatherDateFormat private val dateFormat: DateFormat,
+        @param: Hourly private val formatter: DateTimeFormatter,
         private val locale: Locale
     ) : FetchDataUseCase {
 
@@ -27,7 +28,7 @@ internal interface FetchDataUseCase {
             }
 
             val currentDate = repository.currentDate()
-            val currentTime = dateFormat.format(currentDate)
+            val currentTime = formatter.format(currentDate)
 
             return Result.success(
                 value = items.toMutableList().apply {

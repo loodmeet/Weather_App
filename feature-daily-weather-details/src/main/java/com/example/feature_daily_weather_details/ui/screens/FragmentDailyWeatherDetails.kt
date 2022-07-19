@@ -46,9 +46,9 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
         Log.d(Config.MAIN_TAG, "DailyWeatherDetails screen onViewCreated")
 
         binding.dailyDetailsRecycler.apply {
-            this.adapter = mainDelegationAdapter.buildAdapter()
-            this.layoutManager = this@FragmentDailyWeatherDetails.layoutManager
-            this.overScrollMode = View.OVER_SCROLL_NEVER
+            adapter = mainDelegationAdapter.buildAdapter()
+            layoutManager = this@FragmentDailyWeatherDetails.layoutManager
+            overScrollMode = View.OVER_SCROLL_NEVER
         }
 
         mainViewModel.apply {
@@ -59,6 +59,7 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
             observeDate(owner = this@FragmentDailyWeatherDetails) { item ->
                 binding.selectedDate.text = item.date
             }
+            // todo
             fetchData(dayNumber = arguments?.getInt(Config.DAY_NUMBER_KEY) ?: 1)
 
         }

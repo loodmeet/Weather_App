@@ -17,9 +17,9 @@ data class HourlyWeatherResponse(
     @SerializedName("windspeed_10m")
     val windSpeed10m: List<Double>,
     @SerializedName("time")
-    val time: List<Date>,
+    val time: List<String>,
     @SerializedName("relativehumidity_2m")
     val relativeHumidity2m: List<Int>,
-    @SerializedName("cloudcover")
-    val cloudCover: List<Int>
+//    @SerializedName("cloudcover")
+//    val cloudCover: List<Int>
 )

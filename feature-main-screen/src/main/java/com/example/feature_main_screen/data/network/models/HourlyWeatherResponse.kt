@@ -1,7 +1,6 @@
 package com.example.feature_main_screen.data.network.models
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 internal data class HourlyWeatherResponse(
     @SerializedName("weathercode")
@@ -11,7 +10,7 @@ internal data class HourlyWeatherResponse(
 //    @SerializedName("precipitation")
 //    val precipitation: List<Double>,
     @SerializedName("time")
-    val time: List<Date>,
+    val time: List<String>,
 //    @SerializedName("cloudcover")
 //    val cloudCover: List<Int>
 )

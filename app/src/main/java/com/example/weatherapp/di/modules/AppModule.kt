@@ -19,7 +19,7 @@ object AppModule {
         FeatureMainScreenNavCommandProviderImpl()
 
     @[AppScope Provides] fun provideGson(): Gson = GsonBuilder()
-        .setDateFormat("yyyy-MM-dd'T'HH:mm")
+//        .setDateFormat("yyyy-MM-dd'T'HH:mm")
         .create()
 
     @[AppScope Provides] fun provideDefaultRetrofitClient(@BaseUrl baseUrl: String, gson: Gson): Retrofit =

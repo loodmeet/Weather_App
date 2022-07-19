@@ -1,4 +1,4 @@
-package com.example.feature_daily_weather_details.data.models.mapper
+package com.example.feature_daily_weather_details.data.models.mappers
 
 import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.DateTimeProvider.TimeOfDay.DAY
@@ -6,13 +6,12 @@ import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
 import com.example.core.data.models.mappers.TranslatedWeatherToResourceMapper
 import com.example.core.data.models.mappers.WeatherCodeToTranslatedWeatherMapper
-import com.example.core.utils.round
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
 import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
 import com.example.api.R.drawable.ic_snow_32
 import com.example.core.domain.models.TranslatedWeather.SLIGHT_INTENSITY_SNOW
 import com.example.feature_daily_weather_details.data.network.models.responce.HourlyWeatherResponse
-import com.example.feature_daily_weather_details.di.component.ComponentProvider
+import com.example.feature_daily_weather_details.domain.models.mappers.WeatherResponseToWeatherForTimeOfDayMapper
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk

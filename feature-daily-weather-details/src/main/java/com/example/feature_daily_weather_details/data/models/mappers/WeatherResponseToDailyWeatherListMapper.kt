@@ -1,9 +1,9 @@
-package com.example.feature_main_screen.data.models.mappers
+package com.example.feature_daily_weather_details.data.models.mappers
 
 import com.example.core.di.annotation.DailyBase
 import com.example.core.utils.Mapper
-import com.example.feature_main_screen.data.models.DailyWeather
-import com.example.feature_main_screen.data.network.models.WeatherResponse
+import com.example.feature_daily_weather_details.data.models.DailyWeather
+import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -16,12 +16,8 @@ internal class WeatherResponseToDailyWeatherListMapper @Inject constructor(
     override suspend fun map(from: WeatherResponse): List<DailyWeather> = with(from.daily) {
         return@with List(size = date.size) { index ->
             DailyWeather(
-                date = LocalDate.parse(date[index], formatter),
-                temperatureMin = temperature2mMin[index],
-                temperatureMax = temperature2mMax[index],
-                weatherCode = weatherCode[index]
+                date = LocalDate.parse(date[index], formatter)
             )
         }
-
     }
 }

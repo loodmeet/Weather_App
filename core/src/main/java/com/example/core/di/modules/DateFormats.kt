@@ -1,21 +1,30 @@
 package com.example.core.di.modules
 
-import com.example.core.di.annotation.DailyWeatherDateFormat
-import com.example.core.di.annotation.HourlyWeatherDateFormat
+import com.example.core.di.annotation.Base
+import com.example.core.di.annotation.Daily
+import com.example.core.di.annotation.DailyBase
+import com.example.core.di.annotation.Hourly
 import dagger.Module
 import dagger.Provides
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Module
 object DateFormats {
 
-    @[Provides HourlyWeatherDateFormat]
-    fun provideHourlyWeatherDateFormat(locale: Locale): DateFormat =
-        SimpleDateFormat("HH:mm", locale)
+    @[Provides Hourly]
+    fun provideHourlyWeatherDateFormat(locale: Locale): DateTimeFormatter =
+        DateTimeFormatter.ofPattern("HH:mm", locale)
 
-    @[Provides DailyWeatherDateFormat]
-    fun provideDailyWeatherDateFormat(locale: Locale): DateFormat =
-        SimpleDateFormat("EE, d MMM", locale)
+    @[Provides Daily]
+    fun provideDailyWeatherDateFormat(locale: Locale): DateTimeFormatter =
+        DateTimeFormatter.ofPattern("EE, d MMM", locale)
+
+    @[Provides Base]
+    fun provideBaseDateFormat(locale: Locale): DateTimeFormatter =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", locale)
+
+    @[Provides DailyBase]
+    fun provideDailyBaseDateFormat(locale: Locale): DateTimeFormatter =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd", locale)
 }

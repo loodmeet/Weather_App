@@ -16,6 +16,7 @@ import com.example.feature_daily_weather_details.domain.models.SelectedDateDispl
 import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
 import com.example.feature_daily_weather_details.domain.repository.MainRepository
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -39,6 +40,21 @@ internal class MainRepositoryImpl @Inject constructor(
     }
 
     lateinit var response: WeatherResponse
+
+    override suspend fun fetchWeatherByDay(date: LocalDate): List<WeatherForTimeOfDayDisplayableItem> =
+        withContext(context = coroutineContext) {
+            response = try {
+                storageRepository.getData()
+            } catch (e: StorageException) {
+                storageRepository.updateData(data = networkRepository.fetchData())
+                storageRepository.getData()
+            }
+
+            return@withContext fetchWeatherByDayNumber(
+                dayNumber = weatherResponseToDailyWeatherListMapper.map(from = response)
+                    .indexOfFirst { dailyWeather -> dailyWeather.date == date }
+            )
+        }
 
     override suspend fun fetchDateByDayNumber(dayNumber: Int): SelectedDateDisplayableItem =
         withContext(context = coroutineContext) {
@@ -65,7 +81,7 @@ internal class MainRepositoryImpl @Inject constructor(
         }
 
         val hourlyWeatherList = weatherResponseToHourlyWeatherListMapper.map(from = response)
-            .subList(fromIndex = 0, toIndex = 24)
+            .subList(fromIndex = dayNumber * 24 + 0, toIndex = dayNumber * 24 + 24)
         with(dateTimeProvider) {
 
             val morningHours = hourlyWeatherList.subList(

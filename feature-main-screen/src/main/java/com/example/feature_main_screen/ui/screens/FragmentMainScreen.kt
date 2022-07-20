@@ -88,8 +88,6 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
 }
 
 
-// todo: err: 11:00 is night
-
 
 
 

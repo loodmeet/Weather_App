@@ -13,7 +13,7 @@ import com.example.core.utils.Config
 import com.example.core.utils.ItemsSortExecutor
 import com.example.feature_daily_weather_details.domain.models.SelectedDateDisplayableItem
 import com.example.feature_daily_weather_details.domain.usecases.FetchSelectedDateUseCase
-import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDayNumberUseCase
+import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDayUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,8 +23,8 @@ internal class MainViewModel(
     private val coroutineContext: CoroutineContext,
     private val itemsSortExecutor: ItemsSortExecutor,
     private val displayableItemsArray: DisplayableItemsProvider,
-    private val fetchWeatherByDayNumberUseCase: FetchWeatherByDayNumberUseCase,
-    private val fetchSelectedDateUseCase: FetchSelectedDateUseCase
+    private val fetchWeatherByDayUseCase: FetchWeatherByDayUseCase,
+    private val fetchSelectedDateUseCase: FetchSelectedDateUseCase,
 ) : ViewModel() {
 
     private val date = MutableLiveData<SelectedDateDisplayableItem>()
@@ -38,28 +38,38 @@ internal class MainViewModel(
         date.observe(owner, observer)
     }
 
-    fun fetchData(dayNumber: Int) {
+    fun fetchData(date: String) {
         CoroutineScope(coroutineContext).launch {
-            val weatherResult = fetchWeatherByDayNumberUseCase.execute(dayNumber = dayNumber)
-            val dateResult = fetchSelectedDateUseCase.execute(dayNumber = dayNumber)
-            weatherResult.fold(
-                onFailure = { exception -> Log.d(Config.MAIN_TAG, exception.stackTraceToString()) },
-                onSuccess = { items ->
-                    val sortedItems = itemsSortExecutor.sortByRule(
-                        items = items.toMutableList(),
-                        rule = displayableItemsArray.items
-                    )
-                    sortedItems.fold(
-                        onSuccess = { value -> displayableItems.postValue(value) },
-                        onFailure = { exception -> Log.d(Config.MAIN_TAG, exception.stackTraceToString()) }
-                    )
-            })
+            this@MainViewModel.date.postValue(SelectedDateDisplayableItem(date = date))
+            val dateResult = fetchSelectedDateUseCase.execute(date = date)
 
             dateResult.fold(
                 onFailure = { exception -> Log.d(Config.MAIN_TAG, exception.stackTraceToString()) },
-                onSuccess = { value-> date.postValue(value) }
+                onSuccess = { value ->
+                    fetchWeatherByDayUseCase.execute(date = value).fold(
+                        onFailure = { exception ->
+                            Log.d(
+                                Config.MAIN_TAG,
+                                exception.stackTraceToString()
+                            )
+                        },
+                        onSuccess = { items ->
+                            val sortedItems = itemsSortExecutor.sortByRule(
+                                items = items.toMutableList(),
+                                rule = displayableItemsArray.items
+                            )
+                            sortedItems.fold(
+                                onSuccess = { value -> displayableItems.postValue(value) },
+                                onFailure = { exception ->
+                                    Log.d(
+                                        Config.MAIN_TAG,
+                                        exception.stackTraceToString()
+                                    )
+                                }
+                            )
+                        })
+                }
             )
-
         }
     }
 
@@ -67,7 +77,7 @@ internal class MainViewModel(
         @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
         private val itemsSortExecutor: ItemsSortExecutor,
         private val displayableItemsArray: DisplayableItemsProvider,
-        private val fetchWeatherByDayNumberUseCase: FetchWeatherByDayNumberUseCase,
+        private val fetchWeatherByDayUseCase: FetchWeatherByDayUseCase,
         private val fetchSelectedDateUseCase: FetchSelectedDateUseCase
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -76,7 +86,7 @@ internal class MainViewModel(
                 coroutineContext = coroutineContext,
                 displayableItemsArray = displayableItemsArray,
                 itemsSortExecutor = itemsSortExecutor,
-                fetchWeatherByDayNumberUseCase = fetchWeatherByDayNumberUseCase,
+                fetchWeatherByDayUseCase = fetchWeatherByDayUseCase,
                 fetchSelectedDateUseCase = fetchSelectedDateUseCase
             ) as T
         }

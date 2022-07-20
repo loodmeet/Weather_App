@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
 
-
-// todo: rename
 internal interface MoreButtonOnClickListener : View.OnClickListener {
 
     class Base constructor(

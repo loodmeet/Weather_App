@@ -3,20 +3,20 @@ package com.example.feature_daily_weather_details.domain.usecases
 import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
 import com.example.feature_daily_weather_details.domain.repository.MainRepository
 import java.lang.Exception
+import java.time.LocalDate
 import javax.inject.Inject
 
-internal interface FetchWeatherByDayNumberUseCase {
+internal interface FetchWeatherByDayUseCase {
 
-    suspend fun execute(dayNumber: Int): Result<List<WeatherForTimeOfDayDisplayableItem>>
-
+    suspend fun execute(date: LocalDate): Result<List<WeatherForTimeOfDayDisplayableItem>>
 
     class Base @Inject constructor(
         private val repository: MainRepository
-    ) : FetchWeatherByDayNumberUseCase {
-        override suspend fun execute(dayNumber: Int): Result<List<WeatherForTimeOfDayDisplayableItem>> {
+    ) : FetchWeatherByDayUseCase {
+        override suspend fun execute(date: LocalDate): Result<List<WeatherForTimeOfDayDisplayableItem>> {
 
             val items = try {
-                repository.fetchWeatherByDayNumber(dayNumber = dayNumber)
+                repository.fetchWeatherByDay(date = date)
             } catch (e: Exception) {
                 return Result.failure(exception = e)
             }

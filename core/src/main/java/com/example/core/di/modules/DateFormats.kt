@@ -6,7 +6,10 @@ import com.example.core.di.annotation.DailyBase
 import com.example.core.di.annotation.Hourly
 import dagger.Module
 import dagger.Provides
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.temporal.ChronoField
 import java.util.*
 
 @Module
@@ -18,7 +21,11 @@ object DateFormats {
 
     @[Provides Daily]
     fun provideDailyWeatherDateFormat(locale: Locale): DateTimeFormatter =
-        DateTimeFormatter.ofPattern("EE, d MMM", locale)
+        DateTimeFormatterBuilder()
+            .appendPattern("EEE, d MMM")
+            .parseDefaulting(ChronoField.YEAR, LocalDate.now().year.toLong())
+            .toFormatter(locale)
+
 
     @[Provides Base]
     fun provideBaseDateFormat(locale: Locale): DateTimeFormatter =

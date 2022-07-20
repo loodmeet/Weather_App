@@ -63,7 +63,10 @@ internal class MainRepositoryImpl @Inject constructor(
 
             // todo: start hour
             val hourlyWeatherRecycler = hourlyWeatherRecyclerMapper
-                .map(from = hourlyWeatherList.subList(fromIndex = 0, toIndex = 24))
+                .map(from = hourlyWeatherList.subList(
+                    fromIndex = currentHour + 0,
+                    toIndex = currentHour + 24
+                ))
 
             // todo: not a repository logic (should be in the domain layer)
             val headerMapper = headerMapper.map(dailyWeatherList[0] to hourlyWeatherList[0])

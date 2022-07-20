@@ -60,7 +60,7 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
                 binding.selectedDate.text = item.date
             }
             // todo
-            fetchData(dayNumber = arguments?.getInt(Config.DAY_NUMBER_KEY) ?: 1)
+            fetchData(date = arguments?.getString(Config.DAY_DATE_KEY) ?: "")
 
         }
     }

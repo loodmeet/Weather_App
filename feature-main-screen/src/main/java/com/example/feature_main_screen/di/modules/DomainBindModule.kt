@@ -9,7 +9,7 @@ import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem
 import com.example.feature_main_screen.domain.models.HeaderDisplayableItem
 import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableItem
 import com.example.feature_main_screen.domain.models.HourlyWeatherRecyclerDisplayableItem
-import com.example.feature_main_screen.domain.models.mappers.DailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapper
+import com.example.feature_main_screen.domain.models.mappers.DailyAndHourlyWeatherToHeaderDisplayableItemMapper
 import com.example.feature_main_screen.domain.models.mappers.DailyWeatherToDailyWeatherDisplayableItemMapper
 import com.example.feature_main_screen.domain.models.mappers.HourlyWeatherToHourlyWeatherDisplayableItemMapper
 import com.example.feature_main_screen.domain.models.mappers.HourlyWeatherToHourlyWeatherRecyclerDisplayableItemMapper
@@ -30,7 +30,7 @@ internal interface DomainBindModule {
     ): FetchDataUseCase
 
     @[FeatureMainScreen Binds] fun bindDailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapper(
-        mapper: DailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapper
+        mapper: DailyAndHourlyWeatherToHeaderDisplayableItemMapper
     ): Mapper<@JvmSuppressWildcards Pair<DailyWeather, HourlyWeather>, HeaderDisplayableItem>
 
     @[FeatureMainScreen Binds] fun bindDailyWeatherToDailyWeatherDisplayableItemMapper(

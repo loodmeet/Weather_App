@@ -16,17 +16,19 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class DailyWeatherToDailyWeatherDisplayableItemMapperTest {
     private val weatherCodeToTranslatedWeatherMapper: Mapper<Int, TranslatedWeather> = mockk()
     private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, DateTimeProvider.TimeOfDay>, Int> = mockk()
-    private val responseDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
-    private val dailyDateFormat = SimpleDateFormat("EE, d MMM", Locale.CANADA)
-    private val date = responseDateFormat.parse("2022-07-01T10:00")!!
+    private val responseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
+    private val dailyFormatter = DateTimeFormatter.ofPattern("EE, d MMM", Locale.CANADA)
+    private val date = LocalDate.parse("2022-07-01T10:00", responseFormatter)!!
     private val mapper = DailyWeatherToDailyWeatherDisplayableItemMapper(
-        dailyWeatherDateFormat = dailyDateFormat,
+        formatter = dailyFormatter,
         weatherCodeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
         translatedWeatherToResourceMapper = translatedWeatherToResourceMapper
     )
@@ -45,7 +47,7 @@ internal class DailyWeatherToDailyWeatherDisplayableItemMapperTest {
                 firstValue = Temperature(value = 0.1),
                 secondValue = Temperature(value = 0.2)
             ),
-            date = dailyDateFormat.format(date),
+            date = date.format(dailyFormatter),
             imageResId = 10
         )
         val actual = mapper.map(from = dailyWeather)

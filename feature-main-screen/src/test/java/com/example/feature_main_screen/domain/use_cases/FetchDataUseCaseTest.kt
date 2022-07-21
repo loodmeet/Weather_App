@@ -12,25 +12,26 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class) class FetchDataUseCaseTest {
 
     private val repository = mockk<MainRepository>()
     private val locale = Locale.CANADA
-    private val hourlyDateFormat = SimpleDateFormat("HH:mm", locale)
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'hh:mm", Locale.CANADA)
+    private val hourlyFormatter = DateTimeFormatter.ofPattern("HH:mm", locale)
+    private val baseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
     private val useCase = FetchDataUseCase.Base(
         repository = repository,
-        dateFormat = hourlyDateFormat,
+        formatter = hourlyFormatter,
         locale = Locale.CANADA
     )
 
     @Test fun `should return the Success`() = runTest {
         val inputDateString = "2022-07-05T11:20"
         val expectedDateString = "11:20"
-        val date = dateFormat.parse(inputDateString)!!
-        println(date)
+        val date = LocalDateTime.parse(inputDateString, baseFormatter)
         val testDisplayableItems = mutableListOf(
             TestDisplayableItem1(), TestDisplayableItem2(), TestDisplayableItem3()
         )

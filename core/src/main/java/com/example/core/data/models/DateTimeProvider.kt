@@ -1,9 +1,8 @@
 package com.example.core.data.models
 
-
+import com.example.api.R
 import java.util.*
 import javax.inject.Inject
-
 
 interface DateTimeProvider {
 
@@ -15,15 +14,15 @@ interface DateTimeProvider {
 
     fun currentTimeOfDay(): TimeOfDay
 
-    fun currentDate(): Date = Date()
-
     fun currentHour(): Int
 
     enum class TimeOfDay {
-        DAY { override fun toString() = "Day" },
-        NIGHT { override fun toString() = "Night" },
-        MORNING { override fun toString() = "Morning" },
-        EVENING { override fun toString() = "Evening" }
+        DAY { override val resId = R.string.day },
+        NIGHT { override val resId = R.string.night },
+        MORNING { override val resId = R.string.morning },
+        EVENING { override val resId = R.string.evening};
+
+        abstract val resId: Int
     }
 
     class Base @Inject constructor(
@@ -35,6 +34,8 @@ interface DateTimeProvider {
         private val morningRange = 4..11
         private val eveningRange = 17..23
 
+
+
         override fun hourRangeByTimeOfDay(timeOfDay: TimeOfDay) =
             when(timeOfDay) {
                 TimeOfDay.DAY -> dayRange
@@ -42,7 +43,6 @@ interface DateTimeProvider {
                 TimeOfDay.MORNING -> morningRange
                 TimeOfDay.EVENING -> eveningRange
             }
-
 
         override fun timeOfDayByHour(hour: Int): TimeOfDay =
             when(hour) {

@@ -18,20 +18,24 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class DailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapperTest {
+internal class DailyAndHourlyWeatherToHeaderDisplayableItemMapperTest {
 
     private val weatherCodeToTranslatedWeatherMapper: WeatherCodeToTranslatedWeatherMapper = mockk()
     private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, DateTimeProvider.TimeOfDay>, Int> = mockk()
     private val dailyMapper: DailyWeatherToDailyWeatherDisplayableItemMapper = mockk()
     private val hourlyMapper: HourlyWeatherToHourlyWeatherDisplayableItemMapper = mockk()
-    private val responseDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
-    private val hourlyDateFormat = SimpleDateFormat("HH:mm", Locale.CANADA)
-    private val dailyDateFormat = SimpleDateFormat("EE, d MMM", Locale.CANADA)
-    private val date = responseDateFormat.parse("2022-07-01T10:00")!!
-    private val mapper = DailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapper(
+    private val responseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
+    private val hourlyFormatter = DateTimeFormatter.ofPattern("HH:mm", Locale.CANADA)
+    private val dailyFormatter = DateTimeFormatter.ofPattern("EE, d MMM", Locale.CANADA)
+    private val time = LocalTime.parse("2022-07-01T10:00", responseFormatter)!!
+    private val date = LocalDate.parse("2022-07-01T10:00", responseFormatter)
+    private val mapper = DailyAndHourlyWeatherToHeaderDisplayableItemMapper(
         weatherCodeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
         dailyWeatherMapper = dailyMapper,
         hourlyWeatherMapper = hourlyMapper
@@ -39,7 +43,7 @@ internal class DailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapperTest {
 
     @Test fun `try to map a default value`() = runTest {
         val hourlyWeather = HourlyWeather(
-            time = date, temperature = 0.1, weatherCode = 1
+            time = time, temperature = 0.1, weatherCode = 1
         )
         val dailyWeather = DailyWeather(
             date = date, temperatureMin = 0.1,  temperatureMax = 0.2, weatherCode = 1
@@ -55,12 +59,12 @@ internal class DailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapperTest {
         coEvery { dailyMapper.map(from = dailyWeather) } returns DailyWeatherDisplayableItem(
             weatherCode = dailyWeather.weatherCode,
             temperature = temperatureRange,
-            date = dailyDateFormat.format(dailyWeather.date),
+            date = dailyWeather.date.format(dailyFormatter),
             imageResId = 10
         )
         coEvery { hourlyMapper.map(from = hourlyWeather) } returns HourlyWeatherDisplayableItem(
             weatherCode = hourlyWeather.weatherCode,
-            time = hourlyDateFormat.format(hourlyWeather.time),
+            time = hourlyWeather.time.format(hourlyFormatter),
             temperature = temperatureRange.getValues().first,
             imageResId = 10
         )

@@ -23,4 +23,8 @@
     <string name="slight_thunderstorm">Slight thunderstorm</string>
     <string name="thunderstorm_with_hail">Thunderstorm with hail</string>
     <string name="unknown">Unknown</string>
+    <string name="day">Day</string>
+    <string name="night">Night</string>
+    <string name="morning">Morning</string>
+    <string name="evening">Evening</string>
 </resources>

@@ -9,7 +9,7 @@ import com.example.feature_main_screen.domain.models.HeaderDisplayableItem
 import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableItem
 import javax.inject.Inject
 
-internal class DailyWeatherAndHourlyWeatherToHeaderDisplayableItemMapper @Inject constructor(
+internal class DailyAndHourlyWeatherToHeaderDisplayableItemMapper @Inject constructor(
     private val weatherCodeToTranslatedWeatherMapper: Mapper<@JvmSuppressWildcards Int, @JvmSuppressWildcards TranslatedWeather>,
     private val dailyWeatherMapper: Mapper<@JvmSuppressWildcards DailyWeather, DailyWeatherDisplayableItem>,
     private val hourlyWeatherMapper: Mapper<@JvmSuppressWildcards HourlyWeather, HourlyWeatherDisplayableItem>

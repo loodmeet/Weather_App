@@ -23,7 +23,7 @@ fun dailyWeatherAdapterDelegate() =
                 temperatureTv.text = item.temperature.getValuesAsString(divider = "..")
                 windSpeedTv.text = item.windSpeed.toString()
                 weatherIv.setImageResource(item.imageResId)
-                timeOfDayTv.text = item.timeOfDay.toString()
+                timeOfDayTv.text = context.resources.getString(item.timeOfDay.resId)
             }
         }
     }

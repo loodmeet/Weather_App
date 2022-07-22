@@ -4,6 +4,7 @@ import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.DateTimeProvider.TimeOfDay.DAY
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
+import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.domain.models.TranslatedWeather.CLEAR_SKY
 import com.example.core.domain.models.TranslatedWeather
 import com.example.core.utils.Mapper
@@ -22,14 +23,14 @@ import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class DailyWeatherToDailyWeatherDisplayableItemMapperTest {
-    private val weatherCodeToTranslatedWeatherMapper: Mapper<Int, TranslatedWeather> = mockk()
+    private val weatherCodeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper = mockk()
     private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, DateTimeProvider.TimeOfDay>, Int> = mockk()
     private val responseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
     private val dailyFormatter = DateTimeFormatter.ofPattern("EE, d MMM", Locale.CANADA)
     private val date = LocalDate.parse("2022-07-01T10:00", responseFormatter)!!
     private val mapper = DailyWeatherToDailyWeatherDisplayableItemMapper(
         formatter = dailyFormatter,
-        weatherCodeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
+        codeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
         translatedWeatherToResourceMapper = translatedWeatherToResourceMapper
     )
 

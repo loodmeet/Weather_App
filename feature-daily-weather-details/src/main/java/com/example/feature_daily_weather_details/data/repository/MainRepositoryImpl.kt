@@ -8,12 +8,13 @@ import com.example.core.data.storage.exceptions.StorageException
 import com.example.core.data.storage.repository.BaseStorageRepository
 import com.example.core.di.annotation.CoroutineContextIO
 import com.example.core.utils.Config
-import com.example.core.utils.Mapper
-import com.example.feature_daily_weather_details.data.models.DailyWeather
-import com.example.feature_daily_weather_details.data.models.HourlyWeather
+import com.example.feature_daily_weather_details.data.models.mappers.ResponseToDailyListMapper
+import com.example.feature_daily_weather_details.data.models.mappers.ResponseToHourlyListMapper
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
 import com.example.feature_daily_weather_details.domain.models.SelectedDateDisplayableItem
 import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
+import com.example.feature_daily_weather_details.domain.models.mappers.DailyToSelectedDateMapper
+import com.example.feature_daily_weather_details.domain.models.mappers.HourlyListToWeatherForTimeOfDayMapper
 import com.example.feature_daily_weather_details.domain.repository.MainRepository
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
@@ -21,18 +22,14 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 internal class MainRepositoryImpl @Inject constructor(
+    @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
     private val dateTimeProvider: DateTimeProvider,
     private val networkRepository: BaseNetworkRepository<WeatherResponse>,
     private val storageRepository: BaseStorageRepository<WeatherResponse>,
-    @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
-    private val hourlyWeatherListToWeatherForTimeOfDayMapper:
-    Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem>,
-    private val weatherResponseToDailyWeatherListMapper:
-    Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<DailyWeather>>,
-    private val weatherResponseToHourlyWeatherListMapper:
-    Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>,
-    private val dailyWeatherToSelectedDateMapper:
-    Mapper<@JvmSuppressWildcards DailyWeather, SelectedDateDisplayableItem>
+    private val hourlyListToWeatherForTimeOfDayMapper: HourlyListToWeatherForTimeOfDayMapper,
+    private val responseToDailyListMapper: ResponseToDailyListMapper,
+    private val responseToHourlyListMapper: ResponseToHourlyListMapper,
+    private val dailyToSelectedDateMapper: DailyToSelectedDateMapper
 ) : MainRepository {
 
     init {
@@ -51,7 +48,7 @@ internal class MainRepositoryImpl @Inject constructor(
             }
 
             return@withContext fetchWeatherByDayNumber(
-                dayNumber = weatherResponseToDailyWeatherListMapper.map(from = response)
+                dayNumber = responseToDailyListMapper.map(from = response)
                     .indexOfFirst { dailyWeather -> dailyWeather.date == date }
             )
         }
@@ -64,8 +61,8 @@ internal class MainRepositoryImpl @Inject constructor(
                 storageRepository.updateData(data = networkRepository.fetchData())
                 storageRepository.getData()
             }
-            return@withContext dailyWeatherToSelectedDateMapper.map(
-                from = weatherResponseToDailyWeatherListMapper.map(from = response)[dayNumber]
+            return@withContext dailyToSelectedDateMapper.map(
+                from = responseToDailyListMapper.map(from = response)[dayNumber]
             )
         }
 
@@ -80,7 +77,7 @@ internal class MainRepositoryImpl @Inject constructor(
             storageRepository.getData()
         }
 
-        val hourlyWeatherList = weatherResponseToHourlyWeatherListMapper.map(from = response)
+        val hourlyWeatherList = responseToHourlyListMapper.map(from = response)
             .subList(fromIndex = dayNumber * 24 + 0, toIndex = dayNumber * 24 + 24)
         with(dateTimeProvider) {
 
@@ -101,7 +98,7 @@ internal class MainRepositoryImpl @Inject constructor(
                 toIndex = hourRangeByTimeOfDay(NIGHT).last
             )
 
-            with(hourlyWeatherListToWeatherForTimeOfDayMapper) {
+            with(hourlyListToWeatherForTimeOfDayMapper) {
                 val weatherForDay = map(from = dayHours)
                 val weatherForNight = map(from = nightHours)
                 val weatherForEvening = map(from = eveningHours)

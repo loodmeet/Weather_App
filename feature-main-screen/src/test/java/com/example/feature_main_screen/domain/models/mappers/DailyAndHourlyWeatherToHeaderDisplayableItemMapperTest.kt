@@ -17,7 +17,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -36,7 +35,7 @@ internal class DailyAndHourlyWeatherToHeaderDisplayableItemMapperTest {
     private val time = LocalTime.parse("2022-07-01T10:00", responseFormatter)!!
     private val date = LocalDate.parse("2022-07-01T10:00", responseFormatter)
     private val mapper = DailyAndHourlyWeatherToHeaderDisplayableItemMapper(
-        weatherCodeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
+        codeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
         dailyWeatherMapper = dailyMapper,
         hourlyWeatherMapper = hourlyMapper
     )

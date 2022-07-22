@@ -5,6 +5,9 @@ import javax.inject.Inject
 import com.example.core.domain.models.TranslatedWeather.*
 import com.example.core.utils.Mapper
 
+typealias CodeToTranslatedWeatherMapper =
+        Mapper<@JvmSuppressWildcards Int, @JvmSuppressWildcards TranslatedWeather>
+
 class WeatherCodeToTranslatedWeatherMapper @Inject constructor() :
     Mapper<Int, TranslatedWeather> {
     override suspend fun map(from: Int): TranslatedWeather {

@@ -27,6 +27,9 @@ import com.example.core.domain.models.TranslatedWeather.*
 import com.example.core.utils.Mapper
 import javax.inject.Inject
 
+typealias TranslatedWeatherToResMapper =
+        Mapper<@JvmSuppressWildcards Pair<TranslatedWeather, TimeOfDay>, Int>
+
 class TranslatedWeatherToResourceMapper @Inject constructor() :
     Mapper<@JvmSuppressWildcards Pair<TranslatedWeather, TimeOfDay>, Int> {
 

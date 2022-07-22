@@ -4,19 +4,22 @@ import com.example.core.data.models.DateTimeProvider.TimeOfDay
 import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
-import com.example.core.domain.models.TranslatedWeather
+import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
+import com.example.core.data.models.mappers.TranslatedWeatherToResMapper
 import com.example.core.utils.Mapper
 import com.example.core.utils.round
 import com.example.feature_daily_weather_details.data.models.HourlyWeather
-import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
 import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
+internal typealias HourlyListToWeatherForTimeOfDayMapper =
+        Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem>
+
 internal class HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper @Inject constructor(
     private val dateTimeProvider: DateTimeProvider,
-    private val translatedWeatherToResourceMapper: Mapper<@JvmSuppressWildcards Pair<TranslatedWeather, TimeOfDay>, Int>,
-    private val weatherCodeToTranslatedWeatherMapper: Mapper<@JvmSuppressWildcards Int, @JvmSuppressWildcards TranslatedWeather>
+    private val translatedWeatherToResourceMapper: TranslatedWeatherToResMapper,
+    private val codeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper
 ) : Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem> {
 
     private var timeOfDay = TimeOfDay.DAY
@@ -34,7 +37,7 @@ internal class HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper @Inje
         val weatherCodeList = List(size = from.size) { index -> from[index].weatherCode }.sorted()
         val weatherCode = weatherCodeList[weatherCodeList.size / 2]
         val imageResId = translatedWeatherToResourceMapper.map(
-            from = weatherCodeToTranslatedWeatherMapper.map(weatherCode) to timeOfDay,
+            from = codeToTranslatedWeatherMapper.map(weatherCode) to timeOfDay,
         )
         val temperatureList = List(size = from.size) { index -> from[index].temperature }
         val temperatureRange = TemperatureRange(

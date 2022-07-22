@@ -7,7 +7,7 @@ import com.example.feature_daily_weather_details.di.annotations.FeatureDailyWeat
 import com.example.feature_daily_weather_details.data.repository.MainRepositoryImpl
 import com.example.feature_daily_weather_details.domain.models.SelectedDateDisplayableItem
 import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
-import com.example.feature_daily_weather_details.domain.models.mappers.DailyWeatherToSelectedDateMapper
+import com.example.feature_daily_weather_details.domain.models.mappers.DailyWeatherToSelectedDateDisplayableItemMapper
 import com.example.feature_daily_weather_details.domain.models.mappers.HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper
 import com.example.feature_daily_weather_details.domain.repository.MainRepository
 import com.example.feature_daily_weather_details.domain.usecases.FetchSelectedDateUseCase
@@ -35,7 +35,7 @@ internal interface DomainBindModule {
     ): Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem>
 
     @[FeatureDailyWeatherDetails Binds] fun bindWeatherResponseToSelectedDateMapper(
-        mapper: DailyWeatherToSelectedDateMapper
+        mapper: DailyWeatherToSelectedDateDisplayableItemMapper
     ): Mapper<@JvmSuppressWildcards DailyWeather, SelectedDateDisplayableItem>
 
 }

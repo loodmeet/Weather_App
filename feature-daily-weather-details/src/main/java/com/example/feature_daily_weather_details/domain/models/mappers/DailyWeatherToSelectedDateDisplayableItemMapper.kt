@@ -7,7 +7,10 @@ import com.example.feature_daily_weather_details.domain.models.SelectedDateDispl
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-internal class DailyWeatherToSelectedDateMapper @Inject constructor(
+internal typealias DailyToSelectedDateMapper =
+        Mapper<@JvmSuppressWildcards DailyWeather, SelectedDateDisplayableItem>
+
+internal class DailyWeatherToSelectedDateDisplayableItemMapper @Inject constructor(
     @param: Daily private val formatter: DateTimeFormatter
 ) : Mapper<@JvmSuppressWildcards DailyWeather, SelectedDateDisplayableItem> {
 

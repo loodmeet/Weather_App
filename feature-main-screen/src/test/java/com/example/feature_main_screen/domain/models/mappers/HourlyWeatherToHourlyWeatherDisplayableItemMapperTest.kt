@@ -1,15 +1,14 @@
 package com.example.feature_main_screen.domain.models.mappers
 
-import com.example.api.R
 import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.DateTimeProvider.TimeOfDay
 import com.example.core.data.models.Temperature
+import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.domain.models.TranslatedWeather
 import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableItem
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -23,7 +22,7 @@ import java.util.*
 class HourlyWeatherToHourlyWeatherDisplayableItemMapperTest {
 
     private val dateTimeProvider = DateTimeProvider.Base(calendar = Calendar.getInstance())
-    private val weatherCodeToTranslatedWeatherMapper: Mapper<Int, TranslatedWeather> = mockk()
+    private val weatherCodeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper = mockk()
     private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, TimeOfDay>, Int> =
         mockk()
     private val formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.CANADA)

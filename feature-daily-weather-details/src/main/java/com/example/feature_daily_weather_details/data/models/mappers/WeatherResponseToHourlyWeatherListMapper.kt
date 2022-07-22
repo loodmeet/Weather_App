@@ -8,6 +8,9 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
+internal typealias ResponseToHourlyListMapper =
+        Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>
+
 internal class WeatherResponseToHourlyWeatherListMapper @Inject constructor(
     @param: Base private val formatter: DateTimeFormatter
 ) : Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>> {

@@ -8,28 +8,24 @@ import com.example.core.data.storage.repository.BaseStorageRepository
 import com.example.core.di.annotation.CoroutineContextIO
 import com.example.core.ui.DisplayableItem
 import com.example.core.utils.Config
-import com.example.core.utils.Mapper
-import com.example.feature_main_screen.data.models.DailyWeather
-import com.example.feature_main_screen.data.models.HourlyWeather
+import com.example.feature_main_screen.data.models.mappers.ResponseToDailyListMapper
+import com.example.feature_main_screen.data.models.mappers.ResponseToHourlyListMapper
 import com.example.feature_main_screen.data.network.models.WeatherResponse
-import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem
-import com.example.feature_main_screen.domain.models.HeaderDisplayableItem
-import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableItem
-import com.example.feature_main_screen.domain.models.HourlyWeatherRecyclerDisplayableItem
+import com.example.feature_main_screen.domain.models.mappers.DailyAndHourlyToHeaderMapper
+import com.example.feature_main_screen.domain.models.mappers.DailyToDisplayableItemMapper
+import com.example.feature_main_screen.domain.models.mappers.HourlyToRecyclerDisplayableItemMapper
 import com.example.feature_main_screen.domain.repository.MainRepository
 import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
-import java.util.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 internal class MainRepositoryImpl @Inject constructor(
-    private val hourlyWeatherRecyclerMapper: Mapper<@JvmSuppressWildcards List<HourlyWeather>, HourlyWeatherRecyclerDisplayableItem>,
-    private val dailyWeatherToDisplayableItemMapper: Mapper<@JvmSuppressWildcards DailyWeather, DailyWeatherDisplayableItem>,
-    private val hourlyWeatherToDisplayableItemMapper: Mapper<@JvmSuppressWildcards HourlyWeather, HourlyWeatherDisplayableItem>,
-    private val responseToDailyWeatherListMapper: Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<DailyWeather>>,
-    private val responseToHourlyWeatherListMapper: Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>,
-    private val headerMapper: Mapper<@JvmSuppressWildcards Pair<DailyWeather, HourlyWeather>, HeaderDisplayableItem>,
+    private val hourlyToRecyclerMapper: HourlyToRecyclerDisplayableItemMapper,
+    private val dailyToDisplayableItemMapper: DailyToDisplayableItemMapper,
+    private val responseToDailyListMapper: ResponseToDailyListMapper,
+    private val responseToHourlyListMapper: ResponseToHourlyListMapper,
+    private val headerMapper: DailyAndHourlyToHeaderMapper,
     private val dateTimeProvider: DateTimeProvider,
     private val networkRepository: BaseNetworkRepository<WeatherResponse>,
     private val storageRepository: BaseStorageRepository<WeatherResponse>,
@@ -51,18 +47,15 @@ internal class MainRepositoryImpl @Inject constructor(
                 storageRepository.getData()
             }
 
-            // todo: use "currentTime" fun
-
             val currentHour = dateTimeProvider.currentHour()
 
-            val hourlyWeatherList = responseToHourlyWeatherListMapper.map(from = response)
-            val dailyWeatherList = responseToDailyWeatherListMapper.map(from = response)
+            val hourlyWeatherList = responseToHourlyListMapper.map(from = response)
+            val dailyWeatherList = responseToDailyListMapper.map(from = response)
             val dailyWeatherDisplayableItemList = List(size = 6) { index ->
-                dailyWeatherToDisplayableItemMapper.map(from = dailyWeatherList[index + 1])
+                dailyToDisplayableItemMapper.map(from = dailyWeatherList[index + 1])
             }
 
-            // todo: start hour
-            val hourlyWeatherRecycler = hourlyWeatherRecyclerMapper
+            val hourlyWeatherRecycler = hourlyToRecyclerMapper
                 .map(from = hourlyWeatherList.subList(
                     fromIndex = currentHour + 0,
                     toIndex = currentHour + 24
@@ -75,6 +68,4 @@ internal class MainRepositoryImpl @Inject constructor(
                 addAll(dailyWeatherDisplayableItemList)
             }
         }
-
 }
-

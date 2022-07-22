@@ -9,6 +9,9 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
+internal typealias ResponseToDailyListMapper =
+        Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<DailyWeather>>
+
 internal class WeatherResponseToDailyWeatherListMapper @Inject constructor(
     @param: DailyBase private val formatter: DateTimeFormatter
 ) : Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<DailyWeather>> {

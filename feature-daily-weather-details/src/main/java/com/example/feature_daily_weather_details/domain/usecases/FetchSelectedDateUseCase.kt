@@ -18,7 +18,6 @@ internal interface FetchSelectedDateUseCase {
     class Base @Inject constructor(
         @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
         @param: Daily private val formatter: DateTimeFormatter,
-        private val repository: MainRepository
     ) : FetchSelectedDateUseCase {
 
         override suspend fun execute(date: String): Result<LocalDate> =
@@ -26,7 +25,6 @@ internal interface FetchSelectedDateUseCase {
 
                 return@withContext try {
                     Result.success(value = LocalDate.parse(date, formatter))
-//                Result.success(value = repository.fetchDateByDayNumber(dayNumber = dayNumber))
                 } catch (e: Exception) {
                     Result.failure<LocalDate>(exception = e)
                 }

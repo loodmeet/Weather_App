@@ -1,6 +1,7 @@
 package com.example.core.data.models
 
 import com.example.api.R
+import java.time.LocalDateTime
 import java.util.*
 import javax.inject.Inject
 
@@ -13,6 +14,8 @@ interface DateTimeProvider {
     fun hourRangeByTimeOfDay(timeOfDay: TimeOfDay): IntRange
 
     fun currentTimeOfDay(): TimeOfDay
+
+    fun currentDateTime(): LocalDateTime
 
     fun currentHour(): Int
 
@@ -34,7 +37,7 @@ interface DateTimeProvider {
         private val morningRange = 4..11
         private val eveningRange = 17..23
 
-
+        override fun currentDateTime(): LocalDateTime = LocalDateTime.now()
 
         override fun hourRangeByTimeOfDay(timeOfDay: TimeOfDay) =
             when(timeOfDay) {

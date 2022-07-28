@@ -1,13 +1,11 @@
 package com.example.feature_main_screen.domain.repository
 
-import com.example.core.ui.DisplayableItem
-import java.text.DateFormat
-import java.time.LocalDateTime
-import java.util.*
+import com.example.feature_main_screen.data.models.DailyWeather
+import com.example.feature_main_screen.data.models.HourlyWeather
+
 
 internal interface MainRepository {
 
-    suspend fun fetchData(): List<DisplayableItem>
+    suspend fun fetchWeatherForWeek(): Pair<List<DailyWeather>, List<HourlyWeather>>
 
-    suspend fun currentDate(): LocalDateTime
 }

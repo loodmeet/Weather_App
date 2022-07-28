@@ -13,7 +13,7 @@ import com.example.core.utils.Config
 import com.example.core.utils.ItemsSortExecutor
 import com.example.feature_daily_weather_details.domain.models.SelectedDateDisplayableItem
 import com.example.feature_daily_weather_details.domain.usecases.FetchSelectedDateUseCase
-import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDayUseCase
+import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDateUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,7 +23,7 @@ internal class MainViewModel(
     private val coroutineContext: CoroutineContext,
     private val itemsSortExecutor: ItemsSortExecutor,
     private val displayableItemsArray: DisplayableItemsProvider,
-    private val fetchWeatherByDayUseCase: FetchWeatherByDayUseCase,
+    private val fetchWeatherByDateUseCase: FetchWeatherByDateUseCase,
     private val fetchSelectedDateUseCase: FetchSelectedDateUseCase,
 ) : ViewModel() {
 
@@ -46,7 +46,7 @@ internal class MainViewModel(
             dateResult.fold(
                 onFailure = { exception -> Log.d(Config.MAIN_TAG, exception.stackTraceToString()) },
                 onSuccess = { value ->
-                    fetchWeatherByDayUseCase.execute(date = value).fold(
+                    fetchWeatherByDateUseCase.execute(date = value).fold(
                         onFailure = { exception ->
                             Log.d(
                                 Config.MAIN_TAG,
@@ -77,7 +77,7 @@ internal class MainViewModel(
         @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
         private val itemsSortExecutor: ItemsSortExecutor,
         private val displayableItemsArray: DisplayableItemsProvider,
-        private val fetchWeatherByDayUseCase: FetchWeatherByDayUseCase,
+        private val fetchWeatherByDateUseCase: FetchWeatherByDateUseCase,
         private val fetchSelectedDateUseCase: FetchSelectedDateUseCase
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -86,7 +86,7 @@ internal class MainViewModel(
                 coroutineContext = coroutineContext,
                 displayableItemsArray = displayableItemsArray,
                 itemsSortExecutor = itemsSortExecutor,
-                fetchWeatherByDayUseCase = fetchWeatherByDayUseCase,
+                fetchWeatherByDateUseCase = fetchWeatherByDateUseCase,
                 fetchSelectedDateUseCase = fetchSelectedDateUseCase
             ) as T
         }

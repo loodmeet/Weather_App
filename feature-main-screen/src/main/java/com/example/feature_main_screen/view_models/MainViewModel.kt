@@ -36,29 +36,27 @@ internal class MainViewModel(
         isProgressBarShowedLiveData.observe(owner, observer)
     }
 
-//    fun fetchTestData() { itemsLiveData.value = TestRepo().getItems() }
-
     fun fetchData() {
         CoroutineScope(coroutineContext).launch {
             val fetchDataResult = fetchDataUseCase.execute()
 
             fetchDataResult.fold(
-                onSuccess = { displayableItems->
-                    val items = mutableListOf<DisplayableItem>().apply {
-                        addAll(displayableItems)
-                        add(dividerDisplayableItem)
-                    }
+                onSuccess = { displayableItems ->
+
                     val sortedItemsResult = itemsSortExecutor
-                        .sortByRule(items = items, *displayableItemsArray.items)
+                        .sortByRule(
+                            items = displayableItems.toMutableList(),
+                            rule = displayableItemsArray.items
+                        )
                     sortedItemsResult.fold(
                         onSuccess = { sortedItems ->
                             itemsLiveData.postValue(sortedItems)
                             isProgressBarShowedLiveData.postValue(false)
                         },
-                        onFailure = {exception ->  errorLiveData.postValue(exception.stackTraceToString())}
+                        onFailure = { exception -> errorLiveData.postValue(exception.stackTraceToString()) }
                     )
                 },
-                onFailure = { exception-> errorLiveData.postValue(exception.stackTraceToString()) }
+                onFailure = { exception -> errorLiveData.postValue(exception.stackTraceToString()) }
             )
 
         }

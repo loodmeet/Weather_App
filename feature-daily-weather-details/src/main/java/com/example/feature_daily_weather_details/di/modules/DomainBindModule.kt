@@ -11,7 +11,7 @@ import com.example.feature_daily_weather_details.domain.models.mappers.DailyWeat
 import com.example.feature_daily_weather_details.domain.models.mappers.HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper
 import com.example.feature_daily_weather_details.domain.repository.MainRepository
 import com.example.feature_daily_weather_details.domain.usecases.FetchSelectedDateUseCase
-import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDayUseCase
+import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDateUseCase
 import dagger.Binds
 import dagger.Module
 
@@ -23,8 +23,8 @@ internal interface DomainBindModule {
     ): MainRepository
 
     @[FeatureDailyWeatherDetails Binds] fun bindFetchDataUseCase(
-        useCase: FetchWeatherByDayUseCase.Base
-    ): FetchWeatherByDayUseCase
+        useCase: FetchWeatherByDateUseCase.Base
+    ): FetchWeatherByDateUseCase
 
     @[FeatureDailyWeatherDetails Binds] fun bindFetchSelectedDateUseCase(
         useCase: FetchSelectedDateUseCase.Base

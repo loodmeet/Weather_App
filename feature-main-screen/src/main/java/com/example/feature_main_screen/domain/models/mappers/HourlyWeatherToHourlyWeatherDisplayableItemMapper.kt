@@ -40,6 +40,20 @@ internal class HourlyWeatherToHourlyWeatherDisplayableItemMapper @Inject constru
 
 }
 
+typealias foo = () -> String
+
+fun printer(lambda: foo) { println(lambda) }
+
+class Example() {
+
+    operator fun invoke() {}
+}
+
+fun main() {
+
+    printer { "Hello, world!" }
+}
+
 
 
 

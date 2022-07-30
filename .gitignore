@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/google-services.json
+/feature-main-screen/google-services.json
+/feature-daily-weather-details/google-services.json
+/core/google-services.json

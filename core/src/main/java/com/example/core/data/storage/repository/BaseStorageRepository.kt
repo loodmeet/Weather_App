@@ -1,6 +1,5 @@
 package com.example.core.data.storage.repository
 
-import android.graphics.Bitmap
 import android.util.Log
 import com.example.core.data.storage.exceptions.StorageException
 import com.example.core.utils.Config

@@ -12,12 +12,9 @@ import retrofit2.http.GET
 internal interface WeatherService {
 
     // todo: @Query
-
     @GET(
         "$FORECAST$DEFAULT_LAT_LON" +
                 "$DEFAULT_HOURLY_GET$DEFAULT_DAILY_GET$EUROPE_LONDON_TIMEZONE"
     )
     fun executeByDefaultRequest(): Call<WeatherResponse>
-
 }
-

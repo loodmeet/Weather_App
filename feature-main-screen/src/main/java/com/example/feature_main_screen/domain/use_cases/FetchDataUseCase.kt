@@ -1,18 +1,18 @@
 package com.example.feature_main_screen.domain.use_cases
 
 import com.example.core.data.models.DateTimeProvider
+import com.example.core.di.annotation.Daily
 import com.example.core.ui.DisplayableItem
 import com.example.feature_main_screen.domain.models.UpdateDateDisplayableItem
 import com.example.feature_main_screen.domain.repository.MainRepository
 import javax.inject.Inject
 import com.example.core.di.annotation.Hourly
 import com.example.feature_main_screen.domain.models.DividerDisplayableItem
+import com.example.feature_main_screen.domain.models.MoreButtonDisplayableItem
 import com.example.feature_main_screen.domain.models.mappers.DailyAndHourlyToHeaderMapper
 import com.example.feature_main_screen.domain.models.mappers.DailyToDisplayableItemMapper
 import com.example.feature_main_screen.domain.models.mappers.HourlyToRecyclerDisplayableItemMapper
 import java.time.format.DateTimeFormatter
-import java.util.*
-import java.util.Collections.addAll
 
 internal interface FetchDataUseCase {
 
@@ -24,7 +24,8 @@ internal interface FetchDataUseCase {
         private val dailyToDisplayableItemMapper: DailyToDisplayableItemMapper,
         private val dividerDisplayableItem: DividerDisplayableItem,
         private val repository: MainRepository,
-        @param: Hourly private val formatter: DateTimeFormatter,
+        @param: Hourly private val hourlyFormatter: DateTimeFormatter,
+        @param: Daily private val dailyFormatter: DateTimeFormatter,
         private val dateTimeProvider: DateTimeProvider
     ) : FetchDataUseCase {
 
@@ -49,16 +50,17 @@ internal interface FetchDataUseCase {
                 )
             val headerMapper = headerMapper.map(dailyWeatherList[0] to hourlyWeatherList[0])
             val currentDateTime = dateTimeProvider.currentDateTime()
-            val currentTime = formatter.format(currentDateTime)
+            val currentDate = dailyFormatter.format(currentDateTime)
+            val currentTime = hourlyFormatter.format(currentDateTime)
             val updateDate = UpdateDateDisplayableItem(date = currentTime)
+            val moreButton = MoreButtonDisplayableItem(date = currentDate)
 
             return Result.success(value = mutableListOf(
                 hourlyWeatherRecycler, headerMapper,
-                updateDate, dividerDisplayableItem
+                updateDate, dividerDisplayableItem, moreButton
             ).apply {
                 addAll(dailyWeatherDisplayableItemList)
             })
         }
     }
 }
-

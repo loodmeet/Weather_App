@@ -29,21 +29,18 @@ internal interface MainDelegationAdapter : DisplayableItemDelegationAdapter {
             ),
             hourlyWeatherRecyclerAdapterDelegate(
                 adapter = hourlyDelegationAdapter.buildAdapter(),
-                layoutManagerProvider = layoutManagerProvider,
+                layoutManagerProvider = layoutManagerProvider
+            ),
+            moreButtonAdapterDelegate(
                 moreButtonOnClickListenerProvider = moreButtonOnClickListenerProvider,
-                navController = navController,
-                dayNumber = 0
+                navController = navController
             ),
             dividerAdapterDelegate(),
             updateDateAdapterDelegate()
         )
-
-
     }
 
     @AssistedFactory interface Factory {
         fun create(@Assisted("navController") navController: NavController): Base
     }
-
-
 }

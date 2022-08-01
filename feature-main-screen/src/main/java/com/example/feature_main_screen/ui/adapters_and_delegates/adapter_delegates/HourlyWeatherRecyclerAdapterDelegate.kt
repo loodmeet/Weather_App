@@ -15,10 +15,7 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 internal fun hourlyWeatherRecyclerAdapterDelegate(
     adapter: ListDelegationAdapter<List<DisplayableItem>>,
-    layoutManagerProvider: LayoutManagerProvider,
-    moreButtonOnClickListenerProvider: MoreButtonOnClickListenerProvider,
-    navController: NavController,
-    dayNumber: Int
+    layoutManagerProvider: LayoutManagerProvider
 ) =
     adapterDelegateViewBinding<HourlyWeatherRecyclerDisplayableItem,
             DisplayableItem, HourlyWeatherRecyclerBinding>(
@@ -32,16 +29,12 @@ internal fun hourlyWeatherRecyclerAdapterDelegate(
     ) {
         bind {
             adapter.items = item.items
-            val bundle = Bundle().also { it.putInt(Config.DAY_NUMBER_KEY, dayNumber) }
-
             binding.apply {
                 recycler.apply {
                     this.adapter = adapter
                     layoutManager = layoutManagerProvider.provideLayoutManager(recyclerView = this)
                     this.overScrollMode = View.OVER_SCROLL_NEVER
                 }
-                moreButton.setOnClickListener(moreButtonOnClickListenerProvider
-                    .get(args = bundle, navController = navController))
             }
         }
     }

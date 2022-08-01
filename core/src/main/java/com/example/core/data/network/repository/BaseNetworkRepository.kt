@@ -5,7 +5,6 @@ import kotlinx.coroutines.withContext
 import retrofit2.Call
 import kotlin.coroutines.CoroutineContext
 
-
 /**
  * WR - Weather Response
  * */

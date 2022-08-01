@@ -21,8 +21,6 @@ internal class MainRepositoryImpl @Inject constructor(
     private val storageRepository: BaseStorageRepository<WeatherResponse>,
     @CoroutineContextIO private val coroutineContext: CoroutineContext
 ) : MainRepository {
-//
-//    init { Log.d(Config.MAIN_TAG, "repo in feature_main_screen created") }
 
     override suspend fun fetchWeatherForWeek(): Pair<List<DailyWeather>, List<HourlyWeather>> =
         withContext(context = coroutineContext) {

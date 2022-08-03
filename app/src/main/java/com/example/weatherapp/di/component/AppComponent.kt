@@ -29,10 +29,4 @@ interface AppComponent : FeatureMainScreenComponentDependencies,
 
         fun build(): AppComponent
     }
-
 }
-
-
-
-
-

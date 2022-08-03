@@ -1,8 +1,10 @@
 package com.example.feature_daily_weather_details.di.component
 
+import android.app.Application
 import com.example.feature_daily_weather_details.di.annotations.FeatureDailyWeatherDetails
 import com.example.core.di.dependensies.DisplayableItemsProvider
 import com.example.core.di.modules.UtilsModule
+import com.example.feature_daily_weather_details.data.storage.database.LocalDatabase
 import com.example.feature_daily_weather_details.di.dependencies.FeatureDailyWeatherDetailsComponentDependencies
 import com.example.feature_daily_weather_details.di.modules.DataBindModule
 import com.example.feature_daily_weather_details.di.modules.DataModule
@@ -28,20 +30,14 @@ internal interface FeatureDailyWeatherDetailsComponent {
 
     fun inject(fragment: FragmentDailyWeatherDetails)
 
-    @Component.Builder
-    interface Builder {
+    @Component.Builder interface Builder {
 
         fun dependencies(dependencies: FeatureDailyWeatherDetailsComponentDependencies): Builder
 
-        @BindsInstance
-        fun displayableItems(items: DisplayableItemsProvider): Builder
+        @BindsInstance fun displayableItems(items: DisplayableItemsProvider): Builder
+
+        @BindsInstance fun application(application: Application): Builder
 
         fun build(): FeatureDailyWeatherDetailsComponent
-
     }
-
-
 }
-
-
-

@@ -1,6 +1,6 @@
 package com.example.feature_daily_weather_details.di.dependencies
 
-interface FeatureDailyWeatherDetailsDependenciesProvider {
+internal interface FeatureDailyWeatherDetailsDependenciesProvider {
 
     val dependencies: FeatureDailyWeatherDetailsComponentDependencies
 

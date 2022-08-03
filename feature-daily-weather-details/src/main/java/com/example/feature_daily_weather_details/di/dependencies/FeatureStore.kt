@@ -5,5 +5,4 @@ import kotlin.properties.Delegates.notNull
 object FeatureStore : FeatureDailyWeatherDetailsDependenciesProvider {
 
     override var dependencies: FeatureDailyWeatherDetailsComponentDependencies by notNull()
-
 }

@@ -5,7 +5,6 @@ import com.example.core.di.dependensies.DisplayableItemsProvider
 import com.example.core.ui.DisplayableItem
 import com.example.feature_main_screen.di.component.DaggerFeatureMainScreenComponent
 import com.example.feature_main_screen.di.dependencies.FeatureMainScreenDependenciesProvider
-import com.example.feature_main_screen.domain.models.*
 import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem
 import com.example.feature_main_screen.domain.models.DividerDisplayableItem
 import com.example.feature_main_screen.domain.models.HeaderDisplayableItem
@@ -37,4 +36,3 @@ internal class ComponentViewModel : ViewModel() {
         )
     }
 }
-

@@ -1,5 +1,6 @@
 package com.example.feature_daily_weather_details.ui.screens
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.ui.BaseFragment
@@ -20,12 +22,15 @@ import javax.inject.Inject
 
 class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBinding>() {
 
-    private val componentViewModel: ComponentViewModel by viewModels()
+    private lateinit var componentViewModel: ComponentViewModel
     @Inject internal lateinit var mainViewModelFactory: Lazy<MainViewModel.Factory>
     private val mainViewModel: MainViewModel by viewModels { mainViewModelFactory.get() }
     @Inject internal lateinit var mainDelegationAdapter: MainDelegationAdapter
 
     override fun onAttach(context: Context) {
+        val factory = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(context.applicationContext as Application)
+        componentViewModel = ViewModelProvider(this, factory)[ComponentViewModel::class.java]
         componentViewModel.component.inject(this)
         super.onAttach(context)
     }
@@ -61,8 +66,6 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
             }
             // todo
             fetchData(date = arguments?.getString(Config.DAY_DATE_KEY) ?: "")
-
         }
     }
-
 }

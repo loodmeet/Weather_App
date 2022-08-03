@@ -4,7 +4,7 @@ import androidx.room.*
 import com.example.feature_daily_weather_details.data.storage.models.entities.HourlyWeatherEntity
 import java.time.LocalDate
 
-@Dao interface HourlyWeatherDao {
+@Dao internal interface HourlyWeatherDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertHourlyWeather(hourlyWeather: HourlyWeatherEntity)
@@ -13,4 +13,7 @@ import java.time.LocalDate
 
     @Query("SELECT * FROM HourlyWeatherEntity WHERE dayDate == :dayDate")
     fun getHourlyWeatherListByDay(dayDate: LocalDate): List<HourlyWeatherEntity>
+
+    @Query("SELECT * FROM HourlyWeatherEntity")
+    fun getHourlyWeatherList(): List<HourlyWeatherEntity>
 }

@@ -10,9 +10,16 @@ import com.example.feature_daily_weather_details.data.models.mappers.WeatherResp
 import com.example.feature_daily_weather_details.di.annotations.FeatureDailyWeatherDetails
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
 import com.example.feature_daily_weather_details.data.network.repository.NetworkRepository
+import com.example.feature_daily_weather_details.data.storage.database.LocalDatabase
+import com.example.feature_daily_weather_details.data.storage.models.entities.DailyWeatherEntity
+import com.example.feature_daily_weather_details.data.storage.models.entities.HourlyWeatherEntity
+import com.example.feature_daily_weather_details.data.storage.models.mappers.DailyWeatherToEntityMapper
+import com.example.feature_daily_weather_details.data.storage.models.mappers.HourlyWeatherToEntityMapper
 import com.example.feature_daily_weather_details.data.storage.repository.StorageRepository
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import java.time.LocalDate
 
 @Module
 internal interface DataBindModule {
@@ -33,4 +40,11 @@ internal interface DataBindModule {
         mapper: WeatherResponseToHourlyWeatherListMapper
     ): Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>
 
+    @[FeatureDailyWeatherDetails Binds] fun bindHourlyWeatherToEntityMapper(
+        mapper: HourlyWeatherToEntityMapper
+    ): Mapper<Pair<HourlyWeather, LocalDate>, HourlyWeatherEntity>
+
+    @[FeatureDailyWeatherDetails Binds] fun bindDailyWeatherToEntityMapper(
+        mapper: DailyWeatherToEntityMapper
+    ): Mapper<DailyWeather, DailyWeatherEntity>
 }

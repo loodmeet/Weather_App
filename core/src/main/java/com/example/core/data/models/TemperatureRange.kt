@@ -1,6 +1,5 @@
 package com.example.core.data.models
 
-// todo: rewrite
 class TemperatureRange(
     private val firstValue: Temperature,
     private val secondValue: Temperature
@@ -33,5 +32,4 @@ class TemperatureRange(
         result = 31 * result + secondValue.hashCode()
         return result
     }
-
 }

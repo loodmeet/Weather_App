@@ -24,7 +24,7 @@ internal class MainRepositoryImpl @Inject constructor(
     private val responseToHourlyListMapper: ResponseToHourlyListMapper,
 ) : MainRepository {
 
-    lateinit var hourlyWeather: List<HourlyWeather>
+    private lateinit var hourlyWeather: List<HourlyWeather>
 
     override suspend fun fetchWeatherByDate(date: LocalDate): List<HourlyWeather> =
         withContext(context = coroutineContext) {
@@ -47,7 +47,6 @@ internal class MainRepositoryImpl @Inject constructor(
                         dailyWeatherList[dailyIndex].date
                     }))
                     hourlyWeather = getHourlyWeatherForDay(dayDate = date)
-                    Log.d(Config.MAIN_TAG, hourlyWeather.toString())
                 }
             }
 

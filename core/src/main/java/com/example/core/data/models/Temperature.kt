@@ -2,12 +2,10 @@ package com.example.core.data.models
 
 import kotlin.math.roundToInt
 
-// todo: rewrite
 class Temperature(
     private val value: Double,
     private var degreeSign: String = "°"
 ) {
-
     fun changeDegreeSign(degreeSign: String): Temperature {
         this.degreeSign = degreeSign
         return this
@@ -36,5 +34,4 @@ class Temperature(
         result = 31 * result + degreeSign.hashCode()
         return result
     }
-
 }

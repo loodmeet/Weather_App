@@ -65,9 +65,7 @@ interface DateTimeProvider {
             return calendar.get(Calendar.HOUR_OF_DAY)
         }
 
-        // todo
         override fun currentTimeOfDay(): TimeOfDay {
-
             val currentHour = currentHour()
             return isDayOrNightByHour(hour = currentHour)
         }

@@ -30,7 +30,7 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
     override fun onAttach(context: Context) {
         val factory = ViewModelProvider.AndroidViewModelFactory
             .getInstance(context.applicationContext as Application)
-        componentViewModel = ViewModelProvider(this, factory)[ComponentViewModel::class.java]
+        componentViewModel = ViewModelProvider(requireActivity(), factory)[ComponentViewModel::class.java]
         componentViewModel.component.inject(this)
         super.onAttach(context)
     }
@@ -41,18 +41,12 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
     ): FragmentDailyWeatherDetailsBinding =
         FragmentDailyWeatherDetailsBinding.inflate(layoutInflater, container, false)
 
-    // todo: delete
-    override fun initLayoutManager(context: Context): RecyclerView.LayoutManager {
-        return LinearLayoutManager(context)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(Config.MAIN_TAG, "DailyWeatherDetails screen onViewCreated")
 
         binding.dailyDetailsRecycler.apply {
             adapter = mainDelegationAdapter.buildAdapter()
-            layoutManager = this@FragmentDailyWeatherDetails.layoutManager
+            layoutManager = LinearLayoutManager(context)
             overScrollMode = View.OVER_SCROLL_NEVER
         }
 
@@ -64,7 +58,6 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
             observeDate(owner = this@FragmentDailyWeatherDetails) { item ->
                 binding.selectedDate.text = item.date
             }
-            // todo
             fetchData(date = arguments?.getString(Config.DAY_DATE_KEY) ?: "")
         }
     }

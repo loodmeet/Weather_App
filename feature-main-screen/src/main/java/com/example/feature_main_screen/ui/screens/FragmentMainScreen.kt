@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.di.annotation.Vertical
 import com.example.core.ui.BaseFragment
@@ -39,12 +40,6 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
         super.onAttach(context)
     }
 
-    override fun initLayoutManager(context: Context): RecyclerView.LayoutManager {
-        return verticalLayoutManagerProvider.provideLayoutManager(
-            recyclerView = binding.mainScreenRecycler
-        )
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,7 +47,7 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
 
         binding.mainScreenRecycler.apply {
             adapter = mainDelegationAdapter.buildAdapter()
-            this.layoutManager = this@FragmentMainScreen.layoutManager
+            this.layoutManager = LinearLayoutManager(context)
             this.overScrollMode = View.OVER_SCROLL_NEVER
         }
 
@@ -72,7 +67,6 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
         }
     }
 
-
     @Inject internal fun init(
         mainDelegationAdapterFactory: MainDelegationAdapter.Factory
     ) {
@@ -81,8 +75,3 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
         )
     }
 }
-
-
-
-
-

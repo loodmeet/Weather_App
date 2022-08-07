@@ -6,8 +6,8 @@ object Config {
            "cloudcover,windspeed_10m,winddirection_10m,relativehumidity_2m,weathercode"
    internal const val DEFAULT_DAILY_GET = "&daily=weathercode,temperature_2m_max,temperature_2m_min" +
            ",sunrise,sunset,precipitation_sum,precipitation_hours,windspeed_10m_max"
-   internal const val EUROPE_LONDON_TIMEZONE = "&timezone=Europe%2FLondon"
-   internal const val DEFAULT_LAT_LON = "latitude=51.5002&longitude=-0.1262"
+   internal const val EUROPE_LONDON_TIMEZONE = "&timezone=Europe%2FVolgograd"
+   internal const val DEFAULT_LAT_LON = "latitude=48.7194&longitude=44.5018"
    internal const val FORECAST = "forecast?"
    internal const val SIMPLE_HOURLY = "&hourly=temperature_2m"
 }

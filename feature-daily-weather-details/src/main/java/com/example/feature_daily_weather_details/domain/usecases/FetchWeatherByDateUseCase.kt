@@ -64,6 +64,3 @@ internal interface FetchWeatherByDateUseCase {
         }
     }
 }
-
-
-

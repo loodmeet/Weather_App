@@ -39,7 +39,7 @@ internal class MainRepositoryImpl @Inject constructor(
                     val dailyWeatherList = responseToDailyListMapper.map(from = response)
 
                     insertDailyWeather(dailyWeather = dailyWeatherList)
-                    // todo: need to test
+                    // todo: rewrite
                     insertHourlyWeather(hourlyWeather = hourlyWeatherList.associateBy({ hourly->
                         hourly
                     }, { hourly->

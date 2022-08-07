@@ -14,6 +14,7 @@ import java.time.LocalDate
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
+// todo: rewrite database logic (delete daily entity, add relationship between entities)
 internal class StorageRepository @Inject constructor(
     private val database: LocalDatabase,
     private val dailyToEntityMapper: DailyToEntityMapper,

@@ -63,7 +63,7 @@
 
 
         <TextView
-            android:id="@+id/precipitation_tv"
+            android:id="@+id/relative_humidity_tv"
             style="@style/s2"
             android:text="78%" />
 

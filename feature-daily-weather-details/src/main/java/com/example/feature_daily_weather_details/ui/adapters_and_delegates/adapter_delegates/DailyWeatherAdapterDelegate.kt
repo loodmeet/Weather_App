@@ -1,12 +1,13 @@
-package com.example.feature_daily_weather_details.ui.adapter_delegates
+package com.example.feature_daily_weather_details.ui.adapters_and_delegates.adapter_delegates
 
+import android.annotation.SuppressLint
 import com.example.core.ui.DisplayableItem
+import com.example.feature_daily_weather_details.R
 import com.example.feature_daily_weather_details.databinding.DailyWeatherRecyclerItemBinding
 import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
-
-fun dailyWeatherAdapterDelegate() =
+@SuppressLint("SetTextI18n") fun dailyWeatherAdapterDelegate() =
     adapterDelegateViewBinding<WeatherForTimeOfDayDisplayableItem, DisplayableItem, DailyWeatherRecyclerItemBinding>(
         viewBinding = { layoutInflater, root ->
             DailyWeatherRecyclerItemBinding.inflate(
@@ -19,9 +20,11 @@ fun dailyWeatherAdapterDelegate() =
         bind {
             binding.apply {
                 apparentTemperature.text = item.apparentTemperature.getValueAsString()
-                precipitationTv.text = item.precipitation.toString()
+                relativeHumidityTv.text = item.relativeHumidity.toString() +
+                        context.resources.getString(R.string.percentage_sign)
                 temperatureTv.text = item.temperature.getValuesAsString(divider = "..")
-                windSpeedTv.text = item.windSpeed.toString()
+                windSpeedTv.text = item.windSpeed.toString() + " " +
+                        context.resources.getString(R.string.kilometre_per_hour)
                 weatherIv.setImageResource(item.imageResId)
                 timeOfDayTv.text = context.resources.getString(item.timeOfDay.resId)
             }

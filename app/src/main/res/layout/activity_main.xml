@@ -85,7 +85,7 @@
                 android:background="@color/transparent"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="30dp"
-                android:text="menu"
+                android:text="@string/coming_soon"
                 android:textColor="@color/main_grey" />
 
             <Button
@@ -94,7 +94,7 @@
                 android:background="@color/transparent"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="30dp"
-                android:text="menu"
+                android:text="@string/coming_soon"
                 android:textColor="@color/main_grey" />
 
             <Button
@@ -103,7 +103,7 @@
                 android:background="@color/transparent"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="30dp"
-                android:text="menu"
+                android:text="@string/coming_soon"
                 android:textColor="@color/main_grey" />
 
 
@@ -122,7 +122,7 @@
                 android:background="@color/transparent"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="30dp"
-                android:text="change location"
+                android:text="@string/coming_soon"
                 android:textColor="@color/main_grey" />
 
             <Button
@@ -131,7 +131,7 @@
                 android:background="@color/transparent"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="30dp"
-                android:text="change units of measurement"
+                android:text="@string/coming_soon"
                 android:textColor="@color/main_grey" />
 
             <Button
@@ -140,7 +140,7 @@
                 android:background="@color/transparent"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="30dp"
-                android:text="change background"
+                android:text="@string/coming_soon"
                 android:textColor="@color/main_grey" />
 
             <Button
@@ -149,7 +149,7 @@
                 android:background="@color/transparent"
                 android:gravity="start|center_vertical"
                 android:paddingHorizontal="30dp"
-                android:text="change background"
+                android:text="@string/coming_soon"
                 android:textColor="@color/main_grey" />
 
 

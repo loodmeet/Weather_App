@@ -2,6 +2,8 @@ package com.example.core.data.models
 
 import com.example.api.R
 import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 import java.util.*
 import javax.inject.Inject
 
@@ -29,7 +31,7 @@ interface DateTimeProvider {
     }
 
     class Base @Inject constructor(
-        private var calendar: Calendar
+        private val zoneOffset: ZoneOffset
     ) : DateTimeProvider {
 
         private val dayRange = 12..16
@@ -37,7 +39,8 @@ interface DateTimeProvider {
         private val morningRange = 4..11
         private val eveningRange = 17..23
 
-        override fun currentDateTime(): LocalDateTime = LocalDateTime.now()
+        override fun currentDateTime(): LocalDateTime =
+            ZonedDateTime.now(zoneOffset).toLocalDateTime()
 
         override fun hourRangeByTimeOfDay(timeOfDay: TimeOfDay) =
             when(timeOfDay) {
@@ -62,7 +65,7 @@ interface DateTimeProvider {
         }
 
         override fun currentHour(): Int {
-            return calendar.get(Calendar.HOUR_OF_DAY)
+            return currentDateTime().hour
         }
 
         override fun currentTimeOfDay(): TimeOfDay {

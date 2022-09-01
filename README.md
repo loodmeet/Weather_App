@@ -1,8 +1,15 @@
 # Weather app
 Weather data by Open-Meteo.com
 
+<h2>Architecture</h2>
 <span>
-  <img src="https://github.com/dmitLu99/Weather_App/blob/ff876d53cbf24af0ebf54d6160f9cf892f0b24ac/app/1.jpg" width="33%" height="50%">
-  <img src="https://github.com/dmitLu99/Weather_App/blob/ff876d53cbf24af0ebf54d6160f9cf892f0b24ac/app/2.jpg" width="33%" height="50%">
-  <img src="https://github.com/dmitLu99/Weather_App/blob/ff876d53cbf24af0ebf54d6160f9cf892f0b24ac/app/3.jpg" width="33%" height="50%">
+   <img src="app/arch1.png" width="40%">
+   <img src="app/arch2.png" width="40%">
+</span>
+<h2>Screenshots</h2>
+
+<span>
+  <img src="app/1.jpg" width="33%">
+  <img src="app/2.jpg" width="33%">
+  <img src="app/3.jpg" width="33%">
 </span>

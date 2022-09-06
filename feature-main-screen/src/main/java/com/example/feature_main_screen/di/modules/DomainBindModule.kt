@@ -4,7 +4,7 @@ import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.data.repository.MainRepositoryImpl
-import com.example.feature_main_screen.di.annotations.FeatureMainScreen
+import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem
 import com.example.feature_main_screen.domain.models.HeaderDisplayableItem
 import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableItem

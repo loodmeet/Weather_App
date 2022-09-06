@@ -5,5 +5,4 @@ import kotlin.properties.Delegates.notNull
 object FeatureStore : FeatureMainScreenDependenciesProvider {
 
     override var dependencies: FeatureMainScreenComponentDependencies by notNull()
-
 }

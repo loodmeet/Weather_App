@@ -8,14 +8,13 @@ internal interface MoreButtonOnClickListener : View.OnClickListener {
 
     class Base constructor(
         private val navController: NavController,
-        private val resId: Int,
+        private val actionId: Int,
         private val args: Bundle
     ) : MoreButtonOnClickListener {
 
         override fun onClick(p0: View?) {
-            navController.navigate(resId = resId, args = args)
+            navController.navigate(resId = actionId, args = args)
         }
-
     }
 }
 

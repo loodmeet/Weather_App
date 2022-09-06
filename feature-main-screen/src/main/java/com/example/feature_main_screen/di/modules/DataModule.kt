@@ -1,7 +1,7 @@
 package com.example.feature_main_screen.di.modules
 
 import com.example.feature_main_screen.data.network.retrofit.WeatherService
-import com.example.feature_main_screen.di.annotations.FeatureMainScreen
+import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

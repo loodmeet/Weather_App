@@ -1,7 +1,7 @@
 package com.example.feature_main_screen.di.component
 
 import com.example.core.di.dependensies.DisplayableItemsProvider
-import com.example.feature_main_screen.di.annotations.FeatureMainScreen
+import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import com.example.feature_main_screen.di.dependencies.FeatureMainScreenComponentDependencies
 import com.example.feature_main_screen.di.modules.*
 import com.example.feature_main_screen.ui.screens.FragmentMainScreen

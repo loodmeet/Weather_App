@@ -5,7 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.weatherapp.R
 import javax.inject.Inject
 
-class ExitAlertDialogProvider @Inject constructor() {
+internal class ExitAlertDialogProvider @Inject constructor() {
 
     fun provide(context: Context, baseOnBackPressed: () -> Unit): AlertDialog {
         return AlertDialog.Builder(context).apply {

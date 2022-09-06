@@ -10,7 +10,7 @@ import com.example.feature_main_screen.data.models.mappers.WeatherResponseToHour
 import com.example.feature_main_screen.data.network.models.WeatherResponse
 import com.example.feature_main_screen.data.network.repository.NetworkRepository
 import com.example.feature_main_screen.data.storage.repository.StorageRepository
-import com.example.feature_main_screen.di.annotations.FeatureMainScreen
+import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import dagger.Binds
 import dagger.Module
 

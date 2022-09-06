@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding get() = checkNotNull(_binding)
     private val viewModel by viewModels<MainActivityViewModel>()
 
-    @Inject lateinit var exitAlertDialogProvider: ExitAlertDialogProvider
+    @Inject internal lateinit var exitAlertDialogProvider: ExitAlertDialogProvider
 
     override fun onBackPressed() {
         when (findNavController(binding.navHostFragment.id).currentDestination?.id) {

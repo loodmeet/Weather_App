@@ -1,4 +1,4 @@
-package com.example.feature_main_screen.di.annotations
+package com.example.feature_main_screen.di.qualifiers
 
 import javax.inject.Scope
 

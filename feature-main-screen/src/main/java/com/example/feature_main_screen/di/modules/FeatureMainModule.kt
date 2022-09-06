@@ -2,9 +2,9 @@ package com.example.feature_main_screen.di.modules
 
 import com.example.core.di.modules.DateFormats
 import com.example.core.di.modules.UtilsModule
-import com.example.feature_main_screen.di.annotations.FeatureMainScreen
-import com.example.feature_main_screen.di.annotations.ToFragmentDailyWeatherDetails
 import com.example.feature_main_screen.di.dependencies.FeatureMainScreenComponentDependencies
+import com.example.feature_main_screen.di.qualifiers.ActionToDailyWeatherDetails
+import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import dagger.Module
 import dagger.Provides
 
@@ -18,7 +18,7 @@ import dagger.Provides
 ])
 object FeatureMainModule {
 
-    @[FeatureMainScreen ToFragmentDailyWeatherDetails Provides] fun provideToFragmentDailyWeatherDetailsResId(
+    @[FeatureMainScreen Provides ActionToDailyWeatherDetails] fun provideActionToDailyWeatherDetails(
         dependencies: FeatureMainScreenComponentDependencies
-    ) = dependencies.featureMainScreenNavCommandProvider.toFragmentDailyWeatherDetails()
+    ) = dependencies.actionToFragmentDailyWeatherDetails
 }

@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.example.feature_main_screen.di.dependencies.FeatureStore as MainScreenFeatureStore
 import com.example.feature_daily_weather_details.di.dependencies.FeatureStore as DailyWeatherDetailsFeatureStore
-import com.example.weatherapp.common.Common.BASE_URL
 import com.example.weatherapp.di.component.AppComponent
 import com.example.weatherapp.di.component.DaggerAppComponent
 
@@ -14,9 +13,8 @@ class WeatherApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.builder()
-            .baseUrl(baseUrl = BASE_URL)
-            .build()
+        appComponent = DaggerAppComponent.create()
+
         MainScreenFeatureStore.dependencies = appComponent
         DailyWeatherDetailsFeatureStore.dependencies = appComponent
     }

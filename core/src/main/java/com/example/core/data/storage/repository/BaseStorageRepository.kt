@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.core.data.storage.exceptions.StorageException
 import com.example.core.utils.Config
 
-abstract class BaseStorageRepository<T> {
+abstract class BaseStorageRepository<T> { // todo: rename, rewrite
 
     init { Log.d(Config.MAIN_TAG, "BaseStorageRepository created") }
 

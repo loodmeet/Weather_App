@@ -10,12 +10,12 @@ import dagger.Component
 import retrofit2.Retrofit
 
 @[AppScope Component(modules = [AppModule::class])]
-interface AppComponent : FeatureMainScreenComponentDependencies,
+internal interface AppComponent : FeatureMainScreenComponentDependencies,
     FeatureDailyWeatherDetailsComponentDependencies {
 
     fun inject(activity: MainActivity)
 
     override val retrofit: Retrofit
 
-    override val actionToFragmentDailyWeatherDetails: Int
+    override val actionToFragmentDailyWeatherDetails: Int // todo need to use qualifiers
 }

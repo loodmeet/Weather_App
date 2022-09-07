@@ -7,7 +7,7 @@ import com.example.feature_daily_weather_details.di.dependencies.FeatureStore as
 import com.example.weatherapp.di.component.AppComponent
 import com.example.weatherapp.di.component.DaggerAppComponent
 
-class WeatherApp : Application() {
+internal class WeatherApp : Application() {
 
     lateinit var appComponent: AppComponent
 
@@ -20,7 +20,7 @@ class WeatherApp : Application() {
     }
 }
 
-val Context.appComponent: AppComponent
+internal val Context.appComponent: AppComponent
     get() = when (this) {
         is WeatherApp -> appComponent
         else -> this.applicationContext.appComponent

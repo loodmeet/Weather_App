@@ -1,7 +1,7 @@
 package com.example.feature_main_screen.view_models
 
 import androidx.lifecycle.*
-import com.example.core.di.annotation.CoroutineContextIO
+import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.core.di.dependensies.DisplayableItemsProvider
 import com.example.core.ui.DisplayableItem
 import com.example.core.utils.ItemsSortExecutor

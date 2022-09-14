@@ -10,8 +10,7 @@ import android.widget.ProgressBar.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.core.di.annotation.Vertical
+import com.example.core.di.annotation.qualifiers.Vertical
 import com.example.core.ui.BaseFragment
 import com.example.core.utils.Config
 import com.example.feature_main_screen.databinding.FragmentMainScreenBinding

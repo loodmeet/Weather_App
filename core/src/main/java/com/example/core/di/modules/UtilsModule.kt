@@ -11,16 +11,12 @@ import java.util.*
         CoroutineContextModule::class,
         DateFormats::class
     ]
-)
-object UtilsModule {
+) class UtilsModule {
 
     @Provides fun provideCalendar(): Calendar = Calendar.getInstance()
 
-    // maybe use the application context?
+    // todo: maybe use the application context?
     @Provides fun provideLocale(): Locale = Locale.CANADA
 
     @Provides fun provideZoneOffset(): ZoneOffset = ZoneOffset.ofHours(3)
 }
-
-
-

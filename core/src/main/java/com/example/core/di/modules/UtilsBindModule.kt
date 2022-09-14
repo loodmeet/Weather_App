@@ -9,25 +9,21 @@ import com.example.core.utils.Mapper
 import dagger.Binds
 import dagger.Module
 
-@Module
-interface UtilsBindModule {
-    @Binds
-    fun bindDateTimeProvider(
+@Module interface UtilsBindModule {
+
+    @Binds fun bindDateTimeProvider(
         provider: DateTimeProvider.Base
     ): DateTimeProvider
 
-    @Binds
-    fun bindTranslatedWeatherToResourceMapper(
+    @Binds fun bindTranslatedWeatherToResourceMapper(
         mapper: TranslatedWeatherToResourceMapper
     ): Mapper<@JvmSuppressWildcards Pair<TranslatedWeather, DateTimeProvider.TimeOfDay>, Int>
 
-    @Binds
-    fun bindWeatherCodeToTranslatedWeatherMapper(
+    @Binds fun bindWeatherCodeToTranslatedWeatherMapper(
         mapper: WeatherCodeToTranslatedWeatherMapper
     ): Mapper<@JvmSuppressWildcards Int, @JvmSuppressWildcards TranslatedWeather>
 
-    @Binds
-    fun bindItemsSortExecutor(
+    @Binds fun bindItemsSortExecutor(
         itemsSortExecutor: ItemsSortExecutor.Base
     ): ItemsSortExecutor
 }

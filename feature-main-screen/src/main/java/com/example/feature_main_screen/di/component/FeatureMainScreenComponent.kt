@@ -25,24 +25,4 @@ internal interface FeatureMainScreenComponent {
 
         fun build(): FeatureMainScreenComponent
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

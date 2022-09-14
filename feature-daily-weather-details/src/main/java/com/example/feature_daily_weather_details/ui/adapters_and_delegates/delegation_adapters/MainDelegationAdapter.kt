@@ -15,8 +15,5 @@ internal interface MainDelegationAdapter : DisplayableItemDelegationAdapter {
             ListDelegationAdapter(
                 dailyWeatherAdapterDelegate()
             )
-
     }
-
-
 }

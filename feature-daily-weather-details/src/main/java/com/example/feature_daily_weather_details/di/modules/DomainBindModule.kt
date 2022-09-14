@@ -15,8 +15,7 @@ import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByD
 import dagger.Binds
 import dagger.Module
 
-@Module
-internal interface DomainBindModule {
+@Module internal interface DomainBindModule {
 
     @[FeatureDailyWeatherDetails Binds] fun bindMainRepository(
         repository: MainRepositoryImpl
@@ -37,5 +36,4 @@ internal interface DomainBindModule {
     @[FeatureDailyWeatherDetails Binds] fun bindWeatherResponseToSelectedDateMapper(
         mapper: DailyWeatherToSelectedDateDisplayableItemMapper
     ): Mapper<@JvmSuppressWildcards DailyWeather, SelectedDateDisplayableItem>
-
 }

@@ -18,8 +18,7 @@ import com.example.feature_main_screen.domain.use_cases.FetchDataUseCase
 import dagger.Binds
 import dagger.Module
 
-@Module
-internal interface DomainBindModule {
+@Module internal interface DomainBindModule {
 
     @[FeatureMainScreen Binds] fun bindMainRepository(
         repository: MainRepositoryImpl

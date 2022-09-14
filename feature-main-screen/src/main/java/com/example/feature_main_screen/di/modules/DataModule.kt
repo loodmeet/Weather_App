@@ -6,8 +6,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-@Module
-internal object DataModule {
+@Module internal class DataModule {
 
     @[FeatureMainScreen Provides] fun provideWeatherService(retrofit: Retrofit): WeatherService {
         return retrofit.create(WeatherService::class.java)

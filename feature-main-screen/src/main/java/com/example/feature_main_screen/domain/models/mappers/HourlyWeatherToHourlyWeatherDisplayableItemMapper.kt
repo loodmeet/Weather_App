@@ -4,12 +4,10 @@ import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.data.models.mappers.TranslatedWeatherToResMapper
-import com.example.core.di.annotation.Hourly
-import com.example.core.domain.models.TranslatedWeather
+import com.example.core.di.annotation.qualifiers.Hourly
 import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.domain.models.HourlyWeatherDisplayableItem
-import java.text.DateFormat
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
@@ -39,21 +37,3 @@ internal class HourlyWeatherToHourlyWeatherDisplayableItemMapper @Inject constru
     }
 
 }
-
-typealias foo = () -> String
-
-fun printer(lambda: foo) { println(lambda) }
-
-class Example() {
-
-    operator fun invoke() {}
-}
-
-fun main() {
-
-    printer { "Hello, world!" }
-}
-
-
-
-

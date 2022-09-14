@@ -17,8 +17,7 @@ import dagger.Binds
 import dagger.Module
 import java.time.LocalDate
 
-@Module
-internal interface DataBindModule {
+@Module internal interface DataBindModule {
 
     @[FeatureDailyWeatherDetails Binds] fun bindStorageRepository(
         repository: StorageRepository

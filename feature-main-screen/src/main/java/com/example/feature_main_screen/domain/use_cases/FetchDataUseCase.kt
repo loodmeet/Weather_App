@@ -1,12 +1,12 @@
 package com.example.feature_main_screen.domain.use_cases
 
 import com.example.core.data.models.DateTimeProvider
-import com.example.core.di.annotation.Daily
+import com.example.core.di.annotation.qualifiers.Daily
 import com.example.core.ui.DisplayableItem
 import com.example.feature_main_screen.domain.models.UpdateDateDisplayableItem
 import com.example.feature_main_screen.domain.repository.MainRepository
 import javax.inject.Inject
-import com.example.core.di.annotation.Hourly
+import com.example.core.di.annotation.qualifiers.Hourly
 import com.example.feature_main_screen.domain.models.DividerDisplayableItem
 import com.example.feature_main_screen.domain.models.MoreButtonDisplayableItem
 import com.example.feature_main_screen.domain.models.mappers.DailyAndHourlyToHeaderMapper

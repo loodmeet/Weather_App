@@ -1,11 +1,10 @@
 package com.example.feature_main_screen.data.models.mappers
 
-import com.example.core.di.annotation.DailyBase
+import com.example.core.di.annotation.qualifiers.DailyBase
 import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.data.network.models.WeatherResponse
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 

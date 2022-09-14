@@ -1,15 +1,15 @@
 package com.example.core.di.modules
 
-import com.example.core.di.annotation.CoroutineContextDefault
-import com.example.core.di.annotation.CoroutineContextIO
-import com.example.core.di.annotation.CoroutineContextMain
+import com.example.core.di.annotation.qualifiers.CoroutineContextDefault
+import com.example.core.di.annotation.qualifiers.CoroutineContextIO
+import com.example.core.di.annotation.qualifiers.CoroutineContextMain
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
-@Module
-object CoroutineContextModule {
+// todo: delete?
+@Module class CoroutineContextModule {
     @[Provides CoroutineContextIO]
     fun provideIOContext(): CoroutineContext = Dispatchers.IO
 

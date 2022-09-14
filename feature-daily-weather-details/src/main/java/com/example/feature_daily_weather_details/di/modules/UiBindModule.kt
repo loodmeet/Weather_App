@@ -5,11 +5,9 @@ import com.example.feature_daily_weather_details.ui.adapters_and_delegates.deleg
 import dagger.Binds
 import dagger.Module
 
-@Module
-internal interface UiBindModule {
+@Module internal interface UiBindModule {
 
     @[FeatureDailyWeatherDetails Binds] fun bindMainDelegationAdapter(
         hourlyWeatherDelegationAdapter: MainDelegationAdapter.Base
     ): MainDelegationAdapter
-
 }

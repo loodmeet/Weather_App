@@ -1,7 +1,7 @@
 package com.example.feature_main_screen.ui.adapters_and_delegates.delegation_adapters
 
 import androidx.navigation.NavController
-import com.example.core.di.annotation.Horizontal
+import com.example.core.di.annotation.qualifiers.Horizontal
 import com.example.core.ui.DisplayableItem
 import com.example.core.ui.DisplayableItemDelegationAdapter
 import com.example.feature_main_screen.ui.adapters_and_delegates.adapter_delegates.*

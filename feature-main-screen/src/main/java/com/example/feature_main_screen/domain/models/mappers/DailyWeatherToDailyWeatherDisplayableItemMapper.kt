@@ -5,7 +5,7 @@ import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
 import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.data.models.mappers.TranslatedWeatherToResMapper
-import com.example.core.di.annotation.Daily
+import com.example.core.di.annotation.qualifiers.Daily
 import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem

@@ -1,6 +1,6 @@
 package com.example.core.utils
 
-import com.example.core.di.annotation.CoroutineContextIO
+import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import kotlinx.coroutines.withContext
 import java.lang.IllegalArgumentException
 import javax.inject.Inject

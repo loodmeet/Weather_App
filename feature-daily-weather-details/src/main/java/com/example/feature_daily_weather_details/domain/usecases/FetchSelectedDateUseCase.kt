@@ -1,13 +1,10 @@
 package com.example.feature_daily_weather_details.domain.usecases
 
-import com.example.core.di.annotation.CoroutineContextIO
-import com.example.core.di.annotation.Daily
-import com.example.feature_daily_weather_details.domain.repository.MainRepository
+import com.example.core.di.annotation.qualifiers.CoroutineContextIO
+import com.example.core.di.annotation.qualifiers.Daily
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.time.temporal.TemporalAccessor
-import java.util.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 

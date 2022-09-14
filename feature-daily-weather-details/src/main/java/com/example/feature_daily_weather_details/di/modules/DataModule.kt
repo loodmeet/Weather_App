@@ -7,15 +7,14 @@ import com.example.feature_daily_weather_details.data.storage.database.LocalData
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
-@Module
-internal object DataModule {
+@Module internal class DataModule {
 
-    @[FeatureDailyWeatherDetails Provides] fun provideWeatherService(retrofit: Retrofit): WeatherService {
+    @Provides fun provideWeatherService(retrofit: Retrofit): WeatherService {
         return retrofit.create(WeatherService::class.java)
     }
 
+    // todo: does it have the right lifecycle?
     @[FeatureDailyWeatherDetails Provides] fun provideDatabase(application: Application) =
         LocalDatabase.getLocalDatabase(application = application)
 }

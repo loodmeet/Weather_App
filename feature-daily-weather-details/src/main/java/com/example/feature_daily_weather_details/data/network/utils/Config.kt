@@ -1,7 +1,6 @@
-package com.example.core.data.network.utils
+package com.example.feature_daily_weather_details.data.network.utils
 
-object Config {
-
+internal object Config {
     const val DEFAULT_HOURLY_GET = "temperature_2m,apparent_temperature,precipitation," +
             "cloudcover,windspeed_10m,winddirection_10m,relativehumidity_2m,weathercode"
     const val DEFAULT_DAILY_GET = "weathercode,temperature_2m_max,temperature_2m_min" +

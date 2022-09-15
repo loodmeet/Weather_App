@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.core.di.annotation.CoroutineContextIO
+import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.core.di.dependensies.DisplayableItemsProvider
 import com.example.core.ui.DisplayableItem
 import com.example.core.utils.Config

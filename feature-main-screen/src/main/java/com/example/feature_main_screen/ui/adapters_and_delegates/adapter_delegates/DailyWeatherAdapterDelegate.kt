@@ -7,15 +7,14 @@ import com.example.core.utils.Config
 import com.example.feature_main_screen.R
 import com.example.feature_main_screen.databinding.ItemMainScreenLayoutBinding
 import com.example.feature_main_screen.domain.models.DailyWeatherDisplayableItem
-import com.example.feature_main_screen.ui.on_click_listeners.MoreButtonOnClickListenerProvider
+import com.example.feature_main_screen.ui.on_click_listeners.MoreButtonOnClickListener
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import java.lang.RuntimeException
-
 
 internal fun dailyWeatherAdapterDelegate(
-    moreButtonOnClickerProvider: MoreButtonOnClickListenerProvider,
+    moreButtonOnClickListenerFactory: MoreButtonOnClickListener.Factory,
     navController: NavController
-) = adapterDelegateViewBinding<DailyWeatherDisplayableItem, DisplayableItem, ItemMainScreenLayoutBinding>(
+) =
+    adapterDelegateViewBinding<DailyWeatherDisplayableItem, DisplayableItem, ItemMainScreenLayoutBinding>(
         viewBinding = { layoutInflater, root ->
             ItemMainScreenLayoutBinding.inflate(
                 layoutInflater,
@@ -34,11 +33,11 @@ internal fun dailyWeatherAdapterDelegate(
                     .changeDegreeSign(degreeSign = degreeSign.toString())
                     .getValuesAsString(divider = divider)
                 weatherIv.setImageResource(item.imageResId)
-
-//                moreArrow.tag = item.dayNumber
-                moreArrow.setOnClickListener(moreButtonOnClickerProvider
-                    .get(args = bundle, navController = navController))
+                moreArrow.setOnClickListener(
+                    moreButtonOnClickListenerFactory.create(
+                        args = bundle, navController = navController
+                    )
+                )
             }
-
         }
     }

@@ -15,8 +15,7 @@ import dagger.Provides
     DataModule::class,
     DateFormats::class,
     UiBindModule::class
-])
-object FeatureMainModule {
+]) internal class FeatureMainModule {
 
     @[FeatureMainScreen Provides ActionToDailyWeatherDetails] fun provideActionToDailyWeatherDetails(
         dependencies: FeatureMainScreenComponentDependencies

@@ -10,25 +10,14 @@ import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfD
 import com.example.feature_daily_weather_details.domain.models.mappers.DailyWeatherToSelectedDateDisplayableItemMapper
 import com.example.feature_daily_weather_details.domain.models.mappers.HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper
 import com.example.feature_daily_weather_details.domain.repository.MainRepository
-import com.example.feature_daily_weather_details.domain.usecases.FetchSelectedDateUseCase
-import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDateUseCase
 import dagger.Binds
 import dagger.Module
 
-@Module
-internal interface DomainBindModule {
+@Module internal interface DomainBindModule {
 
     @[FeatureDailyWeatherDetails Binds] fun bindMainRepository(
         repository: MainRepositoryImpl
     ): MainRepository
-
-    @[FeatureDailyWeatherDetails Binds] fun bindFetchDataUseCase(
-        useCase: FetchWeatherByDateUseCase.Base
-    ): FetchWeatherByDateUseCase
-
-    @[FeatureDailyWeatherDetails Binds] fun bindFetchSelectedDateUseCase(
-        useCase: FetchSelectedDateUseCase.Base
-    ): FetchSelectedDateUseCase
 
     @[FeatureDailyWeatherDetails Binds] fun bindWeatherForTimeOfDayMapper(
         mapper: HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper
@@ -37,5 +26,4 @@ internal interface DomainBindModule {
     @[FeatureDailyWeatherDetails Binds] fun bindWeatherResponseToSelectedDateMapper(
         mapper: DailyWeatherToSelectedDateDisplayableItemMapper
     ): Mapper<@JvmSuppressWildcards DailyWeather, SelectedDateDisplayableItem>
-
 }

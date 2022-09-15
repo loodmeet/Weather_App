@@ -2,7 +2,7 @@ package com.example.feature_daily_weather_details.data.storage.repository
 
 import com.example.core.data.storage.exceptions.StorageException
 import com.example.core.data.storage.repository.BaseStorageRepository
-import com.example.core.di.annotation.CoroutineContextIO
+import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.feature_daily_weather_details.data.models.DailyWeather
 import com.example.feature_daily_weather_details.data.models.HourlyWeather
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
@@ -36,7 +36,7 @@ internal class StorageRepository @Inject constructor(
             hourlyWeather.keys.forEach {
                 database.hourlyWeatherDao().insertHourlyWeather(
                     hourlyWeather = hourlyToEntityMapper.map(
-                        from = it to (hourlyWeather[it] ?: throw StorageException())
+                        from = it to (hourlyWeather[it] ?: throw StorageException(isLogged = true))
                     )
                 )
             }

@@ -25,7 +25,6 @@ internal class ComponentViewModel(application: Application) : AndroidViewModel(a
     private val database = LocalDatabase.getLocalDatabase(application = application)
 
     init {
-        Log.d(Config.MAIN_TAG, "component view model created")
         CoroutineScope(Dispatchers.IO).launch { database.clearAllTables() }
     }
 

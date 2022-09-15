@@ -1,9 +1,9 @@
 package com.example.feature_daily_weather_details.domain.models.mappers
 
-import com.example.core.data.models.DateTimeProvider.TimeOfDay
-import com.example.core.data.models.DateTimeProvider
+import com.example.core.data.models.TimeOfDay
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
+import com.example.core.data.models.WhatTimeOfDay
 import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.data.models.mappers.TranslatedWeatherToResMapper
 import com.example.core.utils.Mapper
@@ -17,7 +17,7 @@ internal typealias HourlyListToWeatherForTimeOfDayMapper =
         Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem>
 
 internal class HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper @Inject constructor(
-    private val dateTimeProvider: DateTimeProvider,
+    private val whatTimeOfDay: WhatTimeOfDay,
     private val translatedWeatherToResourceMapper: TranslatedWeatherToResMapper,
     private val codeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper
 ) : Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem> {
@@ -25,9 +25,9 @@ internal class HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper @Inje
     private var timeOfDay = TimeOfDay.DAY
 
     private suspend fun determineTimeOfDay(from: List<HourlyWeather>) {
-        timeOfDay = dateTimeProvider.timeOfDayByHour(hour = from[0].time.hour)
+        timeOfDay = whatTimeOfDay.timeOfDayByHour(hour = from[0].time.hour)
         for (hourlyWeather in from) {
-            if (dateTimeProvider.timeOfDayByHour(hour = hourlyWeather.time.hour) != timeOfDay)
+            if (whatTimeOfDay.timeOfDayByHour(hour = hourlyWeather.time.hour) != timeOfDay)
                 throw IllegalArgumentException("there are some problems with time of day")
         }
     }

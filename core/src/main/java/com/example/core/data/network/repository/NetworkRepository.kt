@@ -38,7 +38,7 @@ class NetworkRepository<WR> @Inject constructor(){
 
         return if (response.isSuccessful) {
             Log.d(Config.NETWORK_TAG, "NetworkRepository: " + response.body().toString())
-            response.body()
+            response.body()!! // todo: null
         } else throw ResponseIsNotSuccessfulException(
             isLogged = true, message = response.message()
         )

@@ -10,8 +10,8 @@ import android.widget.ProgressBar.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.core.di.annotation.Vertical
+import com.example.core.di.annotation.qualifiers.Main
+import com.example.core.di.annotation.qualifiers.Vertical
 import com.example.core.ui.BaseFragment
 import com.example.core.utils.Config
 import com.example.feature_main_screen.databinding.FragmentMainScreenBinding
@@ -42,8 +42,6 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Log.d(Config.MAIN_TAG, "main screen onViewCreated")
 
         binding.mainScreenRecycler.apply {
             adapter = mainDelegationAdapter.buildAdapter()

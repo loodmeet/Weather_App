@@ -12,9 +12,7 @@ import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import dagger.Binds
 import dagger.Module
 
-
-@Module
-internal interface DataBindModule {
+@Module internal interface DataBindModule {
 
     @[FeatureMainScreen Binds] fun bindStorageRepository(
         repository: StorageRepository
@@ -29,5 +27,4 @@ internal interface DataBindModule {
     @[FeatureMainScreen Binds] fun bindWeatherResponseToHourlyWeatherListMapper(
         mapper: WeatherResponseToHourlyWeatherListMapper
     ): Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>
-
 }

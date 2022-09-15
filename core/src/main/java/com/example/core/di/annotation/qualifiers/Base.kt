@@ -1,4 +1,4 @@
-package com.example.core.di.annotation
+package com.example.core.di.annotation.qualifiers
 
 import javax.inject.Qualifier
 

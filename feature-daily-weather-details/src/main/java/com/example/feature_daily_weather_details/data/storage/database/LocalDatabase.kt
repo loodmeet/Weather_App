@@ -15,7 +15,7 @@ import com.example.feature_daily_weather_details.data.storage.models.daos.Hourly
 
 @Database(entities = [HourlyWeatherEntity::class, DailyWeatherEntity::class], version = 1)
 @TypeConverters(LocalDateTimeTypeConverter::class)
-internal abstract class LocalDatabase : RoomDatabase() {
+internal abstract class LocalDatabase : RoomDatabase() { // todo: rewrite
 
     abstract fun hourlyWeatherDao(): HourlyWeatherDao
     abstract fun dailyWeatherDao(): DailyWeatherDao
@@ -32,7 +32,7 @@ internal abstract class LocalDatabase : RoomDatabase() {
                 }
             }
 
-            return INSTANCE ?: throw StorageException("database ref is null")
+            return INSTANCE ?: throw StorageException(message = "database ref is null")
         }
     }
 }

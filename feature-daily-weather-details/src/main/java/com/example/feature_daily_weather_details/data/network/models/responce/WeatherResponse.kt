@@ -1,5 +1,7 @@
 package com.example.feature_daily_weather_details.data.network.models.responce
 
+import android.util.Log
+import com.example.core.utils.Config
 import com.google.gson.annotations.SerializedName
 
 data class WeatherResponse(

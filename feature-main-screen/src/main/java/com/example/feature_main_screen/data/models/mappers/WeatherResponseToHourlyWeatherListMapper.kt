@@ -1,6 +1,6 @@
 package com.example.feature_main_screen.data.models.mappers
 
-import com.example.core.di.annotation.Base
+import com.example.core.di.annotation.qualifiers.Base
 import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.data.network.models.WeatherResponse

@@ -1,9 +1,12 @@
 package com.example.feature_main_screen.data.repository
 
-import com.example.core.data.network.repository.NetworkRepository
+import android.util.Log
+import com.example.core.data.network.exceptions.ResponseIsNotSuccessfulException
+import com.example.core.data.network.exceptions.ServerIsNotAvailableException
 import com.example.core.data.storage.exceptions.StorageException
 import com.example.core.data.storage.repository.BaseStorageRepository
-import com.example.core.di.annotation.CoroutineContextIO
+import com.example.core.di.annotation.qualifiers.CoroutineContextIO
+import com.example.core.utils.Config
 import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.data.models.mappers.ResponseToDailyListMapper
@@ -18,24 +21,39 @@ import kotlin.coroutines.CoroutineContext
 internal class MainRepositoryImpl @Inject constructor(
     private val responseToDailyListMapper: ResponseToDailyListMapper,
     private val responseToHourlyListMapper: ResponseToHourlyListMapper,
-    private val networkRepository: NetworkRepository<WeatherResponse>,
     private val storageRepository: BaseStorageRepository<WeatherResponse>,
     private val service: WeatherService,
     @CoroutineContextIO private val coroutineContext: CoroutineContext // todo: delete
 ) : MainRepository {
 
+    // todo: REWRITE
     override suspend fun fetchWeatherForWeek(): Pair<List<DailyWeather>, List<HourlyWeather>> =
         withContext(context = coroutineContext) {
-            val response = try {
+
+            val data = try {
                 storageRepository.getData()
-            } catch(e: StorageException) {
-                storageRepository.updateData(
-                    data = networkRepository.fetchResponse(call = service.executeByDefaultRequest())
-                )
+            } catch (e: StorageException) {
+                val response = try {
+                    service.executeByDefaultRequest().also { retrofitResponse ->
+                        if (!retrofitResponse.isSuccessful) throw ResponseIsNotSuccessfulException(
+                            isLogged = true, message = retrofitResponse.message()
+                        )
+                    }.body()!!
+                } catch (e: Exception) {
+                    throw ServerIsNotAvailableException(
+                        isLogged = true, message = e.stackTraceToString()
+                    )
+                }
+
+                Log.d(Config.NETWORK_TAG, "FMS: $response")
+
+                storageRepository.updateData(data = response)
                 storageRepository.getData()
             }
-            val hourlyWeatherList = responseToHourlyListMapper.map(from = response)
-            val dailyWeatherList = responseToDailyListMapper.map(from = response)
+
+
+            val hourlyWeatherList = responseToHourlyListMapper.map(from = data)
+            val dailyWeatherList = responseToDailyListMapper.map(from = data)
 
             return@withContext dailyWeatherList to hourlyWeatherList
         }

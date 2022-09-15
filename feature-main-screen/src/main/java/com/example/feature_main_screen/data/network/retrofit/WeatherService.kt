@@ -12,8 +12,7 @@ import retrofit2.http.Query
 
 internal interface WeatherService {
 
-    @GET("forecast")
-    suspend fun executeByDefaultRequest(
+    @GET("forecast") suspend fun executeByDefaultRequest(
         @Query("latitude") latitude: Double = DEFAULT_LAT,
         @Query("longitude") longitude: Double = DEFAULT_LON,
         @Query("hourly", encoded = true) hourly: String = DEFAULT_HOURLY_GET,

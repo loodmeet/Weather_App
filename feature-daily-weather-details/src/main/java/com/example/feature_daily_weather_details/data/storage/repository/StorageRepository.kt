@@ -36,7 +36,7 @@ internal class StorageRepository @Inject constructor(
             hourlyWeather.keys.forEach {
                 database.hourlyWeatherDao().insertHourlyWeather(
                     hourlyWeather = hourlyToEntityMapper.map(
-                        from = it to (hourlyWeather[it] ?: throw StorageException())
+                        from = it to (hourlyWeather[it] ?: throw StorageException(isLogged = true))
                     )
                 )
             }

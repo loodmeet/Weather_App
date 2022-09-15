@@ -1,8 +1,8 @@
 package com.example.feature_main_screen.domain.models.mappers
 
-import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
+import com.example.core.data.models.TimeOfDay
 import com.example.core.data.models.mappers.WeatherCodeToTranslatedWeatherMapper
 import com.example.core.domain.models.TranslatedWeather
 import com.example.core.utils.Mapper
@@ -26,7 +26,7 @@ import java.util.*
 internal class DailyAndHourlyWeatherToHeaderDisplayableItemMapperTest {
 
     private val weatherCodeToTranslatedWeatherMapper: WeatherCodeToTranslatedWeatherMapper = mockk()
-    private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, DateTimeProvider.TimeOfDay>, Int> = mockk()
+    private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, TimeOfDay>, Int> = mockk()
     private val dailyMapper: DailyWeatherToDailyWeatherDisplayableItemMapper = mockk()
     private val hourlyMapper: HourlyWeatherToHourlyWeatherDisplayableItemMapper = mockk()
     private val responseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
@@ -54,7 +54,7 @@ internal class DailyAndHourlyWeatherToHeaderDisplayableItemMapperTest {
         )
 
         coEvery { weatherCodeToTranslatedWeatherMapper.map(1) } returns TranslatedWeather.CLEAR_SKY
-        coEvery { translatedWeatherToResourceMapper.map(TranslatedWeather.CLEAR_SKY to DateTimeProvider.TimeOfDay.DAY) } returns 10
+        coEvery { translatedWeatherToResourceMapper.map(TranslatedWeather.CLEAR_SKY to TimeOfDay.DAY) } returns 10
         coEvery { dailyMapper.map(from = dailyWeather) } returns DailyWeatherDisplayableItem(
             weatherCode = dailyWeather.weatherCode,
             temperature = temperatureRange,

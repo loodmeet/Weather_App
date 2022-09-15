@@ -1,9 +1,11 @@
 package com.example.feature_daily_weather_details.data.repository
 
+import android.util.Log
 import com.example.core.data.network.exceptions.ResponseIsNotSuccessfulException
 import com.example.core.data.network.exceptions.ServerIsNotAvailableException
 import com.example.core.data.storage.exceptions.StorageException
 import com.example.core.di.annotation.qualifiers.CoroutineContextIO
+import com.example.core.utils.Config
 import com.example.feature_daily_weather_details.data.models.HourlyWeather
 import com.example.feature_daily_weather_details.data.models.mappers.ResponseToDailyListMapper
 import com.example.feature_daily_weather_details.data.models.mappers.ResponseToHourlyListMapper
@@ -43,6 +45,8 @@ internal class MainRepositoryImpl @Inject constructor(
                             isLogged = true, message = e.stackTraceToString()
                         )
                     }
+
+                    Log.d(Config.NETWORK_TAG, "FDWD: $response")
 
                     val hourlyWeatherList = responseToHourlyListMapper.map(from = response)
                     val dailyWeatherList = responseToDailyListMapper.map(from = response)

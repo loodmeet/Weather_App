@@ -1,7 +1,7 @@
 package com.example.feature_main_screen.domain.models.mappers
 
-import com.example.core.data.models.DateTimeProvider
 import com.example.core.data.models.Temperature
+import com.example.core.data.models.WhatTimeOfDay
 import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.data.models.mappers.TranslatedWeatherToResMapper
 import com.example.core.di.annotation.qualifiers.Hourly
@@ -18,11 +18,11 @@ internal class HourlyWeatherToHourlyWeatherDisplayableItemMapper @Inject constru
     @param: Hourly private val formatter: DateTimeFormatter,
     private val weatherCodeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper,
     private val translatedWeatherToResourceMapper: TranslatedWeatherToResMapper,
-    private val dateTimeProvider: DateTimeProvider
+    private val whatTimeOfDay: WhatTimeOfDay
 ) : Mapper<HourlyWeather, HourlyWeatherDisplayableItem> {
 
     override suspend fun map(from: HourlyWeather): HourlyWeatherDisplayableItem {
-        val timeOfDay = dateTimeProvider.timeOfDayByHour(hour = from.time.hour)
+        val timeOfDay = whatTimeOfDay.timeOfDayByHour(hour = from.time.hour)
 
         with(from) {
             return HourlyWeatherDisplayableItem(

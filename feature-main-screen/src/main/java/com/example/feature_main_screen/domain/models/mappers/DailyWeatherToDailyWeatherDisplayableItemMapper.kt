@@ -1,6 +1,6 @@
 package com.example.feature_main_screen.domain.models.mappers
 
-import com.example.core.data.models.DateTimeProvider.TimeOfDay.DAY
+import com.example.core.data.models.TimeOfDay.DAY
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
 import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper

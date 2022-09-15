@@ -1,9 +1,8 @@
 package com.example.feature_main_screen.domain.models.mappers
 
-import com.example.core.data.models.DateTimeProvider
-import com.example.core.data.models.DateTimeProvider.TimeOfDay.DAY
 import com.example.core.data.models.Temperature
 import com.example.core.data.models.TemperatureRange
+import com.example.core.data.models.TimeOfDay
 import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.domain.models.TranslatedWeather.CLEAR_SKY
 import com.example.core.domain.models.TranslatedWeather
@@ -16,7 +15,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -24,7 +22,7 @@ import java.util.*
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class DailyWeatherToDailyWeatherDisplayableItemMapperTest {
     private val weatherCodeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper = mockk()
-    private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, DateTimeProvider.TimeOfDay>, Int> = mockk()
+    private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, TimeOfDay>, Int> = mockk()
     private val responseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
     private val dailyFormatter = DateTimeFormatter.ofPattern("EE, d MMM", Locale.CANADA)
     private val date = LocalDate.parse("2022-07-01T10:00", responseFormatter)!!
@@ -40,7 +38,7 @@ internal class DailyWeatherToDailyWeatherDisplayableItemMapperTest {
         )
 
         coEvery { weatherCodeToTranslatedWeatherMapper.map(1) } returns CLEAR_SKY
-        coEvery { translatedWeatherToResourceMapper.map(CLEAR_SKY to DAY) } returns 10
+        coEvery { translatedWeatherToResourceMapper.map(CLEAR_SKY to TimeOfDay.DAY) } returns 10
 
         val expected = DailyWeatherDisplayableItem(
             weatherCode = 1,

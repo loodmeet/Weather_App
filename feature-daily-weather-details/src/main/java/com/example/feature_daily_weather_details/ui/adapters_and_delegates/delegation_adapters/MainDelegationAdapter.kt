@@ -6,14 +6,10 @@ import com.example.feature_daily_weather_details.ui.adapters_and_delegates.adapt
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import javax.inject.Inject
 
+internal class MainDelegationAdapter @Inject constructor() : DisplayableItemDelegationAdapter {
 
-internal interface MainDelegationAdapter : DisplayableItemDelegationAdapter {
-
-    class Base @Inject constructor() : MainDelegationAdapter {
-
-        override val adapter: ListDelegationAdapter<List<DisplayableItem>> =
-            ListDelegationAdapter(
-                dailyWeatherAdapterDelegate()
-            )
-    }
+    override val adapter: ListDelegationAdapter<List<DisplayableItem>> =
+        ListDelegationAdapter(
+            dailyWeatherAdapterDelegate()
+        )
 }

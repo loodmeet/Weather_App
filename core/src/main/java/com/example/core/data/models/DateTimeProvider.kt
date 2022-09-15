@@ -1,76 +1,43 @@
 package com.example.core.data.models
 
-import com.example.api.R
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
-import java.util.*
 import javax.inject.Inject
 
-interface DateTimeProvider {
+class DateTimeProvider @Inject constructor(
+    private val zoneOffset: ZoneOffset
+) : WhatTimeOfDay, CurrentDateTimeProvider {
 
-    fun timeOfDayByHour(hour: Int): TimeOfDay
+    private val dayRange = 12..16
+    private val nightRange = 0..3
+    private val morningRange = 4..11
+    private val eveningRange = 17..23
 
-    fun isDayOrNightByHour(hour: Int): TimeOfDay
+    override fun currentDateTime(): LocalDateTime =
+        ZonedDateTime.now(zoneOffset).toLocalDateTime()
 
-    fun hourRangeByTimeOfDay(timeOfDay: TimeOfDay): IntRange
-
-    fun currentTimeOfDay(): TimeOfDay
-
-    fun currentDateTime(): LocalDateTime
-
-    fun currentHour(): Int
-
-    enum class TimeOfDay {
-        DAY { override val resId = R.string.day },
-        NIGHT { override val resId = R.string.night },
-        MORNING { override val resId = R.string.morning },
-        EVENING { override val resId = R.string.evening};
-
-        abstract val resId: Int
+    override fun hourRangeByTimeOfDay(timeOfDay: TimeOfDay) = when (timeOfDay) {
+        TimeOfDay.DAY -> dayRange
+        TimeOfDay.NIGHT -> nightRange
+        TimeOfDay.MORNING -> morningRange
+        TimeOfDay.EVENING -> eveningRange
     }
 
-    class Base @Inject constructor(
-        private val zoneOffset: ZoneOffset
-    ) : DateTimeProvider {
+    override fun timeOfDayByHour(hour: Int): TimeOfDay = when (hour) {
+        in dayRange -> TimeOfDay.DAY
+        in nightRange -> TimeOfDay.NIGHT
+        in morningRange -> TimeOfDay.MORNING
+        in eveningRange -> TimeOfDay.EVENING
+        else -> throw RuntimeException()
+    }
 
-        private val dayRange = 12..16
-        private val nightRange = 0..3
-        private val morningRange = 4..11
-        private val eveningRange = 17..23
+    override fun currentHour(): Int {
+        return currentDateTime().hour
+    }
 
-        override fun currentDateTime(): LocalDateTime =
-            ZonedDateTime.now(zoneOffset).toLocalDateTime()
-
-        override fun hourRangeByTimeOfDay(timeOfDay: TimeOfDay) =
-            when(timeOfDay) {
-                TimeOfDay.DAY -> dayRange
-                TimeOfDay.NIGHT -> nightRange
-                TimeOfDay.MORNING -> morningRange
-                TimeOfDay.EVENING -> eveningRange
-            }
-
-        override fun timeOfDayByHour(hour: Int): TimeOfDay =
-            when(hour) {
-                in dayRange -> TimeOfDay.DAY
-                in nightRange -> TimeOfDay.NIGHT
-                in morningRange -> TimeOfDay.MORNING
-                in eveningRange -> TimeOfDay.EVENING
-                else -> throw RuntimeException()
-            }
-
-
-        override fun isDayOrNightByHour(hour: Int): TimeOfDay {
-            return if ( hour in 7..21 ) TimeOfDay.DAY else TimeOfDay.NIGHT
-        }
-
-        override fun currentHour(): Int {
-            return currentDateTime().hour
-        }
-
-        override fun currentTimeOfDay(): TimeOfDay {
-            val currentHour = currentHour()
-            return isDayOrNightByHour(hour = currentHour)
-        }
+    override fun currentTimeOfDay(): TimeOfDay {
+        val currentHour = currentHour()
+        return timeOfDayByHour(hour = currentHour)
     }
 }

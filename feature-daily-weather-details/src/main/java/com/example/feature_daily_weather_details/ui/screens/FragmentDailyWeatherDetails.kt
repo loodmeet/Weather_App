@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.core.di.annotation.qualifiers.Main
 import com.example.core.ui.BaseFragment
+import com.example.core.ui.DisplayableItemDelegationAdapter
 import com.example.core.utils.Config
 import com.example.feature_daily_weather_details.databinding.FragmentDailyWeatherDetailsBinding
-import com.example.feature_daily_weather_details.ui.adapters_and_delegates.delegation_adapters.MainDelegationAdapter
 import com.example.feature_daily_weather_details.view_models.ComponentViewModel
 import com.example.feature_daily_weather_details.view_models.MainViewModel
 import dagger.Lazy
@@ -23,7 +24,7 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
     private lateinit var componentViewModel: ComponentViewModel
     @Inject internal lateinit var mainViewModelFactory: Lazy<MainViewModel.Factory>
     private val mainViewModel: MainViewModel by viewModels { mainViewModelFactory.get() }
-    @Inject internal lateinit var mainDelegationAdapter: MainDelegationAdapter
+    @[Inject Main] internal lateinit var mainDelegationAdapter: DisplayableItemDelegationAdapter
 
     override fun onAttach(context: Context) {
         val factory = ViewModelProvider.AndroidViewModelFactory

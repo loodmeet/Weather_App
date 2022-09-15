@@ -9,7 +9,9 @@ Weather data by Open-Meteo.com
 <h2>Screenshots</h2>
 
 <span>
-  <img src="app/1.jpg" width="33%">
-  <img src="app/2.jpg" width="33%">
-  <img src="app/3.jpg" width="33%">
+  <img src="app/screen1.png" width="33%">
+  <img src="app/screen2.png" width="33%">
+  <img src="app/screen3.png" width="33%">
+  <img src="app/screen4.png" width="33%">
+  <img src="app/screen5.png" width="33%">
 </span>

@@ -20,8 +20,8 @@ import com.example.api.R.drawable.ic_weather_32_32
 import com.example.api.R.drawable.ic_weather_17_32
 import com.example.api.R.drawable.ic_weather_18_32
 import com.example.api.R.drawable.ic_weather_33_32
-import com.example.core.data.models.DateTimeProvider.TimeOfDay.*
-import com.example.core.data.models.DateTimeProvider.TimeOfDay
+import com.example.core.data.models.TimeOfDay.*
+import com.example.core.data.models.TimeOfDay
 import com.example.core.domain.models.TranslatedWeather
 import com.example.core.domain.models.TranslatedWeather.*
 import com.example.core.utils.Mapper

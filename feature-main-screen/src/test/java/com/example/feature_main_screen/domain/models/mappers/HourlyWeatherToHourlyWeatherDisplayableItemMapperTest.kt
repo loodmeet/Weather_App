@@ -1,8 +1,8 @@
 package com.example.feature_main_screen.domain.models.mappers
 
-import com.example.core.data.models.DateTimeProvider
-import com.example.core.data.models.DateTimeProvider.TimeOfDay
 import com.example.core.data.models.Temperature
+import com.example.core.data.models.TimeOfDay
+import com.example.core.data.models.WhatTimeOfDay
 import com.example.core.data.models.mappers.CodeToTranslatedWeatherMapper
 import com.example.core.domain.models.TranslatedWeather
 import com.example.core.utils.Mapper
@@ -19,9 +19,9 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class HourlyWeatherToHourlyWeatherDisplayableItemMapperTest {
+class HourlyWeatherToHourlyWeatherDisplayableItemMapperTest { // todo: rewrite
 
-    private val dateTimeProvider = DateTimeProvider.Base(calendar = Calendar.getInstance())
+    private val whatTimeOfDay = mockk<WhatTimeOfDay>()
     private val weatherCodeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper = mockk()
     private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, TimeOfDay>, Int> =
         mockk()
@@ -32,7 +32,7 @@ class HourlyWeatherToHourlyWeatherDisplayableItemMapperTest {
         formatter = formatter,
         weatherCodeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
         translatedWeatherToResourceMapper = translatedWeatherToResourceMapper,
-        dateTimeProvider = dateTimeProvider
+        whatTimeOfDay = whatTimeOfDay
     )
 
     @Test fun `try to map a default value`() = runTest {

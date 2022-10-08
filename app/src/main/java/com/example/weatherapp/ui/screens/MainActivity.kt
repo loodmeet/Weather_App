@@ -4,11 +4,10 @@ import android.animation.LayoutTransition
 import android.graphics.drawable.AnimatedVectorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
-import androidx.navigation.findNavController
-import com.example.core.utils.Config
+import androidx.navigation.fragment.NavHostFragment
 import com.example.weatherapp.R
 import com.example.weatherapp.app.appComponent
 import com.example.weatherapp.databinding.ActivityMainBinding
@@ -20,31 +19,18 @@ class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding get() = checkNotNull(_binding)
-    private val viewModel by viewModels<MainActivityViewModel>()
-
+    private val viewModel: MainActivityViewModel by viewModels()
     @Inject internal lateinit var exitAlertDialogProvider: ExitAlertDialogProvider
 
-    override fun onBackPressed() {
-        when (findNavController(binding.navHostFragment.id).currentDestination?.id) {
-            R.id.fragmentMainScreen -> {
-                exitAlertDialogProvider.provide(this) {
-                    super.onBackPressed()
-                }.show()
-            }
-            R.id.fragmentDailyWeatherDetails -> {
-                super.onBackPressed()
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        appComponent.inject(this)
+        appComponent.inject(activity = this)
         super.onCreate(savedInstanceState)
 
         _binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
-        with(binding) {
+        initNavController()
 
+        binding.apply {
             root.layoutTransition.apply {
                 enableTransitionType(LayoutTransition.CHANGING)
                 setDuration(500)
@@ -54,51 +40,7 @@ class MainActivity : AppCompatActivity() {
                 setDuration(500)
             }
 
-            viewModel.apply {
-
-                observeIsMenuButtonClicked(this@MainActivity) { isClicked ->
-
-                    if (isClicked) {
-                        appBarLayoutTransition
-                            .enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING)
-                        mainMenuButton.setImageResource(R.drawable.avd_close_menu)
-                    } else {
-                        appBarLayoutTransition
-                            .enableTransitionType(LayoutTransition.CHANGE_APPEARING)
-                        mainMenuButton.setImageResource(R.drawable.avd_close_menu_reverse)
-                    }
-
-                    (mainMenuButton.drawable as AnimatedVectorDrawable).start()
-
-                }
-
-                observeIsMenuVisible(this@MainActivity) { isVisible ->
-                    layoutMenu.visibility = if (isVisible) {
-                        View.VISIBLE
-                    } else {
-                        View.GONE
-                    }
-                }
-
-                observeIsSettingsButtonClicked(this@MainActivity) { isClicked ->
-                    mainSettingsButton.apply {
-                        visibility = if (isClicked) {
-                            View.INVISIBLE
-                        } else {
-                            View.VISIBLE
-                        }
-                        isClickable = !isClicked
-                    }
-                }
-
-                observeIsSettingsVisible(this@MainActivity) { isVisible ->
-                    layoutSettings.visibility = if (isVisible) {
-                        View.VISIBLE
-                    } else {
-                        View.GONE
-                    }
-                }
-            }
+            initViewModel(appBarLayoutTransition)
 
             mainSettingsButton.setOnClickListener { viewModel.changeIsSettingsButtonClickedState() }
             mainMenuButton.setOnClickListener { viewModel.changeIsMenuButtonClickedState() }
@@ -110,5 +52,78 @@ class MainActivity : AppCompatActivity() {
         _binding = null
     }
 
-}
+    private fun initViewModel(appBarLayoutTransition: LayoutTransition) = with(binding) {
+        viewModel.apply {
+            observeIsMenuButtonClicked(this@MainActivity) { isClicked ->
+                appBarLayoutTransition.enableTransitionType(
+                    if (isClicked) {
+                        LayoutTransition.CHANGE_DISAPPEARING
+                    } else {
+                        LayoutTransition.CHANGE_APPEARING
+                    }
+                )
+                mainMenuButton.setImageResource(
+                    if (isClicked) {
+                        R.drawable.avd_close_menu
+                    } else {
+                        R.drawable.avd_close_menu_reverse
+                    }
+                )
 
+                (mainMenuButton.drawable as AnimatedVectorDrawable).start()
+            }
+
+            observeIsMenuVisible(this@MainActivity) { isVisible ->
+                layoutMenu.visibility = if (isVisible) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
+            }
+
+            observeIsSettingsButtonClicked(this@MainActivity) { isClicked ->
+                mainSettingsButton.apply {
+                    visibility = if (isClicked) {
+                        View.INVISIBLE
+                    } else {
+                        View.VISIBLE
+                    }
+                    isClickable = !isClicked
+                }
+            }
+
+            observeIsSettingsVisible(this@MainActivity) { isVisible ->
+                layoutSettings.visibility = if (isVisible) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
+            }
+        }
+    }
+
+    private fun initNavController() {
+        (supportFragmentManager.findFragmentById(binding.navHostFragment.id) as NavHostFragment)
+            .navController.also { navController ->
+                navController.setOnBackPressedDispatcher(onBackPressedDispatcher.also { dispatcher ->
+                    dispatcher.addCallback(
+                        this,
+                        object : OnBackPressedCallback(true) {
+                            override fun handleOnBackPressed() {
+                                when (navController.currentDestination?.id) {
+                                    R.id.fragmentMainScreen -> {
+                                        exitAlertDialogProvider.provide(this@MainActivity) {
+                                            finish()
+                                        }.show()
+                                    }
+                                    R.id.fragmentDailyWeatherDetails -> {
+                                        navController.popBackStack()
+                                    }
+                                }
+                            }
+                        }
+                    )
+                })
+            }
+    }
+}

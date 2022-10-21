@@ -123,7 +123,7 @@
 
         <TextView
             style="@style/s1"
-            android:text="Feels like" />
+            android:text="@string/feels_like" />
 
 
         <TextView

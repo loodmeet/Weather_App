@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Weather App</string>
+    <string name="app_name">Weather</string>
     <string name="exit_alert_dialog_title">Confirm</string>
     <string name="exit_alert_dialog_message">Are you sure you want to exit?</string>
     <string name="exit_alert_dialog_positive_button_text">Yes</string>

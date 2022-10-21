@@ -25,8 +25,7 @@ import dagger.Component
         DataBindModule::class,
         UiBindModule::class
     ]
-)]
-internal interface FeatureDailyWeatherDetailsComponent {
+)] internal interface FeatureDailyWeatherDetailsComponent {
 
     fun inject(fragment: FragmentDailyWeatherDetails)
 

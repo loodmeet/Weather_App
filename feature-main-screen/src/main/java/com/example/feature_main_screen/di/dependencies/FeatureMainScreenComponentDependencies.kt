@@ -6,5 +6,5 @@ interface FeatureMainScreenComponentDependencies {
 
     val actionToFragmentDailyWeatherDetails: Int
 
-    val retrofit: Retrofit
+    val mainScreenRetrofit: Retrofit
 }

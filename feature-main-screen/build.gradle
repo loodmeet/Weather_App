@@ -57,11 +57,11 @@ dependencies {
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.1'
 
     // ui ktx
-    implementation 'androidx.fragment:fragment-ktx:1.5.2'
-    implementation "androidx.activity:activity-ktx:1.5.1"
+    implementation 'androidx.fragment:fragment-ktx:1.5.3'
+    implementation "androidx.activity:activity-ktx:1.6.0"
 
     // coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
 
@@ -87,12 +87,12 @@ dependencies {
     testImplementation 'io.mockk:mockk:1.12.4'
     testImplementation "io.mockk:mockk-agent-jvm:1.12.4"
 
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
     kaptTest 'com.google.dagger:dagger-compiler:2.42'
 
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

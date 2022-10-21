@@ -9,4 +9,5 @@ internal object Config {
     const val VOLGOGRAD_TIMEZONE = "Europe%2FVolgograd"
     const val DEFAULT_LAT = 48.7194
     const val DEFAULT_LON = 44.5018
+    const val DEFAULT_WIND_SPEED_UNIT = "ms"
 }

@@ -22,11 +22,11 @@ import kotlin.reflect.KClass
 
 internal class ComponentViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val database = LocalDatabase.getLocalDatabase(application = application)
-
-    init {
-        CoroutineScope(Dispatchers.IO).launch { database.clearAllTables() }
-    }
+//    private val database = LocalDatabase.getLocalDatabase(application = application)
+//
+//    init {
+//        CoroutineScope(Dispatchers.IO).launch { database.clearAllTables() }
+//    }
 
     val component = DaggerFeatureDailyWeatherDetailsComponent.builder()
         .dependencies(dependencies = FeatureDailyWeatherDetailsDependenciesProvider.dependencies)

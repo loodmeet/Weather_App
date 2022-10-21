@@ -1,5 +1,8 @@
 package com.example.weatherapp.di.modules
 
+import android.app.Application
+import androidx.room.Room
+import com.example.feature_daily_weather_details.data.storage.database.LocalDatabase
 import com.example.weatherapp.R
 import com.example.weatherapp.di.qualifiers.BaseUrl
 import com.example.weatherapp.di.scopes.AppScope
@@ -18,7 +21,6 @@ private const val BASE_URL = "https://api.open-meteo.com/v1/"
 
     @[AppScope Provides] fun provideGson(): Gson = GsonBuilder().create()
 
-    // todo: scope?
     @Provides fun provideDefaultRetrofitClient(@BaseUrl baseUrl: String, gson: Gson): Retrofit =
         Retrofit.Builder()
             .baseUrl(baseUrl)
@@ -27,4 +29,10 @@ private const val BASE_URL = "https://api.open-meteo.com/v1/"
 
     @Provides fun provideActionToDailyWeatherDetails(): Int =
         R.id.action_fragmentMainScreen_to_fragmentDailyWeatherDetails
+
+    @[AppScope Provides] fun bindLocalDatabase(
+        application: Application
+    ): LocalDatabase = Room.databaseBuilder(
+        application, LocalDatabase::class.java, "LocalDateBase"
+    ).build()
 }

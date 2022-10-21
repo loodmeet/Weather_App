@@ -24,7 +24,7 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
                         context.resources.getString(R.string.percentage_sign)
                 temperatureTv.text = item.temperature.getValuesAsString(divider = "..")
                 windSpeedTv.text = item.windSpeed.toString() + " " +
-                        context.resources.getString(R.string.kilometre_per_hour)
+                        context.resources.getString(R.string.meters_per_second)
                 weatherIv.setImageResource(item.imageResId)
                 timeOfDayTv.text = context.resources.getString(item.timeOfDay.resId)
             }

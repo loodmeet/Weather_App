@@ -13,7 +13,7 @@ internal class WeatherApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent.builder().application(application = this).build()
 
         MainScreenFeatureStore.dependencies = appComponent
         DailyWeatherDetailsFeatureStore.dependencies = appComponent

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="celsius">°</string>
-    <string name="clear_scy">Clear scy</string>
+    <string name="celsius" translatable="false">°</string>
+    <string name="clear_sky">Clear sky</string>
     <string name="mainly_clear">Mainly clear</string>
     <string name="partly_cloudy">Partly cloudy</string>
     <string name="overcast">Overcast</string>
-    <string name="fog">fog</string>
+    <string name="fog">Fog</string>
     <string name="depositing_rime_fog">Depositing rime fog</string>
     <string name="drizzle">Drizzle</string>
     <string name="slight_intensity_rain">Slight intensity rain</string>
@@ -22,11 +21,12 @@
     <string name="snow_showers">Snow showers</string>
     <string name="slight_thunderstorm">Slight thunderstorm</string>
     <string name="thunderstorm_with_hail">Thunderstorm with hail</string>
-    <string name="unknown">Unknown</string>
+    <string name="unknown" translatable="false">Unknown</string>
     <string name="day">Day</string>
     <string name="night">Night</string>
     <string name="morning">Morning</string>
     <string name="evening">Evening</string>
-    <string name="percentage_sign">%</string>
+    <string name="percentage_sign" translatable="false">%</string>
     <string name="kilometre_per_hour">km/h</string>
+    <string name="meters_per_second">m/s</string>
 </resources>

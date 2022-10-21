@@ -15,8 +15,7 @@ import java.util.*
 
     @Provides fun provideCalendar(): Calendar = Calendar.getInstance()
 
-    // todo: maybe use the application context?
-    @Provides fun provideLocale(): Locale = Locale.CANADA
+    @Provides fun provideLocale(): Locale = Locale.getDefault()
 
     @Provides fun provideZoneOffset(): ZoneOffset = ZoneOffset.ofHours(3)
 }

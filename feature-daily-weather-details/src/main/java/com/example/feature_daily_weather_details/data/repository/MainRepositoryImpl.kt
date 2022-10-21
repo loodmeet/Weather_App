@@ -29,38 +29,36 @@ internal class MainRepositoryImpl @Inject constructor(
         withContext(context = coroutineContext) {
             with(storageRepository) {
 
-                return@withContext try {
-                    getHourlyWeatherForDay(dayDate = date)
-                } catch (e: StorageException) {
-
-                    // todo: ??
-                    val response = try {
-                        service.executeByDefaultRequest().also { retrofitResponse ->
-                            if (!retrofitResponse.isSuccessful) throw ResponseIsNotSuccessfulException(
-                                isLogged = true, message = retrofitResponse.message()
-                            )
-                        }.body()!!
-                    } catch (e: Exception) {
-                        throw ServerIsNotAvailableException(
-                            isLogged = true, message = e.stackTraceToString()
+                val response = try {
+                    service.executeByDefaultRequest().also { retrofitResponse ->
+                        if (!retrofitResponse.isSuccessful) throw ResponseIsNotSuccessfulException(
+                            isLogged = true, message = retrofitResponse.message()
                         )
-                    }
+                    }.body()!!
+                } catch (e: Exception) {
 
-                    Log.d(Config.NETWORK_TAG, "FDWD: $response")
+                    val hourlyWeather = getHourlyWeatherForDay(dayDate = date)
 
-                    val hourlyWeatherList = responseToHourlyListMapper.map(from = response)
-                    val dailyWeatherList = responseToDailyListMapper.map(from = response)
+                    if (hourlyWeather.isEmpty()) throw StorageException(
+                        isLogged = true, message = "Storage is empty")
 
-                    insertDailyWeather(dailyWeather = dailyWeatherList)
-                    // todo: rewrite
-                    insertHourlyWeather(hourlyWeather = hourlyWeatherList.associateBy({ hourly ->
-                        hourly
-                    }, { hourly ->
-                        val dailyIndex = (hourlyWeatherList.indexOf(hourly)) / 24
-                        dailyWeatherList[dailyIndex].date
-                    }))
-                    getHourlyWeatherForDay(dayDate = date)
+                    return@withContext hourlyWeather
                 }
+                Log.d(Config.NETWORK_TAG, "Feature Daily Weather Details: $response")
+
+                val hourlyWeatherList = responseToHourlyListMapper.map(from = response)
+                val dailyWeatherList = responseToDailyListMapper.map(from = response)
+
+                insertDailyWeather(dailyWeather = dailyWeatherList)
+
+                insertHourlyWeather(hourlyWeather = hourlyWeatherList.associateBy({ hourly ->
+                    hourly
+                }, { hourly ->
+                    val dailyIndex = (hourlyWeatherList.indexOf(hourly)) / 24
+                    dailyWeatherList[dailyIndex].date
+                }))
+
+                return@withContext hourlyWeatherList
             }
         }
 }

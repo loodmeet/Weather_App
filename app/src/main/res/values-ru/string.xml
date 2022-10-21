@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Погода</string>
+    <string name="exit_alert_dialog_title">Подтверждение</string>
+    <string name="exit_alert_dialog_message">Вы уверены что хотите выйти?</string>
+    <string name="exit_alert_dialog_positive_button_text">Да</string>
+    <string name="exit_alert_dialog_negative_button_text">Нет</string>
+    <string name="in_development">В разработке</string>
+    <string name="coming_soon">Скоро…</string>
+</resources>

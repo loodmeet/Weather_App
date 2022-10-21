@@ -4,8 +4,7 @@ import com.example.api.R
 
 enum class TranslatedWeather {
 
-
-    CLEAR_SKY { override val stringResId = R.string.clear_scy },
+    CLEAR_SKY { override val stringResId = R.string.clear_sky },
     MAINLY_CLEAR {  override val stringResId = R.string.mainly_clear },
     PARTLY_CLOUDY { override val stringResId = R.string.partly_cloudy },
     OVERCAST { override val stringResId = R.string.overcast },

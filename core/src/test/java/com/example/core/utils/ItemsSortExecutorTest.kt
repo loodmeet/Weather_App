@@ -9,7 +9,7 @@ import com.example.core.utils.ItemsSortExecutorTest.ForTest.*
 
 @OptIn(ExperimentalCoroutinesApi::class) class ItemsSortExecutorTest {
 
-    private val executor = ItemsSortExecutor.Base(coroutineContext = Dispatchers.IO)
+    private val executor = ItemsSortExecutor(coroutineContext = Dispatchers.IO)
     private val first = First()
     private val second = Second()
     private val third = Third()
@@ -59,6 +59,4 @@ import com.example.core.utils.ItemsSortExecutorTest.ForTest.*
         class Third : ForTest()
         class Four : ForTest()
     }
-
-
 }

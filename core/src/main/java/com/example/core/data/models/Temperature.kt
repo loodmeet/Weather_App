@@ -12,7 +12,7 @@ class Temperature(
     }
 
     fun getValueAsString() =
-        if (value > 0) "+${value.roundToInt()}$degreeSign"
+        if (value.roundToInt() > 0) "+${value.roundToInt()}$degreeSign"
         else value.roundToInt().toString() + degreeSign
 
     fun getValueAsDouble() = value

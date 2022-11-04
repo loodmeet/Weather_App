@@ -8,8 +8,8 @@ import com.example.feature_daily_weather_details.data.models.mappers.WeatherResp
 import com.example.feature_daily_weather_details.data.models.mappers.WeatherResponseToHourlyWeatherListMapper
 import com.example.feature_daily_weather_details.di.annotations.FeatureDailyWeatherDetails
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
-import com.example.feature_daily_weather_details.data.storage.models.entities.DailyWeatherEntity
-import com.example.feature_daily_weather_details.data.storage.models.entities.HourlyWeatherEntity
+import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsDailyWeatherEntity
+import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsHourlyWeatherEntity
 import com.example.feature_daily_weather_details.data.storage.models.mappers.DailyWeatherToEntityMapper
 import com.example.feature_daily_weather_details.data.storage.models.mappers.HourlyWeatherToEntityMapper
 import com.example.feature_daily_weather_details.data.storage.repository.StorageRepository
@@ -33,9 +33,9 @@ import java.time.LocalDate
 
     @[FeatureDailyWeatherDetails Binds] fun bindHourlyWeatherToEntityMapper(
         mapper: HourlyWeatherToEntityMapper
-    ): Mapper<Pair<HourlyWeather, LocalDate>, HourlyWeatherEntity>
+    ): Mapper<Pair<HourlyWeather, LocalDate>, DailyDetailsHourlyWeatherEntity>
 
     @[FeatureDailyWeatherDetails Binds] fun bindDailyWeatherToEntityMapper(
         mapper: DailyWeatherToEntityMapper
-    ): Mapper<DailyWeather, DailyWeatherEntity>
+    ): Mapper<DailyWeather, DailyDetailsDailyWeatherEntity>
 }

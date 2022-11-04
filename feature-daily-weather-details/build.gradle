@@ -48,7 +48,7 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.3"
 
     // navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
 
     // recycler - main
     implementation "androidx.recyclerview:recyclerview:1.2.1"
@@ -57,8 +57,8 @@ dependencies {
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.1'
 
     // ui ktx
-    implementation 'androidx.fragment:fragment-ktx:1.5.3'
-    implementation "androidx.activity:activity-ktx:1.6.0"
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation "androidx.activity:activity-ktx:1.6.1"
 
     // coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'

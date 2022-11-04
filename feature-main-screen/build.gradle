@@ -48,7 +48,7 @@ kapt {
 dependencies {
 
     // navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
 
     // recycler - main
     implementation "androidx.recyclerview:recyclerview:1.2.1"
@@ -57,13 +57,12 @@ dependencies {
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.1'
 
     // ui ktx
-    implementation 'androidx.fragment:fragment-ktx:1.5.3'
-    implementation "androidx.activity:activity-ktx:1.6.0"
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation "androidx.activity:activity-ktx:1.6.1"
 
     // coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -78,6 +77,11 @@ dependencies {
 
     // project impl
     implementation project(path: ':core')
+
+    // room
+    implementation "androidx.room:room-runtime:2.4.3"
+    implementation"androidx.room:room-ktx:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
 
     // tests
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'

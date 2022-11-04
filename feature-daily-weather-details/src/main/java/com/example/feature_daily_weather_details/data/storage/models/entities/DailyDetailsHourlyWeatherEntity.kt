@@ -6,7 +6,7 @@ import com.example.feature_daily_weather_details.data.models.HourlyWeather
 import java.time.LocalDate
 import java.time.LocalTime
 
-@Entity internal data class HourlyWeatherEntity(
+@Entity data class DailyDetailsHourlyWeatherEntity(
     @PrimaryKey(autoGenerate = true) val id: Long,
     val dayDate: LocalDate,
     val weatherCode: Int,
@@ -18,7 +18,7 @@ import java.time.LocalTime
     val time: LocalTime,
     val relativeHumidity: Int
 ) {
-    fun toHourlyWeather() = HourlyWeather(
+    internal fun toHourlyWeather() = HourlyWeather(
         weatherCode = weatherCode,
         apparentTemperature = apparentTemperature,
         temperature = temperature,

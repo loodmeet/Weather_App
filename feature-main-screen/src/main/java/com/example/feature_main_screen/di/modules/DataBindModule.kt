@@ -7,6 +7,10 @@ import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.data.models.mappers.WeatherResponseToDailyWeatherListMapper
 import com.example.feature_main_screen.data.models.mappers.WeatherResponseToHourlyWeatherListMapper
 import com.example.feature_main_screen.data.network.models.WeatherResponse
+import com.example.feature_main_screen.data.storage.models.entities.MainScreenDailyWeatherEntity
+import com.example.feature_main_screen.data.storage.models.entities.MainScreenHourlyWeatherEntity
+import com.example.feature_main_screen.data.storage.models.mappers.DailyWeatherToEntityMapper
+import com.example.feature_main_screen.data.storage.models.mappers.HourlyWeatherToEntityMapper
 import com.example.feature_main_screen.data.storage.repository.StorageRepository
 import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import dagger.Binds
@@ -27,4 +31,13 @@ import dagger.Module
     @[FeatureMainScreen Binds] fun bindWeatherResponseToHourlyWeatherListMapper(
         mapper: WeatherResponseToHourlyWeatherListMapper
     ): Mapper<@JvmSuppressWildcards WeatherResponse, @JvmSuppressWildcards List<HourlyWeather>>
+
+    @[FeatureMainScreen Binds] fun bindDailyToSelectedDateMapper(
+        mapper: DailyWeatherToEntityMapper
+    ): Mapper<@JvmSuppressWildcards DailyWeather, MainScreenDailyWeatherEntity>
+
+    @[FeatureMainScreen Binds] fun bindHourlyToSelectedDateMapper(
+        mapper: HourlyWeatherToEntityMapper
+    ): Mapper<@JvmSuppressWildcards HourlyWeather, MainScreenHourlyWeatherEntity>
+
 }

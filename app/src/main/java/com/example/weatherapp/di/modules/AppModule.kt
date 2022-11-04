@@ -2,8 +2,8 @@ package com.example.weatherapp.di.modules
 
 import android.app.Application
 import androidx.room.Room
-import com.example.feature_daily_weather_details.data.storage.database.LocalDatabase
 import com.example.weatherapp.R
+import com.example.weatherapp.data.storage.LocalDatabase
 import com.example.weatherapp.di.qualifiers.BaseUrl
 import com.example.weatherapp.di.scopes.AppScope
 import com.google.gson.Gson
@@ -12,11 +12,10 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 
 private const val BASE_URL = "https://api.open-meteo.com/v1/"
 
-@Module class AppModule {
+@Module(includes = [AppBindModule::class]) class AppModule {
 
     @[Provides BaseUrl] fun provideBaseUrl(): String = BASE_URL
 
@@ -34,8 +33,6 @@ private const val BASE_URL = "https://api.open-meteo.com/v1/"
     @[AppScope Provides] fun bindLocalDatabase(
         application: Application
     ): LocalDatabase = Room.databaseBuilder(
-        application, LocalDatabase::class.java, "LocalDateBase"
+        application, LocalDatabase::class.java, "LocalDatabase1"
     ).build()
-
-
 }

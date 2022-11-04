@@ -6,7 +6,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-@OptIn(ExperimentalCoroutinesApi::class) class WeatherCodeToTranslatedWeatherMapperTest {
+@OptIn(ExperimentalCoroutinesApi::class) class WeatherCodeToTranslatedWeatherMapperTest { // todo: rewrite / remove
 
     private val mapper = WeatherCodeToTranslatedWeatherMapper()
 

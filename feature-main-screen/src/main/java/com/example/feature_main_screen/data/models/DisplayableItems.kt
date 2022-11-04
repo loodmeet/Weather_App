@@ -5,7 +5,7 @@ import com.example.feature_main_screen.domain.models.HeaderDisplayableItem
 import com.example.feature_main_screen.domain.models.HourlyWeatherRecyclerDisplayableItem
 import java.util.*
 
-internal data class DisplayableItems(
+internal data class DisplayableItems( // todo: move to the ui layer
     val currentWeather: HeaderDisplayableItem,
     val hourlyWeatherRecycler: HourlyWeatherRecyclerDisplayableItem,
     val dailyWeatherList: List<DailyWeatherDisplayableItem>

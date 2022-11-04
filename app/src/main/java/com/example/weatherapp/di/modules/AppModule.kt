@@ -33,6 +33,6 @@ private const val BASE_URL = "https://api.open-meteo.com/v1/"
     @[AppScope Provides] fun bindLocalDatabase(
         application: Application
     ): LocalDatabase = Room.databaseBuilder(
-        application, LocalDatabase::class.java, "LocalDatabase"
+        application, LocalDatabase::class.java, "LocalDatabase1"
     ).build()
 }

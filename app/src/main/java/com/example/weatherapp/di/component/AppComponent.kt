@@ -1,8 +1,9 @@
 package com.example.weatherapp.di.component
 
 import android.app.Application
-import com.example.feature_daily_weather_details.data.storage.database.FeatureDailyWeatherDao
+import com.example.feature_daily_weather_details.data.storage.models.daos.FeatureDailyWeatherDao
 import com.example.feature_daily_weather_details.di.dependencies.FeatureDailyWeatherDetailsComponentDependencies
+import com.example.feature_main_screen.data.storage.models.daos.FeatureMainScreenDao
 import com.example.feature_main_screen.di.dependencies.FeatureMainScreenComponentDependencies
 import com.example.weatherapp.di.modules.AppModule
 import com.example.weatherapp.di.scopes.AppScope
@@ -25,10 +26,8 @@ internal interface AppComponent : FeatureMainScreenComponentDependencies,
     }
 
     override val mainScreenRetrofit: Retrofit
-
     override val dailyWeatherRetrofit: Retrofit
-
     override val featureDailyWeatherDao: FeatureDailyWeatherDao
-
-    override val actionToFragmentDailyWeatherDetails: Int // todo need to use qualifiers
+    override val featureMainScreenDao: FeatureMainScreenDao
+    override val actionToFragmentDailyWeatherDetails: Int // todo: need to use qualifiers
 }

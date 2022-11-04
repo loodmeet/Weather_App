@@ -6,7 +6,7 @@ import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.feature_daily_weather_details.data.models.DailyWeather
 import com.example.feature_daily_weather_details.data.models.HourlyWeather
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
-import com.example.feature_daily_weather_details.data.storage.database.FeatureDailyWeatherDao
+import com.example.feature_daily_weather_details.data.storage.models.daos.FeatureDailyWeatherDao
 import com.example.feature_daily_weather_details.data.storage.models.mappers.DailyToEntityMapper
 import com.example.feature_daily_weather_details.data.storage.models.mappers.HourlyToEntityMapper
 import kotlinx.coroutines.withContext
@@ -25,7 +25,7 @@ internal class StorageRepository @Inject constructor(
     suspend fun insertDailyWeather(dailyWeather: List<DailyWeather>) =
         withContext(coroutineContext) {
             dailyWeather.forEach {
-                dao.dailyWeatherDao().insertDailyWeather(
+                dao.dailyDetailsDailyWeatherDao().insertDailyWeather(
                     dailyWeather = dailyToEntityMapper.map(from = it)
                 )
             }
@@ -34,7 +34,7 @@ internal class StorageRepository @Inject constructor(
     suspend fun insertHourlyWeather(hourlyWeather: Map<HourlyWeather, LocalDate>) =
         withContext(coroutineContext) {
             hourlyWeather.keys.forEach {
-                dao.hourlyWeatherDao().insertHourlyWeather(
+                dao.dailyDetailsHourlyWeatherDao().insertHourlyWeather(
                     hourlyWeather = hourlyToEntityMapper.map(
                         from = it to (hourlyWeather[it] ?: throw StorageException(isLogged = true))
                     )
@@ -43,7 +43,7 @@ internal class StorageRepository @Inject constructor(
         }
 
     suspend fun getHourlyWeatherForDay(dayDate: LocalDate) = withContext(coroutineContext) {
-        val entities = dao.hourlyWeatherDao().getHourlyWeatherListByDay(dayDate = dayDate)
+        val entities = dao.dailyDetailsHourlyWeatherDao().getHourlyWeatherListByDay(dayDate = dayDate)
 
         return@withContext List(size = entities.size) { index ->
             entities[index].toHourlyWeather()
@@ -51,7 +51,7 @@ internal class StorageRepository @Inject constructor(
     }
 
     suspend fun getAllHourlyWeather() = withContext(coroutineContext) {
-        val entities = dao.hourlyWeatherDao().getHourlyWeatherList()
+        val entities = dao.dailyDetailsHourlyWeatherDao().getHourlyWeatherList()
 
         return@withContext List(size = entities.size) { index ->
             entities[index].toHourlyWeather()
@@ -59,7 +59,7 @@ internal class StorageRepository @Inject constructor(
     }
 
     suspend fun getAllDailyList() = withContext(coroutineContext) {
-        val entities = dao.dailyWeatherDao().getAllDailyWeather()
+        val entities = dao.dailyDetailsDailyWeatherDao().getAllDailyWeather()
 
         return@withContext List(size = entities.size) { index ->
             entities[index].toDailyWeather()

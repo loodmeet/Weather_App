@@ -25,7 +25,8 @@ internal class WeatherResponseToHourlyWeatherListMapper @Inject constructor(
                 precipitation = precipitation[index],
                 windSpeed = windSpeed10m[index],
                 relativeHumidity = relativeHumidity2m[index],
-                windDirection = windDirection10m[index]
+//                windDirection = windDirection10m[index]
+                windDirection = 0
             )
         }
     }

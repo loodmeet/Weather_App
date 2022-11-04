@@ -4,7 +4,7 @@ import androidx.room.*
 import com.example.feature_daily_weather_details.data.storage.models.entities.HourlyWeatherEntity
 import java.time.LocalDate
 
-@Dao internal interface HourlyWeatherDao {
+@Dao interface HourlyWeatherDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertHourlyWeather(hourlyWeather: HourlyWeatherEntity)

@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.example.feature_daily_weather_details.data.models.DailyWeather
 import java.time.LocalDate
 
-@Entity internal data class DailyWeatherEntity(
+@Entity data class DailyWeatherEntity(
     @PrimaryKey(autoGenerate = true) val id: Long,
     val date: LocalDate
-) { fun toDailyWeather() = DailyWeather(date = date) }
+) { internal fun toDailyWeather() = DailyWeather(date = date) }

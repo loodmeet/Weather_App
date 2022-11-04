@@ -19,7 +19,5 @@ data class HourlyWeatherResponse(
     @SerializedName("time")
     val time: List<String>,
     @SerializedName("relativehumidity_2m")
-    val relativeHumidity2m: List<Int>,
-//    @SerializedName("cloudcover")
-//    val cloudCover: List<Int>
+    val relativeHumidity2m: List<Int>
 )

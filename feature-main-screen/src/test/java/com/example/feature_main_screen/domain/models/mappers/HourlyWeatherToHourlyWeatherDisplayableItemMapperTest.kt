@@ -21,13 +21,15 @@ import java.util.*
 @OptIn(ExperimentalCoroutinesApi::class)
 class HourlyWeatherToHourlyWeatherDisplayableItemMapperTest { // todo: rewrite
 
-    private val whatTimeOfDay = mockk<WhatTimeOfDay>()
+    private val whatTimeOfDay: WhatTimeOfDay = mockk()
     private val weatherCodeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper = mockk()
     private val translatedWeatherToResourceMapper: Mapper<Pair<TranslatedWeather, TimeOfDay>, Int> =
         mockk()
-    private val formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.CANADA)
-    private val time = LocalTime.parse("10:00", formatter)!!
-    private val timeOfDay = TimeOfDay.MORNING
+    private val formatter: DateTimeFormatter = mockk()
+    private val localTime: LocalTime = mockk()
+    private val timeOfDay: TimeOfDay = mockk()
+    private val timeString: String = ""
+    private val translatedWeather: TranslatedWeather = mockk()
     private val mapper = HourlyWeatherToHourlyWeatherDisplayableItemMapper(
         formatter = formatter,
         weatherCodeToTranslatedWeatherMapper = weatherCodeToTranslatedWeatherMapper,
@@ -38,27 +40,25 @@ class HourlyWeatherToHourlyWeatherDisplayableItemMapperTest { // todo: rewrite
     @Test fun `try to map a default value`() = runTest {
 
         val hourlyWeather = HourlyWeather(
-            time = time,
+            time = localTime,
             weatherCode = 1,
             temperature = 0.1
         )
         coEvery {
             weatherCodeToTranslatedWeatherMapper.map(from = hourlyWeather.weatherCode)
-        } returns TranslatedWeather.CLEAR_SKY
+        } returns translatedWeather
         coEvery {
-            translatedWeatherToResourceMapper.map(from = TranslatedWeather.CLEAR_SKY to timeOfDay)
+            translatedWeatherToResourceMapper.map(from = translatedWeather to timeOfDay)
         } returns 1
-
+        coEvery { localTime.hour } coAnswers { 1 }
+        coEvery { whatTimeOfDay.timeOfDayByHour(hour = 1) } returns timeOfDay
+        coEvery { formatter.format(localTime) } returns timeString
 
         val expected = HourlyWeatherDisplayableItem(
             weatherCode = hourlyWeather.weatherCode,
-            time = formatter.format(time),
+            time = timeString,
             temperature = Temperature(value = hourlyWeather.temperature),
-            imageResId = translatedWeatherToResourceMapper.map(
-                from = weatherCodeToTranslatedWeatherMapper.map(
-                    from = hourlyWeather.weatherCode
-                ) to timeOfDay,
-            )
+            imageResId = 1
         )
         val actual = mapper.map(from = hourlyWeather)
 

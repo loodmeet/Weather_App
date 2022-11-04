@@ -16,28 +16,23 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class WeatherResponseToDailyWeatherListMapperTest {
+internal class WeatherResponseToDailyWeatherListMapperTest { // todo: rewrite
 
     private val response: WeatherResponse = mockk()
-    private val dateString = "2022-07-01T10:00"
-    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.CANADA)
-    private val date: LocalDate = LocalDate.parse(dateString, formatter)
+    private val dateString = ""
+    private val formatter: DateTimeFormatter = mockk()
+    private val date: LocalDate = mockk()
     private val mapper = WeatherResponseToDailyWeatherListMapper(formatter = formatter)
 
-    @Test fun `try to map a default response`() = runTest() {
-        coEvery { response.daily } returns DailyWeatherResponse(
-            weatherCode = listOf(1, 2, 3),
-            temperature2mMin = listOf(0.1, 0.2, 0.3),
-            temperature2mMax = listOf(0.1, 0.2, 0.3),
-            date = List(size = 3) { dateString }
-        )
+    @Test fun `try to map a default response`() = runTest {
+        val dailyResponse: DailyWeatherResponse = mockk()
+        val dailyWeatherStringList = List(size = 3) { index -> index.toString() }
 
-        val expected = listOf(
-            DailyWeather(date = date, weatherCode = 1, temperatureMin = 0.1, temperatureMax = 0.1),
-            DailyWeather(date = date, weatherCode = 2, temperatureMin = 0.2, temperatureMax = 0.2),
-            DailyWeather(date = date, weatherCode = 3, temperatureMin = 0.3, temperatureMax = 0.3)
-        )
+        coEvery { dailyResponse.date } coAnswers { dailyWeatherStringList }
+        coEvery { response.daily } returns dailyResponse
+        coEvery { LocalDate.parse(dateString, formatter) } returns date
 
+        val expected = List(size = 3) { mockk<DailyWeather>() }
         val actual = mapper.map(from = response)
 
         assertEquals(expected, actual)

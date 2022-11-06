@@ -2,6 +2,7 @@ package com.example.feature_daily_weather_details.data.storage.models.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.core.data.storage.models.DataEntity
 import com.example.feature_daily_weather_details.data.models.HourlyWeather
 import java.time.LocalDate
 import java.time.LocalTime
@@ -17,8 +18,10 @@ import java.time.LocalTime
     val windDirection: Int,
     val time: LocalTime,
     val relativeHumidity: Int
-) {
-    internal fun toHourlyWeather() = HourlyWeather(
+) : DataEntity<HourlyWeather> {
+
+    override fun toBaseType(): HourlyWeather = HourlyWeather(
+        date = dayDate,
         weatherCode = weatherCode,
         apparentTemperature = apparentTemperature,
         temperature = temperature,

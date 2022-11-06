@@ -1,7 +1,7 @@
 package com.example.core.data.storage.repository
 
 import com.example.core.data.storage.models.Dao
-import com.example.core.data.storage.models.Entity
+import com.example.core.data.storage.models.DataEntity
 import com.example.core.data.storage.models.StoredData
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
@@ -28,7 +28,7 @@ abstract class StorageRepository<T : StoredData>(
     suspend fun insertData(data: List<T>) = withContext(context = coroutineContext) {
 
         return@withContext dao.insertData(e = List(data.size) { index ->
-            data[index].toEntity() as Entity<T>
+            data[index].toEntity() as DataEntity<T>
         })
     }
 }

@@ -9,7 +9,7 @@ import com.example.feature_daily_weather_details.data.storage.models.daos.Hourly
 import com.example.feature_daily_weather_details.data.storage.models.daos.DailyWeatherDao as DailyDetailsDailyWeatherDao
 import com.example.feature_main_screen.data.storage.models.daos.HourlyWeatherDao as MainScreensHourlyWeatherDao
 import com.example.feature_main_screen.data.storage.models.daos.DailyWeatherDao as MainScreensDailyWeatherDao
-import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsDailyWeatherEntity
+import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsDailyWeatherDataEntity
 import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsHourlyWeatherEntity
 import com.example.feature_main_screen.data.storage.models.entities.MainScreenDailyWeatherEntity
 import com.example.feature_main_screen.data.storage.models.entities.MainScreenHourlyWeatherEntity
@@ -17,7 +17,7 @@ import com.example.feature_main_screen.data.storage.models.daos.FeatureMainScree
 
 @[Database(
     entities = [
-        DailyDetailsDailyWeatherEntity::class,
+        DailyDetailsDailyWeatherDataEntity::class,
         DailyDetailsHourlyWeatherEntity::class,
         MainScreenDailyWeatherEntity::class,
         MainScreenHourlyWeatherEntity::class

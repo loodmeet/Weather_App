@@ -1,29 +1,32 @@
 package com.example.core.data.repository
 
 import com.example.core.di.annotation.qualifiers.CoroutineContextIO
+import com.example.core.utils.Mapper
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 /**
- * @param DM Domain Model
+ * @param DAM Data Model
+ * @param DOM Data Model
  * */
-abstract class Repository<DM : Any>(
-    @param: CoroutineContextIO private val coroutineContext: CoroutineContext
+abstract class Repository<DAM : Any, DOM : Any>(
+    @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
+    private val mapper: Mapper<DAM, DOM>
 ) {
-    protected var data: DM? = null
+    protected var data: DAM? = null
 
-    protected abstract suspend fun fetchDataFromInternet(): DM
-    protected abstract suspend fun fetchDataFromDatabase(): DM
+    protected abstract suspend fun fetchDataFromInternet(): DAM
+    protected abstract suspend fun fetchDataFromDatabase(): DAM
 
-    open suspend fun fetchData(): DM = withContext(context = coroutineContext) {
+    open suspend fun fetchData(): DOM = withContext(context = coroutineContext) {
 
-        if (data != null) return@withContext data as DM
+        if (data != null) return@withContext mapper.map(from = data as DAM)
 
         data = try {
             fetchDataFromInternet()
         } catch (e: Exception) {
             fetchDataFromDatabase()
         }
-        return@withContext data as DM
+        return@withContext mapper.map(from = data as DAM)
     }
 }

@@ -7,7 +7,7 @@ import com.example.feature_daily_weather_details.data.models.mappers.WeatherResp
 import com.example.feature_daily_weather_details.data.models.mappers.WeatherResponseToHourlyWeatherListMapper
 import com.example.feature_daily_weather_details.di.annotations.FeatureDailyWeatherDetails
 import com.example.feature_daily_weather_details.data.network.models.responce.WeatherResponse
-import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsDailyWeatherEntity
+import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsDailyWeatherDataEntity
 import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsHourlyWeatherEntity
 import com.example.feature_daily_weather_details.data.storage.models.mappers.DailyWeatherToEntityMapper
 import com.example.feature_daily_weather_details.data.storage.models.mappers.HourlyWeatherToEntityMapper
@@ -31,5 +31,5 @@ import java.time.LocalDate
 
     @[FeatureDailyWeatherDetails Binds] fun bindDailyWeatherToEntityMapper(
         mapper: DailyWeatherToEntityMapper
-    ): Mapper<DailyWeather, DailyDetailsDailyWeatherEntity>
+    ): Mapper<DailyWeather, DailyDetailsDailyWeatherDataEntity>
 }

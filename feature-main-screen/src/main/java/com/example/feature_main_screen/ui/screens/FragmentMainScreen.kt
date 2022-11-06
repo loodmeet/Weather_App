@@ -10,7 +10,6 @@ import android.widget.ProgressBar.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.core.di.annotation.qualifiers.Main
 import com.example.core.di.annotation.qualifiers.Vertical
 import com.example.core.ui.BaseFragment
 import com.example.core.utils.Config
@@ -45,17 +44,18 @@ class FragmentMainScreen : BaseFragment<FragmentMainScreenBinding>() {
 
         binding.mainScreenRecycler.apply {
             adapter = mainDelegationAdapter.buildAdapter()
-            this.layoutManager = LinearLayoutManager(context)
-            this.overScrollMode = View.OVER_SCROLL_NEVER
+            layoutManager = LinearLayoutManager(context)
+            overScrollMode = OVER_SCROLL_NEVER
         }
 
         mainViewModel.apply {
             observeItems(this@FragmentMainScreen) { items ->
                 mainDelegationAdapter.setItems(items = items)
             }
-            // todo
+
             observeError(this@FragmentMainScreen) { error ->
-                Log.d(Config.MAIN_TAG, "FragmentMainScreen: $error")
+                binding.error.visibility = if (error) VISIBLE else GONE
+                // todo: add retry button
             }
 
             observeIsProgressBarShowed(this@FragmentMainScreen) { isShowed ->

@@ -50,11 +50,10 @@ class FragmentDailyWeatherDetails : BaseFragment<FragmentDailyWeatherDetailsBind
         }
 
         mainViewModel.apply {
-            observeDisplayableItems(owner = this@FragmentDailyWeatherDetails) { items ->
+            displayableItemsLiveData.observe(viewLifecycleOwner) { items ->
                 mainDelegationAdapter.setItems(items = items)
             }
-
-            observeDate(owner = this@FragmentDailyWeatherDetails) { item ->
+            dateLiveData.observe(viewLifecycleOwner) { item ->
                 binding.selectedDate.text = item.date
             }
             fetchData(date = arguments?.getString(Config.DAY_DATE_KEY) ?: "")

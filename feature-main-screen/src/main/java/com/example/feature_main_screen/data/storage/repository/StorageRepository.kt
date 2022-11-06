@@ -1,6 +1,5 @@
 package com.example.feature_main_screen.data.storage.repository
 
-import com.example.core.data.storage.repository.BaseStorageRepository
 import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.data.models.HourlyWeather
@@ -17,7 +16,7 @@ internal class StorageRepository @Inject constructor(
     private val mainScreenDao: FeatureMainScreenDao,
     private val dailyMapper: DailyToEntityMapper,
     private val hourlyMapper: HourlyToEntityMapper
-) : BaseStorageRepository<WeatherResponse>() {
+){
 
     suspend fun insertDailyWeather(
         dailyWeather: List<DailyWeather>

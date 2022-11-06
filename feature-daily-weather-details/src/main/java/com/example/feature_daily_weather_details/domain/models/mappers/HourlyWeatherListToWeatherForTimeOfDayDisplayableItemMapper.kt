@@ -9,18 +9,18 @@ import com.example.core.data.models.mappers.TranslatedWeatherToResMapper
 import com.example.core.utils.Mapper
 import com.example.core.utils.round
 import com.example.feature_daily_weather_details.data.models.HourlyWeather
-import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
+import com.example.feature_daily_weather_details.ui.models.WeatherForTimeOfDay
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 internal typealias HourlyListToWeatherForTimeOfDayMapper =
-        Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem>
+        Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDay>
 
 internal class HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper @Inject constructor(
     private val whatTimeOfDay: WhatTimeOfDay,
     private val translatedWeatherToResourceMapper: TranslatedWeatherToResMapper,
     private val codeToTranslatedWeatherMapper: CodeToTranslatedWeatherMapper
-) : Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDayDisplayableItem> {
+) : Mapper<@JvmSuppressWildcards List<HourlyWeather>, WeatherForTimeOfDay> {
 
     private var timeOfDay = TimeOfDay.DAY
 
@@ -32,7 +32,7 @@ internal class HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper @Inje
         }
     }
 
-    override suspend fun map(from: List<HourlyWeather>): WeatherForTimeOfDayDisplayableItem {
+    override suspend fun map(from: List<HourlyWeather>): WeatherForTimeOfDay {
         determineTimeOfDay(from = from)
         val weatherCodeList = List(size = from.size) { index -> from[index].weatherCode }.sorted()
         val weatherCode = weatherCodeList[weatherCodeList.size / 2]
@@ -62,7 +62,7 @@ internal class HourlyWeatherListToWeatherForTimeOfDayDisplayableItemMapper @Inje
             from[index].precipitation
         }.average().round(decimals = 1)
 
-        return WeatherForTimeOfDayDisplayableItem(
+        return WeatherForTimeOfDay(
             timeOfDay = timeOfDay,
             relativeHumidity = relativeHumidity,
             windDirection = windDirection,

@@ -1,6 +1,5 @@
 package com.example.feature_main_screen.di.modules
 
-import com.example.core.data.storage.repository.BaseStorageRepository
 import com.example.core.utils.Mapper
 import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.data.models.HourlyWeather
@@ -11,17 +10,11 @@ import com.example.feature_main_screen.data.storage.models.entities.MainScreenDa
 import com.example.feature_main_screen.data.storage.models.entities.MainScreenHourlyWeatherEntity
 import com.example.feature_main_screen.data.storage.models.mappers.DailyWeatherToEntityMapper
 import com.example.feature_main_screen.data.storage.models.mappers.HourlyWeatherToEntityMapper
-import com.example.feature_main_screen.data.storage.repository.StorageRepository
 import com.example.feature_main_screen.di.qualifiers.FeatureMainScreen
 import dagger.Binds
 import dagger.Module
 
 @Module internal interface DataBindModule {
-
-    @[FeatureMainScreen Binds] fun bindStorageRepository(
-        repository: StorageRepository
-    ): BaseStorageRepository<WeatherResponse>
-
 
     @[FeatureMainScreen Binds] fun bindWeatherResponseToDailyWeatherListMapper(
         mapper: WeatherResponseToDailyWeatherListMapper

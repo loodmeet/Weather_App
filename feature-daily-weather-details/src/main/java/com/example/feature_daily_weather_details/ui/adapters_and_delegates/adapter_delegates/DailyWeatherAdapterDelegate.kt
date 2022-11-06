@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import com.example.core.ui.DisplayableItem
 import com.example.feature_daily_weather_details.R
 import com.example.feature_daily_weather_details.databinding.DailyWeatherRecyclerItemBinding
-import com.example.feature_daily_weather_details.domain.models.WeatherForTimeOfDayDisplayableItem
+import com.example.feature_daily_weather_details.ui.models.WeatherForTimeOfDay
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 @SuppressLint("SetTextI18n") fun dailyWeatherAdapterDelegate() =
-    adapterDelegateViewBinding<WeatherForTimeOfDayDisplayableItem, DisplayableItem, DailyWeatherRecyclerItemBinding>(
+    adapterDelegateViewBinding<WeatherForTimeOfDay, DisplayableItem, DailyWeatherRecyclerItemBinding>(
         viewBinding = { layoutInflater, root ->
             DailyWeatherRecyclerItemBinding.inflate(
                 layoutInflater,

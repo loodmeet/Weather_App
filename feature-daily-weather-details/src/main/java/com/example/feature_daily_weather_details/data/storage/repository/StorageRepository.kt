@@ -1,7 +1,6 @@
 package com.example.feature_daily_weather_details.data.storage.repository
 
 import com.example.core.data.storage.exceptions.StorageException
-import com.example.core.data.storage.repository.BaseStorageRepository
 import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.feature_daily_weather_details.data.models.DailyWeather
 import com.example.feature_daily_weather_details.data.models.HourlyWeather
@@ -20,7 +19,7 @@ internal class StorageRepository @Inject constructor(
     private val dailyToEntityMapper: DailyToEntityMapper,
     private val hourlyToEntityMapper: HourlyToEntityMapper,
     @CoroutineContextIO private val coroutineContext: CoroutineContext
-) : BaseStorageRepository<WeatherResponse>() {
+) {
 
     suspend fun insertDailyWeather(dailyWeather: List<DailyWeather>) =
         withContext(coroutineContext) {

@@ -2,16 +2,12 @@ package com.example.feature_main_screen.data.repository
 
 import android.util.Log
 import com.example.core.data.network.exceptions.ResponseIsNotSuccessfulException
-import com.example.core.data.network.exceptions.ServerIsNotAvailableException
-import com.example.core.data.storage.exceptions.StorageException
-import com.example.core.data.storage.repository.BaseStorageRepository
 import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.core.utils.Config
 import com.example.feature_main_screen.data.models.DailyWeather
 import com.example.feature_main_screen.data.models.HourlyWeather
 import com.example.feature_main_screen.data.models.mappers.ResponseToDailyListMapper
 import com.example.feature_main_screen.data.models.mappers.ResponseToHourlyListMapper
-import com.example.feature_main_screen.data.network.models.WeatherResponse
 import com.example.feature_main_screen.data.network.retrofit.WeatherService
 import com.example.feature_main_screen.data.storage.repository.StorageRepository
 import com.example.feature_main_screen.domain.repository.MainRepository

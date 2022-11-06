@@ -3,17 +3,19 @@ package com.example.feature_daily_weather_details.view_models
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.core.di.annotation.qualifiers.CoroutineContextDefault
 import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.core.di.dependensies.DisplayableItemsProvider
+import com.example.core.domain.use_case.UseCase
 import com.example.core.ui.DisplayableItem
 import com.example.core.utils.Config
 import com.example.core.utils.ItemsSortExecutor
-import com.example.feature_daily_weather_details.domain.models.SelectedDateDisplayableItem
+import com.example.feature_daily_weather_details.domain.models.DomainModel
+import com.example.feature_daily_weather_details.ui.models.SelectedDateDisplayableItem
 import com.example.feature_daily_weather_details.domain.usecases.FetchSelectedDateUseCase
 import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDateUseCase
+import com.example.feature_daily_weather_details.ui.models.WeatherForTimeOfDayRecycler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,52 +23,32 @@ import kotlin.coroutines.CoroutineContext
 
 internal class MainViewModel(
     private val coroutineContext: CoroutineContext,
-    private val itemsSortExecutor: ItemsSortExecutor,
-    private val displayableItemsArray: DisplayableItemsProvider,
-    private val fetchWeatherByDateUseCase: FetchWeatherByDateUseCase,
+    private val fetchWeatherByDateUseCase: UseCase<@JvmSuppressWildcards  DomainModel, WeatherForTimeOfDayRecycler>,
     private val fetchSelectedDateUseCase: FetchSelectedDateUseCase,
-) : ViewModel() {
+) : ViewModel() { // todo: MVI
 
-    private val date = MutableLiveData<SelectedDateDisplayableItem>()
-    private val displayableItems = MutableLiveData<List<DisplayableItem>>()
-
-    fun observeDisplayableItems(owner: LifecycleOwner, observer: Observer<List<DisplayableItem>>) {
-        displayableItems.observe(owner, observer)
-    }
-
-    fun observeDate(owner: LifecycleOwner, observer: Observer<SelectedDateDisplayableItem>) {
-        date.observe(owner, observer)
-    }
+    private val _date = MutableLiveData<SelectedDateDisplayableItem>()
+    private val _displayableItems = MutableLiveData<List<DisplayableItem>>()
+    val dateLiveData: MutableLiveData<SelectedDateDisplayableItem> get() = _date
+    val displayableItemsLiveData: MutableLiveData<List<DisplayableItem>> get() = _displayableItems
 
     fun fetchData(date: String) {
         CoroutineScope(coroutineContext).launch {
-            this@MainViewModel.date.postValue(SelectedDateDisplayableItem(date = date))
+            _date.postValue(SelectedDateDisplayableItem(date = date))
             val dateResult = fetchSelectedDateUseCase.execute(date = date)
 
             dateResult.fold(
                 onFailure = { exception -> Log.d(Config.MAIN_TAG, exception.stackTraceToString()) },
                 onSuccess = { value ->
-                    fetchWeatherByDateUseCase.execute(date = value).fold(
+                    fetchWeatherByDateUseCase().fold(
                         onFailure = { exception ->
                             Log.d(
                                 Config.MAIN_TAG,
                                 exception.stackTraceToString()
                             )
                         },
-                        onSuccess = { items ->
-                            val sortedItems = itemsSortExecutor.sortByRule(
-                                items = items.toMutableList(),
-                                rule = displayableItemsArray.items
-                            )
-                            sortedItems.fold(
-                                onSuccess = { value -> displayableItems.postValue(value) },
-                                onFailure = { exception ->
-                                    Log.d(
-                                        Config.MAIN_TAG,
-                                        exception.stackTraceToString()
-                                    )
-                                }
-                            )
+                        onSuccess = { item ->
+                            _displayableItems.postValue(item.items)
                         })
                 }
             )
@@ -74,18 +56,15 @@ internal class MainViewModel(
     }
 
     internal class Factory @Inject constructor(
-        @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
-        private val itemsSortExecutor: ItemsSortExecutor,
-        private val displayableItemsArray: DisplayableItemsProvider,
-        private val fetchWeatherByDateUseCase: FetchWeatherByDateUseCase,
+        @param: CoroutineContextDefault private val coroutineContext: CoroutineContext,
+        private val fetchWeatherByDateUseCase: UseCase<@JvmSuppressWildcards DomainModel, WeatherForTimeOfDayRecycler>,
         private val fetchSelectedDateUseCase: FetchSelectedDateUseCase
     ) : ViewModelProvider.Factory {
+
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
             return MainViewModel(
                 coroutineContext = coroutineContext,
-                displayableItemsArray = displayableItemsArray,
-                itemsSortExecutor = itemsSortExecutor,
                 fetchWeatherByDateUseCase = fetchWeatherByDateUseCase,
                 fetchSelectedDateUseCase = fetchSelectedDateUseCase
             ) as T

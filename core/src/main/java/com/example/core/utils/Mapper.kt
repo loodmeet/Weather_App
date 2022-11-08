@@ -7,5 +7,4 @@ package com.example.core.utils
 interface Mapper<in F : Any, out T : Any> {
 
     suspend fun map(from: F): T
-
 }

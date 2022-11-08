@@ -5,16 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.core.di.annotation.qualifiers.CoroutineContextDefault
-import com.example.core.di.annotation.qualifiers.CoroutineContextIO
-import com.example.core.di.dependensies.DisplayableItemsProvider
-import com.example.core.domain.use_case.UseCase
 import com.example.core.ui.DisplayableItem
 import com.example.core.utils.Config
-import com.example.core.utils.ItemsSortExecutor
-import com.example.feature_daily_weather_details.domain.models.DomainModel
+import com.example.feature_daily_weather_details.domain.models.DailyWeatherDetailsUseCase
 import com.example.feature_daily_weather_details.ui.models.SelectedDateDisplayableItem
 import com.example.feature_daily_weather_details.domain.usecases.FetchSelectedDateUseCase
-import com.example.feature_daily_weather_details.domain.usecases.FetchWeatherByDateUseCase
 import com.example.feature_daily_weather_details.ui.models.WeatherForTimeOfDayRecycler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -23,7 +18,7 @@ import kotlin.coroutines.CoroutineContext
 
 internal class MainViewModel(
     private val coroutineContext: CoroutineContext,
-    private val fetchWeatherByDateUseCase: UseCase<@JvmSuppressWildcards  DomainModel, WeatherForTimeOfDayRecycler>,
+    private val fetchWeatherByDateUseCase: DailyWeatherDetailsUseCase<WeatherForTimeOfDayRecycler>,
     private val fetchSelectedDateUseCase: FetchSelectedDateUseCase,
 ) : ViewModel() { // todo: MVI
 
@@ -57,7 +52,7 @@ internal class MainViewModel(
 
     internal class Factory @Inject constructor(
         @param: CoroutineContextDefault private val coroutineContext: CoroutineContext,
-        private val fetchWeatherByDateUseCase: UseCase<@JvmSuppressWildcards DomainModel, WeatherForTimeOfDayRecycler>,
+        private val fetchWeatherByDateUseCase: DailyWeatherDetailsUseCase<WeatherForTimeOfDayRecycler>,
         private val fetchSelectedDateUseCase: FetchSelectedDateUseCase
     ) : ViewModelProvider.Factory {
 

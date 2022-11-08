@@ -2,7 +2,6 @@ package com.example.feature_daily_weather_details.data.models
 
 import com.example.core.data.storage.models.DataEntity
 import com.example.core.data.storage.models.StoredData
-import com.example.feature_daily_weather_details.data.storage.models.entities.DailyDetailsDailyWeatherDataEntity
 import java.time.LocalDate
 
 //data class DailyWeather (

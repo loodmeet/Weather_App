@@ -1,16 +1,15 @@
 package com.example.core.data.repository
 
-import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.core.utils.Mapper
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 /**
- * @param DAM Data Model
  * @param DOM Data Model
+ * @param DAM Data Model
  * */
-abstract class Repository<DAM : Any, DOM : Any>(
-    @param: CoroutineContextIO private val coroutineContext: CoroutineContext,
+abstract class Repository<DOM : Any, DAM : Any>(
+    private val coroutineContext: CoroutineContext,
     private val mapper: Mapper<DAM, DOM>
 ) {
     protected var data: DAM? = null

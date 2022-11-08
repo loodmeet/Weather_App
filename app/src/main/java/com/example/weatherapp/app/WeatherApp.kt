@@ -7,7 +7,7 @@ import com.example.feature_daily_weather_details.di.dependencies.FeatureStore as
 import com.example.weatherapp.di.component.AppComponent
 import com.example.weatherapp.di.component.DaggerAppComponent
 
-internal class WeatherApp : Application() {
+class WeatherApp : Application() {
 
     lateinit var appComponent: AppComponent
 

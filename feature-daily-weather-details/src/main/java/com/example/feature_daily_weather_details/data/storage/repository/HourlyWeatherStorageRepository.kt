@@ -7,9 +7,9 @@ import com.example.feature_daily_weather_details.data.models.HourlyWeather
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class HourlyWeatherStorageRepository @Inject constructor(
+internal class HourlyWeatherStorageRepository @Inject constructor(
     @CoroutineContextIO coroutineContext: CoroutineContext,
-    dao: Dao<HourlyWeather>
+    dao: Dao<HourlyWeather> // todo
 ) : StorageRepository<HourlyWeather>(
     dao = dao,
     coroutineContext = coroutineContext

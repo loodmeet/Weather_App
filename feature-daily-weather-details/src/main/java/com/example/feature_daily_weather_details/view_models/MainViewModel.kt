@@ -1,11 +1,7 @@
 package com.example.feature_daily_weather_details.view_models
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.example.core.di.annotation.qualifiers.CoroutineContextIO
 import com.example.core.di.dependensies.DisplayableItemsProvider
 import com.example.core.ui.DisplayableItem
@@ -20,7 +16,6 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 internal class MainViewModel(
-    private val coroutineContext: CoroutineContext,
     private val itemsSortExecutor: ItemsSortExecutor,
     private val displayableItemsArray: DisplayableItemsProvider,
     private val fetchWeatherByDateUseCase: FetchWeatherByDateUseCase,
@@ -39,7 +34,7 @@ internal class MainViewModel(
     }
 
     fun fetchData(date: String) {
-        CoroutineScope(coroutineContext).launch {
+        viewModelScope.launch {
             this@MainViewModel.date.postValue(SelectedDateDisplayableItem(date = date))
             val dateResult = fetchSelectedDateUseCase.execute(date = date)
 
@@ -83,7 +78,6 @@ internal class MainViewModel(
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
             return MainViewModel(
-                coroutineContext = coroutineContext,
                 displayableItemsArray = displayableItemsArray,
                 itemsSortExecutor = itemsSortExecutor,
                 fetchWeatherByDateUseCase = fetchWeatherByDateUseCase,

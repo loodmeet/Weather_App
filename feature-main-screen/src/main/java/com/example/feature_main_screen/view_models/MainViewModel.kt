@@ -15,9 +15,7 @@ import kotlin.coroutines.CoroutineContext
 internal class MainViewModel(
     private val fetchDataUseCase: FetchDataUseCase,
     private val itemsSortExecutor: ItemsSortExecutor,
-    private val dividerDisplayableItem: DividerDisplayableItem,
     private val displayableItemsArray: DisplayableItemsProvider,
-    private val coroutineContext: CoroutineContext
 ) : ViewModel() {
 
     private val itemsLiveData = MutableLiveData<List<DisplayableItem>>()
@@ -37,7 +35,7 @@ internal class MainViewModel(
     }
 
     fun fetchData() {
-        CoroutineScope(coroutineContext).launch {
+        viewModelScope.launch {
             val fetchDataResult = fetchDataUseCase.execute()
 
             fetchDataResult.fold(
@@ -75,9 +73,7 @@ internal class MainViewModel(
             return MainViewModel(
                 fetchDataUseCase = fetchDataUseCase,
                 itemsSortExecutor = itemsSortExecutor,
-                dividerDisplayableItem = dividerDisplayableItem,
                 displayableItemsArray = displayableItemsArray,
-                coroutineContext = coroutineContext
             ) as T
         }
     }
